@@ -2,26 +2,16 @@
 
 import { ReactNode } from "react";
 
+import {
+  Button as MUIButton,
+  type ButtonProps as MUIButtonProps,
+} from "@mui/material";
+
 interface ButtonProps {
   children: ReactNode;
-  className?: string;
-  backgroundColor?: string;
-  appName: string;
+  variant?: MUIButtonProps["variant"];
 }
 
-export const Button = ({
-  children,
-  className,
-  appName,
-  backgroundColor,
-}: ButtonProps) => {
-  return (
-    <button
-      className={className}
-      style={{ background: backgroundColor, padding: "10px" }}
-      onClick={() => alert(`Hello from your ${appName} app!`)}
-    >
-      {children}
-    </button>
-  );
+export const Button = ({ children, variant = "contained" }: ButtonProps) => {
+  return <MUIButton variant={variant}>{children}</MUIButton>;
 };
