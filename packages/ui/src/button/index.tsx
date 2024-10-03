@@ -18,7 +18,13 @@ export const Button = ({ children, variant = "contained" }: ButtonProps) => {
   const theme = useTheme();
 
   return (
-    <MUIButton variant={variant} sx={{ p: theme.spacing("small") }}>
+    <MUIButton
+      variant={variant}
+      color="secondary"
+      sx={{
+        p: theme.spacing("small"),
+      }}
+    >
       <Typography variant="subtitle1">{children}</Typography>
     </MUIButton>
   );
