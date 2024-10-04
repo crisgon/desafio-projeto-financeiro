@@ -4,7 +4,7 @@ import { render } from "@testing-library/react";
 
 describe("Button", () => {
   it("should render correctly", () => {
-    const { getByText } = render(<Button appName="Principal">Primary</Button>);
+    const { getByText } = render(<Button>Primary</Button>);
     expect(getByText("Primary")).toBeInTheDocument();
   });
 });
