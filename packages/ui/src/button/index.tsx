@@ -2,26 +2,30 @@
 
 import { ReactNode } from "react";
 
+import {
+  Button as MUIButton,
+  Typography,
+  useTheme,
+  type ButtonProps as MUIButtonProps,
+} from "@mui/material";
+
 interface ButtonProps {
   children: ReactNode;
-  className?: string;
-  backgroundColor?: string;
-  appName: string;
+  variant?: MUIButtonProps["variant"];
 }
 
-export const Button = ({
-  children,
-  className,
-  appName,
-  backgroundColor,
-}: ButtonProps) => {
+export const Button = ({ children, variant = "contained" }: ButtonProps) => {
+  const theme = useTheme();
+
   return (
-    <button
-      className={className}
-      style={{ background: backgroundColor, padding: "10px" }}
-      onClick={() => alert(`Hello from your ${appName} app!`)}
+    <MUIButton
+      variant={variant}
+      color="secondary"
+      sx={{
+        p: theme.spacing("small"),
+      }}
     >
-      {children}
-    </button>
+      <Typography variant="subtitle1">{children}</Typography>
+    </MUIButton>
   );
 };
