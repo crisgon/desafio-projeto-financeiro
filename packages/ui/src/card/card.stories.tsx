@@ -31,7 +31,7 @@ export const Default: Story = {
 
 export const DefaultWithoutTitle: Story = {
   args: {
-    children: "This is a Default without card",
+    children: "This is a Default card without title",
     type: "default",
   },
 };
