@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-
 import { Icons as IconComponent } from ".";
 
 const meta = {
@@ -7,6 +6,12 @@ const meta = {
   component: IconComponent,
   parameters: {
     layout: "centered",
+    docs: {
+      description: {
+        component:
+          "Lista com os ícones disponíveis: https://pictogrammers.github.io/@mdi/font/6.1.95/",
+      },
+    },
   },
   tags: ["autodocs"],
 } as Meta;
