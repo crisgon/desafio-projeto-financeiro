@@ -17,7 +17,6 @@ export const Container = styled.ul`
   }
 
   span {
-    font-weight: bold;
     font-size: 18px;
   }
 `;
