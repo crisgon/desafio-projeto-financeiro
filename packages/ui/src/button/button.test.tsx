@@ -45,7 +45,7 @@ describe("Button", () => {
             label="Button test"
             onClick={mockedFunction}
           />
-        </ThemeProvider>
+        </ThemeProvider>,
       );
 
       vi.waitFor(() => {
@@ -55,7 +55,7 @@ describe("Button", () => {
           borderColor: border,
         });
       });
-    }
+    },
   );
 
   test.each([
@@ -77,7 +77,7 @@ describe("Button", () => {
             onClick={mockedFunction}
             disabled
           />
-        </ThemeProvider>
+        </ThemeProvider>,
       );
 
       vi.waitFor(() => {
@@ -87,7 +87,7 @@ describe("Button", () => {
           borderColor: border,
         });
       });
-    }
+    },
   );
 
   test.each([["primary"], ["secondary"], ["tertiary"], ["error"]])(
@@ -105,7 +105,7 @@ describe("Button", () => {
             label="Button test"
             onClick={mockedFunction}
           />
-        </ThemeProvider>
+        </ThemeProvider>,
       );
 
       const button = getByRole("button", { name: "Button test" });
@@ -119,7 +119,7 @@ describe("Button", () => {
           borderColor: "#000000",
         });
       });
-    }
+    },
   );
 
   test.each([["primary"], ["secondary"], ["tertiary"], ["error"]])(
@@ -137,7 +137,7 @@ describe("Button", () => {
             label="Button test"
             onClick={mockedFunction}
           />
-        </ThemeProvider>
+        </ThemeProvider>,
       );
 
       const button = getByRole("button", { name: "Button test" });
@@ -151,14 +151,14 @@ describe("Button", () => {
           color: "#000000",
         });
       });
-    }
+    },
   );
 
   test("should call onClick function", () => {
     const { getByRole } = render(
       <ThemeProvider theme={theme}>
         <Button label="Button test" onClick={mockedFunction} />
-      </ThemeProvider>
+      </ThemeProvider>,
     );
 
     const button = getByRole("button", { name: "Button test" });
