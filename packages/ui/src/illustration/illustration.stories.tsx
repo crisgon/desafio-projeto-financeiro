@@ -1,6 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { Illustration as IllustrationComponent } from ".";
-import { ListAllIllustrationsDocs } from "./docs/ListAllIllustrationDocs";
 
 const meta = {
   title: "Components/Illustration",
@@ -25,5 +24,3 @@ export const Illustration: Story = {
     name: "error404",
   },
 };
-
-export const ListAll = () => <ListAllIllustrationsDocs />;
