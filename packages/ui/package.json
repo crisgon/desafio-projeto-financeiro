@@ -10,8 +10,9 @@
   "scripts": {
     "lint": "eslint . --max-warnings 0",
     "generate:component": "turbo gen react-component",
-    "dev": "storybook dev -p 6006",
-    "build": "storybook build"
+    "storybook": "storybook dev -p 6006",
+    "build": "storybook build",
+    "test": "vitest"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^1.9.0",

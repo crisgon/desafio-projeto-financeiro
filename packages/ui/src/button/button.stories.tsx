@@ -23,7 +23,6 @@ type Story = StoryObj<typeof meta>;
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Contained: Story = {
   args: {
-    appName: "Principal",
     children: "Contained",
     variant: "contained",
   },
@@ -31,7 +30,6 @@ export const Contained: Story = {
 
 export const Outlined: Story = {
   args: {
-    appName: "Principal",
     children: "Outlined",
     variant: "outlined",
   },
@@ -39,7 +37,6 @@ export const Outlined: Story = {
 
 export const Text: Story = {
   args: {
-    appName: "Principal",
     children: "Text",
     variant: "text",
   },
