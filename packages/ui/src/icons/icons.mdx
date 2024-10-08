@@ -1,0 +1,15 @@
+import { Meta, Title, IconGallery, IconItem } from "@storybook/blocks";
+import { iconsArray } from "./iconNames";
+import { Icons } from ".";
+
+<Meta title="Components/Icons/ListAll" />
+
+# Icons
+
+<IconGallery>
+  {iconsArray.map((name) => (
+    <IconItem name={name}>
+      <Icons name={name} color="#47A138" />
+    </IconItem>
+  ))}
+</IconGallery>
