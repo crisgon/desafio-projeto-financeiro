@@ -1,5 +1,6 @@
 import { createTheme } from "@mui/material/styles";
 import { ThemeOptions } from "@mui/material";
+import { buttonOverrides } from "./overrides/button";
 
 const theme = createTheme({
   palette: {
@@ -26,7 +27,7 @@ const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: '"Inter", sans-serif',
+    fontFamily: "'Inter', sans-serif",
     h1: {
       fontSize: "25px",
     },
@@ -52,6 +53,9 @@ const theme = createTheme({
     };
 
     return `${spacingValues[value as keyof typeof spacingValues]}px`;
+  },
+  components: {
+    ...buttonOverrides,
   },
 });
 
