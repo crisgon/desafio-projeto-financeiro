@@ -1,4 +1,4 @@
-import { Components, CssVarsTheme, Theme } from "@mui/material";
+import type { Components, CssVarsTheme, Theme } from "@mui/material";
 
 export const selectOverrides = {
   MuiSelect: {
