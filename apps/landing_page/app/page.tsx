@@ -46,7 +46,7 @@ export default function Home() {
             Read our docs
           </a>
         </div>
-        <Button>Open alert</Button>
+        <Button label="Open alert" onClick={() => {}} />
       </main>
       <footer className={styles.footer}>
         <a
