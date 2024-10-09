@@ -5,7 +5,6 @@ import { render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 const args = {
-  value: "none",
   options: [
     { value: "1", label: "Câmbio de Moeda" },
     { value: "2", label: "DOC/TED" },

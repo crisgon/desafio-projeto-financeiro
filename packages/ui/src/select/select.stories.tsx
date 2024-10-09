@@ -16,17 +16,16 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof SelectComponent>;
 
-let value = "none";
-
 export const Select: Story = {
   args: {
-    value: "none",
     options: [
       { value: "1", label: "Câmbio de Moeda" },
       { value: "2", label: "DOC/TED" },
       { value: "3", label: "Empréstimo e Financiamento" },
     ],
-    onChange: fn(),
+    onChange: (e) => {
+      console.log(e.target.value);
+    },
     placeholder: "Selecione o tipo de transação",
   },
 };

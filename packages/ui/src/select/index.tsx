@@ -5,13 +5,12 @@ import {
 } from "@mui/material";
 
 interface SelectProps {
-  value: string;
   onChange: (e: SelectChangeEvent) => void;
   options: { value: string; label: string }[];
   placeholder: string;
 }
 
-export function Select({ value, onChange, options, placeholder }: SelectProps) {
+export function Select({ onChange, options, placeholder }: SelectProps) {
   return (
     <MUISelect defaultValue="none" onChange={(e) => onChange(e)}>
       <MenuItem value="none" sx={{ display: "none" }}>
