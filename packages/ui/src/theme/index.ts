@@ -1,6 +1,8 @@
 import { createTheme } from "@mui/material/styles";
 import { ThemeOptions } from "@mui/material";
 import { buttonOverrides } from "./overrides/button";
+import { selectOverrides } from "./overrides/select";
+import { menuItemOverrides } from "./overrides/menu-item";
 
 const theme = createTheme({
   palette: {
@@ -56,6 +58,8 @@ const theme = createTheme({
   },
   components: {
     ...buttonOverrides,
+    ...selectOverrides,
+    ...menuItemOverrides,
   },
 });
 
