@@ -15,19 +15,21 @@ export function IconButton({
   onClick,
 }: IconButtonProps): JSX.Element {
   const theme = useTheme();
+  const iconSize = variant === "default" ? 20 : 30;
 
   return (
     <MUIIconButton
       onClick={onClick}
       disabled={disabled}
       sx={{
+        padding: variant === "dark" ? "0px !important" : "8px !important",
         backgroundColor:
           variant === "default"
             ? theme.palette.action.active
             : theme.palette.common.black,
       }}
     >
-      <Icons name={icon} color={theme.palette.common.white} size={20} />
+      <Icons name={icon} color={theme.palette.common.white} size={iconSize} />
     </MUIIconButton>
   );
 }
