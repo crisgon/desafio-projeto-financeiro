@@ -7,7 +7,7 @@ const meta = {
   title: "Components/Menu",
   component: MenuComponent,
   parameters: {
-    layout: "centered",
+    layout: "top",
   },
   args: {
     variant: "full",
