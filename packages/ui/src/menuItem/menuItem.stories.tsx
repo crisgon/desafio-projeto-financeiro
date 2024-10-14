@@ -1,16 +1,13 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import Menu from "."; // Ajuste o caminho para onde está o componente Menu
+import { MenuItem as MenuItemComponent } from ".";
 
 const meta = {
   title: "Components/Menu/MenuItem",
-  component: Menu.MenuItem,
+  component: MenuItemComponent,
   parameters: {
     layout: "centered",
   },
   tags: ["autodocs"],
-  args: {
-    children: "Menu Item",
-  },
   argTypes: {
     handleClick: { action: "clicked" },
     active: { control: "boolean" },
@@ -19,7 +16,7 @@ const meta = {
 } as Meta;
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof MenuItemComponent>;
 
 export const Default: Story = {
   args: {

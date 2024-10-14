@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from "vitest";
-import Menu from ".";
+import { MenuItem } from ".";
 import { fireEvent, getByRole, render } from "@testing-library/react";
 import { ThemeProvider } from "@mui/material";
 import theme from "../theme";
@@ -13,7 +13,7 @@ describe("MenuItem", () => {
   it("should render default variant correctly", () => {
     const { getByRole, getByText } = render(
       <ThemeProvider theme={theme}>
-        <Menu.MenuItem handleClick={vi.fn}>Início</Menu.MenuItem>
+        <MenuItem handleClick={vi.fn}>Início</MenuItem>
       </ThemeProvider>,
     );
 
@@ -27,9 +27,9 @@ describe("MenuItem", () => {
   it("should render active variant correctly", () => {
     const { getByRole, getByText } = render(
       <ThemeProvider theme={theme}>
-        <Menu.MenuItem handleClick={vi.fn} active>
+        <MenuItem handleClick={vi.fn} active>
           Início
-        </Menu.MenuItem>
+        </MenuItem>
       </ThemeProvider>,
     );
 
@@ -44,9 +44,9 @@ describe("MenuItem", () => {
   it("should render disabled variant correctly", () => {
     const { getByText } = render(
       <ThemeProvider theme={theme}>
-        <Menu.MenuItem handleClick={vi.fn} disabled>
+        <MenuItem handleClick={vi.fn} disabled>
           Início
-        </Menu.MenuItem>
+        </MenuItem>
       </ThemeProvider>,
     );
 

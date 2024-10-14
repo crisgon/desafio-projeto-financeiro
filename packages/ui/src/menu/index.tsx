@@ -1,41 +1,12 @@
-import {
-  Box,
-  MenuItem as MUIMenuItem,
-  Menu as MUIMenu,
-  IconButton,
-  useTheme,
-} from "@mui/material";
+import { Menu as MUIMenu, IconButton, useTheme } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { Icons } from "../icons";
+import { MenuItem } from "../menuItem";
 
-interface MenuProps {
+export interface MenuProps {
   variant: "full" | "compact";
   children: React.ReactElement | string;
   anchorElem?: HTMLElement | null;
-}
-
-interface MenuItemProps extends Omit<MenuProps, "variant"> {
-  active?: boolean;
-  disabled?: boolean;
-  children: React.ReactElement | string;
-  handleClick: () => void;
-}
-
-function MenuItem({
-  children,
-  active,
-  disabled,
-  handleClick,
-}: MenuItemProps): JSX.Element {
-  return (
-    <MUIMenuItem
-      onClick={handleClick}
-      className={`menu-item-menu-component ${active ? "active" : ""}`}
-      disabled={disabled}
-    >
-      {children}
-    </MUIMenuItem>
-  );
 }
 
 function Menu({ variant, children, anchorElem }: MenuProps): JSX.Element {
