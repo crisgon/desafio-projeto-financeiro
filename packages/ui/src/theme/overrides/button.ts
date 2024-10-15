@@ -8,7 +8,7 @@ export const buttonOverrides = {
           {
             props: { color: "primary", variant: "contained" },
             style: {
-              borderColor: "#47A138",
+              border: "1px solid #47A138",
               backgroundColor: "#47A138",
               color: "#FFFFFF",
             },
@@ -24,7 +24,7 @@ export const buttonOverrides = {
           {
             props: { color: "secondary", variant: "contained" },
             style: {
-              borderColor: "#FF5031",
+              border: "1px solid #FF5031",
               backgroundColor: "#FF5031",
               color: "#FFFFFF",
             },
@@ -38,9 +38,15 @@ export const buttonOverrides = {
             },
           },
           {
+            props: { color: "error", variant: "contained" },
+            style: {
+              border: "1px solid #d32f2f",
+            },
+          },
+          {
             props: { color: "tertiary", variant: "contained" },
             style: {
-              borderColor: "#004D61",
+              border: "1px solid #004D61",
               backgroundColor: "#004D61",
               color: "#FFFFFF",
             },
@@ -70,6 +76,32 @@ export const buttonOverrides = {
                 backgroundColor: "transparent",
                 borderColor: "#000000",
                 color: "#000000",
+              },
+            },
+          },
+          {
+            props: { color: "contrast", variant: "contained" },
+            style: {
+              border: "1px solid #000000",
+              backgroundColor: "#000000",
+              color: "#FFFFFF",
+              "&:hover": {
+                backgroundColor: "#FFFFFF",
+                borderColor: "#FFFFFF",
+                color: "#000000",
+              },
+            },
+          },
+          {
+            props: { color: "contrast", variant: "outlined" },
+            style: {
+              borderColor: "#000000",
+              backgroundColor: "transparent",
+              color: "#000000",
+              "&:hover": {
+                backgroundColor: "transparent",
+                borderColor: "#FFFFFF",
+                color: "#FFFFFF",
               },
             },
           },
