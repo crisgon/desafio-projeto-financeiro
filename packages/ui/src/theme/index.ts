@@ -27,6 +27,9 @@ const theme = createTheme({
       default: "#E4EDE3",
       paper: "linear-gradient(180deg, #004D61 0%, #FFFFFF 100%)",
     },
+    action: {
+      active: "#004D61",
+    },
   },
   typography: {
     fontFamily: "'Inter', sans-serif",

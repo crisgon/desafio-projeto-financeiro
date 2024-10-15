@@ -3,7 +3,7 @@ import { useTheme } from "@mui/material";
 import type { IconNames } from "./iconNames";
 import { iconNameParser } from "./utils/iconNameParser";
 
-interface IconProps {
+export interface IconProps {
   name: IconNames;
   color?: string;
   size?: number;
