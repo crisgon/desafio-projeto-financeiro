@@ -1,17 +1,25 @@
 import { Menu as MUIMenu, IconButton, useTheme } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Icons } from "../icons";
 import { MenuItem } from "../menuItem";
+import { menuOverrides } from "./menu.styles";
 
 export interface MenuProps {
   variant: "full" | "compact";
+  iconColor?: "primary" | "secondary";
   children: React.ReactElement | string;
   anchorElem?: HTMLElement | null;
 }
 
-function Menu({ variant, children, anchorElem }: MenuProps): JSX.Element {
+function Menu({
+  variant,
+  children,
+  anchorElem,
+  iconColor = "primary",
+}: MenuProps): JSX.Element {
   const theme = useTheme();
   const [width, setWidth] = useState(window.innerWidth);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 720);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(
     anchorElem || null,
   );
@@ -27,27 +35,24 @@ function Menu({ variant, children, anchorElem }: MenuProps): JSX.Element {
     setMenuIsOpen(false);
   };
 
-  const liDefaultStyles = {
-    borderBottom: "1px solid #000",
-    justifyContent: "center",
-    padding: "16px",
-    margin: "0 16px",
-  };
-
-  const liStyles =
-    variant === "compact" || width < 720
-      ? {
-          "&:last-child": {
+  const liStyles = useMemo(
+    () =>
+      variant === "compact" || isMobile
+        ? {
+            "&:last-child": {
+              borderBottom: "1px solid transparent",
+            },
+          }
+        : {
             borderBottom: "1px solid transparent",
           },
-        }
-      : {
-          borderBottom: "1px solid transparent",
-        };
+    [isMobile],
+  );
 
   useEffect(() => {
     const handleResize = () => {
       setWidth(window.innerWidth);
+      setIsMobile(window.innerWidth < 720);
     };
 
     window.addEventListener("resize", handleResize);
@@ -59,7 +64,7 @@ function Menu({ variant, children, anchorElem }: MenuProps): JSX.Element {
 
   return (
     <>
-      {width < 720 && (
+      {isMobile && (
         <IconButton
           aria-label="open menu"
           id="open-menu-button"
@@ -70,7 +75,7 @@ function Menu({ variant, children, anchorElem }: MenuProps): JSX.Element {
         >
           <Icons
             name="mdiMenu"
-            color={theme.palette.secondary.main}
+            color={theme.palette[iconColor].main}
             size={32}
           />
         </IconButton>
@@ -82,45 +87,26 @@ function Menu({ variant, children, anchorElem }: MenuProps): JSX.Element {
         }}
         anchorEl={anchorElem || anchorEl}
         open={menuIsOpen}
-        onClose={width < 720 ? handleClose : undefined}
+        onClose={isMobile ? handleClose : undefined}
         slotProps={{
           paper: {
             sx: {
-              boxShadow: "none",
-              border: "none",
-              backgroundColor: theme.palette.background.default,
-              borderRadius: 0,
-              padding: "18px",
-              ul: {
-                padding: "0px",
-                display: "flex",
-                flexDirection: "column",
-              },
+              ...menuOverrides,
               li: {
-                ...liDefaultStyles,
+                ...menuOverrides.li,
                 ...liStyles,
               },
               "@media (min-width: 720px)": {
-                backgroundColor: "transparent",
-                padding: "0px",
-                width: "100%",
-                display: "flex",
-                justifyContent: "center",
-
                 ul: {
                   display: "flex",
                   flexDirection: variant === "full" ? "row" : "column",
                 },
               },
-              "@media (max-width: 720px)": {
-                top: "0 !important",
-                left: "0 !important",
-              },
             },
           },
         }}
       >
-        {width < 720 && (
+        {isMobile && (
           <IconButton
             aria-label="close menu"
             id="close-menu-button"

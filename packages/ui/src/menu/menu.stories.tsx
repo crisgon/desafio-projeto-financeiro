@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import MenuComponent from ".";
-import { useEffect, useRef, useState } from "react";
 
 const meta = {
   title: "Components/Menu",
@@ -11,6 +10,7 @@ const meta = {
   },
   args: {
     variant: "full",
+    iconColor: "primary",
   },
 } as Meta;
 
