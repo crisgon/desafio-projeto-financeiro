@@ -1,8 +1,9 @@
-import { Menu as MUIMenu, IconButton, useTheme } from "@mui/material";
+import { Menu as MUIMenu, useTheme } from "@mui/material";
 import React, { useEffect, useMemo, useState } from "react";
 import { Icons } from "../icons";
 import { MenuItem } from "../menuItem";
 import { menuOverrides } from "./menu.styles";
+import { IconButton } from "../iconButton";
 
 export interface MenuProps {
   variant: "full" | "compact";
@@ -72,13 +73,11 @@ function Menu({
           aria-expanded={menuIsOpen ? "true" : undefined}
           aria-haspopup="true"
           onClick={handleClick}
-        >
-          <Icons
-            name="mdiMenu"
-            color={theme.palette[iconColor].main}
-            size={32}
-          />
-        </IconButton>
+          icon="mdiMenu"
+          iconColor={theme.palette[iconColor].main}
+          iconSize={32}
+          variant="dark"
+        />
       )}
       <MUIMenu
         id="menu"
@@ -114,14 +113,12 @@ function Menu({
             aria-expanded={menuIsOpen ? "true" : undefined}
             aria-haspopup="true"
             onClick={handleClose}
+            icon="mdiClose"
+            iconColor={theme.palette.primary.main}
+            iconSize={24}
+            variant="dark"
             sx={{ alignSelf: "flex-end", padding: "0px" }}
-          >
-            <Icons
-              name="mdiClose"
-              color={theme.palette.primary.main}
-              size={24}
-            />
-          </IconButton>
+          />
         )}
         {children}
       </MUIMenu>
