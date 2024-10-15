@@ -1,0 +1,11 @@
+import{f as k}from"./index-C_FWhylE.js";import{j as o}from"./jsx-runtime-Cw0GR0a5.js";import{I as v}from"./index-CKitbbgW.js";import{u as I}from"./useTheme-DkuhYGYZ.js";import{I as x}from"./IconButton-cH3HhDWQ.js";import"./index-CTjT7uj6.js";import"./defaultTheme-ovmlWFOD.js";import"./createTheme-Bw4lXqAl.js";import"./createSimplePaletteValueFilter-DjLhmI3d.js";import"./extends-CF3RwP-h.js";import"./DefaultPropsProvider-OD4Xdyjs.js";import"./ButtonBase-BIsRHzhe.js";import"./assertThisInitialized-C1KLUksq.js";function p({icon:u,variant:t="default",disabled:l=!1,onClick:f}){const r=I(),g=t==="default"?20:30;return o.jsx(x,{onClick:f,disabled:l,sx:{padding:t==="dark"?"0px !important":"8px !important",backgroundColor:t==="default"?r.palette.action.active:r.palette.common.black},children:o.jsx(v,{name:u,color:r.palette.common.white,size:g})})}p.__docgenInfo={description:"",methods:[],displayName:"IconButton",props:{icon:{required:!0,tsType:{name:'IconProps["name"]',raw:'IconProps["name"]'},description:""},variant:{required:!1,tsType:{name:"union",raw:'"default" | "dark"',elements:[{name:"literal",value:'"default"'},{name:"literal",value:'"dark"'}]},description:"",defaultValue:{value:'"default"',computed:!1}},disabled:{required:!1,tsType:{name:"boolean"},description:"",defaultValue:{value:"false",computed:!1}},onClick:{required:!0,tsType:{name:"signature",type:"function",raw:"() => void",signature:{arguments:[],return:{name:"void"}}},description:""}}};const z={title:"Components/IconButton",component:p,parameters:{layout:"centered"},tags:["autodocs"],args:{onClick:k()}},e={args:{variant:"default",icon:"mdiPen"}},a={args:{variant:"dark",icon:"mdiPen"}};var n,s,i;e.parameters={...e.parameters,docs:{...(n=e.parameters)==null?void 0:n.docs,source:{originalSource:`{
+  args: {
+    variant: "default",
+    icon: "mdiPen"
+  }
+}`,...(i=(s=e.parameters)==null?void 0:s.docs)==null?void 0:i.source}}};var m,c,d;a.parameters={...a.parameters,docs:{...(m=a.parameters)==null?void 0:m.docs,source:{originalSource:`{
+  args: {
+    variant: "dark",
+    icon: "mdiPen"
+  }
+}`,...(d=(c=a.parameters)==null?void 0:c.docs)==null?void 0:d.source}}};const E=["Default","Dark"];export{a as Dark,e as Default,E as __namedExportsOrder,z as default};

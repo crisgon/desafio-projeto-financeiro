@@ -10,9 +10,8 @@
   "scripts": {
     "lint": "eslint . --max-warnings 0",
     "generate:component": "turbo gen react-component",
-    "storybook": "storybook dev -p 6006",
     "dev": "storybook dev -p 6006",
-    "build": "storybook build --output public",
+    "build": "storybook build",
     "test": "vitest"
   },
   "devDependencies": {

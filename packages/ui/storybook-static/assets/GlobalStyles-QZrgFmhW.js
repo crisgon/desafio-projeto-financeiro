@@ -1,0 +1,1 @@
+import"./index-CTjT7uj6.js";import{G as n}from"./DefaultPropsProvider-OD4Xdyjs.js";import{j as r}from"./jsx-runtime-Cw0GR0a5.js";function i(t){return t==null||Object.keys(t).length===0}function u(t){const{styles:s,defaultTheme:l={}}=t,e=typeof s=="function"?o=>s(i(o)?l:o):s;return r.jsx(n,{styles:e})}export{u as G};
