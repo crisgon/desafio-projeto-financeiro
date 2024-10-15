@@ -7,7 +7,7 @@ import {
 export interface ButtonProps {
   label: string;
   variant?: "outlined" | "contained";
-  color?: "primary" | "secondary" | "tertiary" | "error";
+  color?: "primary" | "secondary" | "tertiary" | "error" | "contrast";
   disabled?: boolean;
   onClick: () => void;
 }
