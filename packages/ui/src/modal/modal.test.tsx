@@ -48,8 +48,7 @@ describe("Modal", () => {
       </ThemeProvider>,
     );
     expect(getByText("Cancelar Ação")).toHaveStyle({
-      borderColor: "#47A138",
-      color: "#47A138",
+      borderColor: "rgb(71 161 56 / 50%)",
     });
   });
 });

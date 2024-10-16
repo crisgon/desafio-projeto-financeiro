@@ -1,5 +1,4 @@
 import {
-  Button,
   Dialog,
   DialogTitle,
   DialogActions,
@@ -9,6 +8,7 @@ import {
   useTheme,
 } from "@mui/material";
 import { Icons } from "../icons";
+import { Button } from "../button";
 
 interface ModalProps {
   title: string;
@@ -57,19 +57,20 @@ export function Modal({
       <DialogContent>{content}</DialogContent>
       <DialogActions>
         {cancelButtonText && (
-          <Button color="primary" variant="outlined" onClick={handleClose}>
-            {cancelButtonText}
-          </Button>
+          <Button
+            color="primary"
+            variant="outlined"
+            onClick={handleClose}
+            label={cancelButtonText}
+          />
         )}
         {confirmButtonText && (
           <Button
             color="primary"
             variant="contained"
             onClick={handleConfirm}
-            autoFocus
-          >
-            {confirmButtonText}
-          </Button>
+            label={confirmButtonText}
+          />
         )}
       </DialogActions>
     </Dialog>
