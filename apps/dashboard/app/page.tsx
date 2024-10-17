@@ -1,5 +1,6 @@
 "use client";
 
+import WelcomeCard from "./components/WelcomeCard";
 import styles from "./page.module.css";
 
 import { Card } from "@repo/ui/card";
@@ -13,9 +14,7 @@ export default function Home() {
           Menu
         </Card>
         <div className={styles.cardsBox}>
-          <Card type="primary" sx={{ height: "420px" }}>
-            Boas-vindas
-          </Card>
+          <WelcomeCard />
           <Card type="secondary" sx={{ height: "420px" }}>
             Nova transação
           </Card>
