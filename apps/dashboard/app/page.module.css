@@ -13,6 +13,7 @@
 .cardsBox {
   flex: 1;
   min-width: 400px;
+  max-width: 690px;
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -23,7 +24,7 @@
     flex-direction: column;
   }
 
-  .main div {
+  .main > div {
     width: 100%;
   }
 
