@@ -1,14 +1,21 @@
 "use client";
 
-import { Box, Typography, useTheme } from "@mui/material";
-
+import { Box, Divider, Typography, useTheme } from "@mui/material";
 import { Card } from "@repo/ui/card";
 import { Illustration } from "@repo/ui/illustration";
+import { IconButton, IconButtonProps } from "@repo/ui/iconButton";
+import { useState } from "react";
+
+import styles from "./styles.module.css";
 
 const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
 
 export default function WelcomeCard() {
   const theme = useTheme();
+  const [isBalanceVisible, setIsBalanceVisible] = useState<boolean>(true);
+  const [balanceIcon, setBalanceIcon] =
+    useState<IconButtonProps["icon"]>("mdiEye");
+  const balance = 250000;
 
   const today = new Date().toLocaleDateString("pt-BR", {
     weekday: "long",
@@ -17,39 +24,71 @@ export default function WelcomeCard() {
     year: "numeric",
   });
 
+  const formattedNumber = new Intl.NumberFormat("pt-BR", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(balance / 100);
+
+  const toggleBalanceVisibility = () => {
+    setBalanceIcon(isBalanceVisible ? "mdiEyeOff" : "mdiEye");
+    setIsBalanceVisible(!isBalanceVisible);
+  };
+
   return (
     <Card
       type="primary"
-      sx={{ height: "420px", position: "relative" }}
+      sx={{
+        height: "420px",
+        position: "relative",
+        "@media (max-width: 490px)": {
+          height: "570px",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        },
+      }}
       title="Olá, Joana! :)"
     >
-      <Box position="absolute" zIndex={0} top={0} right={0}>
+      <Box className={styles["pixels-top"]}>
         <Illustration name="pixelsTopLight" />
       </Box>
-      <Box display="flex">
-        <Box
-          display="flex"
-          flexDirection="column"
-          gap="48px"
-          width="50%"
-          mt={theme.spacing("large")}
-          zIndex={1}
-        >
+
+      <Box
+        display="flex"
+        sx={{
+          "@media (max-width: 490px)": {
+            flexDirection: "column",
+          },
+        }}
+      >
+        <Box className={styles.today}>
           <Typography variant="caption">{capitalize(today)}</Typography>
-          <Illustration name="saveMoney" />
         </Box>
-        <Box
-          display="flex"
-          flexDirection="column"
-          gap="48px"
-          width="50%"
-          mt={theme.spacing("large")}
-          zIndex={1}
-        >
-          <Typography variant="caption">Saldo</Typography>
+
+        <Box className={styles.balance}>
+          <Typography
+            variant="subtitle1"
+            sx={{ display: "flex", gap: theme.spacing("large") }}
+          >
+            Saldo{" "}
+            <IconButton icon={balanceIcon} onClick={toggleBalanceVisibility} />
+          </Typography>
+
+          <Divider className={styles.divider} />
+
+          <Typography variant="body1">Conta corrente</Typography>
+
+          <Typography fontSize={31} fontWeight={400}>
+            R$ {isBalanceVisible ? `${formattedNumber}` : "******"}
+          </Typography>
         </Box>
       </Box>
-      <Box position="absolute" zIndex={0} left={0} bottom={-7}>
+
+      <Box className={styles["save-money"]}>
+        <Illustration name="saveMoney" />
+      </Box>
+
+      <Box className={styles["pixels-bottom"]}>
         <Illustration name="pixelsBottomLight" />
       </Box>
     </Card>
