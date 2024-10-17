@@ -9,7 +9,7 @@
     "types": ["vitest", "@testing-library/jest-dom"],
     "baseUrl": ".",
     "paths": {
-      "@repo/ui/*": ["../../packages/ui/src/*"] // Certifique-se de que o caminho está correto
+      "@repo/ui/*": ["../../packages/ui/src/*"]
     }
   },
   "include": [
