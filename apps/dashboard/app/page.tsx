@@ -1,8 +1,31 @@
+"use client";
+
 import Image from "next/image";
-import { Button } from "@repo/ui/button";
 import styles from "./page.module.css";
+import { useEffect } from "react";
 
 export default function Home() {
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await fetch("/api/transacao", {
+          method: "GET",
+        });
+
+        if (!response.ok) {
+          throw new Error(`Erro: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log(data);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    fetchData();
+  }, []);
+
   return (
     <div className={styles.page}>
       <main className={styles.main}>
@@ -46,7 +69,6 @@ export default function Home() {
             Read our docs
           </a>
         </div>
-        <Button label="Open alert" onClick={() => {}} />
       </main>
       <footer className={styles.footer}>
         <a
