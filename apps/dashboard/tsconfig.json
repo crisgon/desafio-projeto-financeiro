@@ -6,7 +6,11 @@
         "name": "next"
       }
     ],
-    "types": ["vitest", "@testing-library/jest-dom"]
+    "types": ["vitest", "@testing-library/jest-dom"],
+    "baseUrl": ".",
+    "paths": {
+      "@repo/ui/*": ["../../packages/ui/src/*"] // Certifique-se de que o caminho está correto
+    }
   },
   "include": [
     "next-env.d.ts",
