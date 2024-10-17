@@ -36,6 +36,7 @@ const theme = createTheme({
     fontFamily: "'Inter', sans-serif",
     h1: {
       fontSize: "25px",
+      fontWeight: 600,
     },
     subtitle1: {
       fontSize: "20px",
