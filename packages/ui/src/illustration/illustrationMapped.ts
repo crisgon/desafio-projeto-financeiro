@@ -12,7 +12,7 @@ export const illustrationsMapped = {
   pixelsBottomLight: Illustrations.PixelsBottomLight,
   pixelsBottomMedium: Illustrations.PixelsBottomMedium,
   PixelsTopDark: Illustrations.PixelsTopDark,
-  pixelsTopLight: Illustrations.PixelsBottomLight,
+  pixelsTopLight: Illustrations.PixelsTopLight,
   pixelsTopMedium: Illustrations.PixelsTopMedium,
   points: Illustrations.Points,
   report: Illustrations.Report,

@@ -9,6 +9,7 @@ const theme = createTheme({
     primary: {
       main: "#47A138",
       light: "#E4EDE3",
+      dark: "#004D61",
     },
     secondary: {
       main: "#FF5031",
@@ -35,9 +36,11 @@ const theme = createTheme({
     fontFamily: "'Inter', sans-serif",
     h1: {
       fontSize: "25px",
+      fontWeight: 600,
     },
     subtitle1: {
       fontSize: "20px",
+      fontWeight: 600,
     },
     body1: {
       fontSize: "16px",
