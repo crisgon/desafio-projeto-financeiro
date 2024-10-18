@@ -1,10 +1,16 @@
 "use client";
 
+import useSWR from "swr";
 import styles from "./page.module.css";
-
 import { Card } from "@repo/ui/card";
 
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
+
 export default function Home() {
+  const { data, isLoading, error } = useSWR("/api/transacao", fetcher);
+
+  console.log({ data, isLoading, error });
+
   return (
     <>
       <header className={styles.header}>Header</header>
