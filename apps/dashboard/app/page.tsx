@@ -2,8 +2,9 @@
 
 import WelcomeCard from "./(components)/welcome-card";
 import useSWR from "swr";
-import styles from "./page.module.css";
+import styles from "./page.styles";
 import { Card } from "@repo/ui/card";
+import { Box } from "@mui/material";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
@@ -13,19 +14,19 @@ export default function Home() {
   console.log({ data, isLoading, error });
 
   return (
-    <main className={styles.main}>
+    <Box component="main" sx={styles.main}>
       <Card type="default" sx={{ width: "180px" }}>
         Menu
       </Card>
-      <div className={styles.cardsBox}>
+      <Box sx={styles.cardsBox}>
         <WelcomeCard />
         <Card type="secondary" sx={{ height: "420px" }}>
           Nova transação
         </Card>
-      </div>
+      </Box>
       <Card type="default" sx={{ width: "282px" }}>
         Extrato
       </Card>
-    </main>
+    </Box>
   );
 }

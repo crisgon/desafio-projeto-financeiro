@@ -5,8 +5,7 @@ import { Card } from "@repo/ui/card";
 import { Illustration } from "@repo/ui/illustration";
 import { IconButton, IconButtonProps } from "@repo/ui/iconButton";
 import { useState } from "react";
-
-import styles from "./styles.module.css";
+import styles from "./styles";
 
 const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
 
@@ -49,7 +48,7 @@ export default function WelcomeCard() {
       }}
       title="Olá, Joana! :)"
     >
-      <Box className={styles["pixels-top"]}>
+      <Box sx={styles.pixelsTop}>
         <Illustration name="pixelsTopLight" />
       </Box>
 
@@ -61,11 +60,11 @@ export default function WelcomeCard() {
           },
         }}
       >
-        <Box className={styles.today}>
+        <Box sx={styles.today}>
           <Typography variant="caption">{capitalize(today)}</Typography>
         </Box>
 
-        <Box className={styles.balance}>
+        <Box sx={styles.balance}>
           <Typography
             variant="subtitle1"
             sx={{ display: "flex", gap: theme.spacing("large") }}
@@ -74,7 +73,7 @@ export default function WelcomeCard() {
             <IconButton icon={balanceIcon} onClick={toggleBalanceVisibility} />
           </Typography>
 
-          <Divider className={styles.divider} />
+          <Divider sx={styles.divider} />
 
           <Typography variant="body1">Conta corrente</Typography>
 
@@ -84,11 +83,11 @@ export default function WelcomeCard() {
         </Box>
       </Box>
 
-      <Box className={styles["save-money"]}>
+      <Box sx={styles.saveMoney}>
         <Illustration name="saveMoney" />
       </Box>
 
-      <Box className={styles["pixels-bottom"]}>
+      <Box sx={styles.pixelsBottom}>
         <Illustration name="pixelsBottomLight" />
       </Box>
     </Card>

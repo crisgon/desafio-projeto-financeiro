@@ -30,15 +30,7 @@ export default function RootLayout({
           <GlobalStyles
             styles={{
               ":root": {
-                "--primary-color": theme.palette.primary.main,
-                "--secondary-color": theme.palette.secondary.main,
                 "--background-default-color": theme.palette.background.default,
-                "--background-paper-color": theme.palette.background.paper,
-                "--common-white": theme.palette.common.white,
-
-                "--spacing-small": "8px",
-                "--spacing-medium": "16px",
-                "--spacing-large": "24px",
               },
             }}
           />
