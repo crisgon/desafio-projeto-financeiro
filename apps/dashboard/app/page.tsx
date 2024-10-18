@@ -1,8 +1,16 @@
+"use client";
+
+import useSWR from "swr";
 import Image from "next/image";
-import { Button } from "@repo/ui/button";
 import styles from "./page.module.css";
 
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
+
 export default function Home() {
+  const { data, isLoading, error } = useSWR("/api/transacao", fetcher);
+
+  console.log({ data, isLoading, error });
+
   return (
     <div className={styles.page}>
       <main className={styles.main}>
@@ -46,7 +54,6 @@ export default function Home() {
             Read our docs
           </a>
         </div>
-        <Button label="Open alert" onClick={() => {}} />
       </main>
       <footer className={styles.footer}>
         <a
