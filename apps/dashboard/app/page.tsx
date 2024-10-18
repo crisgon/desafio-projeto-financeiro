@@ -1,6 +1,6 @@
 "use client";
 
-import WelcomeCard from "./components/WelcomeCard";
+import WelcomeCard from "./(components)/welcome-card";
 import useSWR from "swr";
 import styles from "./page.module.css";
 import { Card } from "@repo/ui/card";
