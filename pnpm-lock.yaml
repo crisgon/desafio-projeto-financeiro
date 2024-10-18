@@ -50,6 +50,9 @@ importers:
 
   apps/dashboard:
     dependencies:
+      '@mui/material':
+        specifier: ^6.1.2
+        version: 6.1.2(@emotion/react@11.13.3(@types/react@18.3.11)(react@18.3.1))(@emotion/styled@11.13.0(@emotion/react@11.13.3(@types/react@18.3.11)(react@18.3.1))(@types/react@18.3.11)(react@18.3.1))(@types/react@18.3.11)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@repo/ui':
         specifier: workspace:*
         version: link:../../packages/ui
@@ -6228,7 +6231,7 @@ snapshots:
       '@typescript-eslint/eslint-plugin': 6.21.0(@typescript-eslint/parser@6.21.0(eslint@9.12.0)(typescript@5.6.2))(eslint@9.12.0)(typescript@5.6.2)
       '@typescript-eslint/parser': 6.21.0(eslint@9.12.0)(typescript@5.6.2)
       eslint-config-prettier: 9.1.0(eslint@9.12.0)
-      eslint-import-resolver-alias: 1.1.2(eslint-plugin-import@2.30.0)
+      eslint-import-resolver-alias: 1.1.2(eslint-plugin-import@2.30.0(@typescript-eslint/parser@6.21.0(eslint@9.12.0)(typescript@5.6.2))(eslint-import-resolver-typescript@3.6.3)(eslint@9.12.0))
       eslint-import-resolver-typescript: 3.6.3(@typescript-eslint/parser@6.21.0(eslint@9.12.0)(typescript@5.6.2))(eslint-plugin-import@2.30.0)(eslint@9.12.0)
       eslint-plugin-eslint-comments: 3.2.0(eslint@9.12.0)
       eslint-plugin-import: 2.30.0(@typescript-eslint/parser@7.18.0(eslint@9.12.0)(typescript@5.6.2))(eslint@9.12.0)
@@ -7149,7 +7152,7 @@ snapshots:
       eslint: 9.12.0
       eslint-plugin-turbo: 2.1.3(eslint@9.12.0)
 
-  eslint-import-resolver-alias@1.1.2(eslint-plugin-import@2.30.0):
+  eslint-import-resolver-alias@1.1.2(eslint-plugin-import@2.30.0(@typescript-eslint/parser@6.21.0(eslint@9.12.0)(typescript@5.6.2))(eslint-import-resolver-typescript@3.6.3)(eslint@9.12.0)):
     dependencies:
       eslint-plugin-import: 2.30.0(@typescript-eslint/parser@7.18.0(eslint@9.12.0)(typescript@5.6.2))(eslint@9.12.0)
 
@@ -7179,7 +7182,7 @@ snapshots:
       debug: 4.3.7
       enhanced-resolve: 5.17.1
       eslint: 9.12.0
-      eslint-module-utils: 2.12.0(@typescript-eslint/parser@6.21.0(eslint@9.12.0)(typescript@5.6.2))(eslint-import-resolver-typescript@3.6.3)(eslint@9.12.0)
+      eslint-module-utils: 2.12.0(@typescript-eslint/parser@6.21.0(eslint@9.12.0)(typescript@5.6.2))(eslint-import-resolver-typescript@3.6.3(@typescript-eslint/parser@6.21.0(eslint@9.12.0)(typescript@5.6.2))(eslint-plugin-import@2.30.0)(eslint@9.12.0))(eslint@9.12.0)
       fast-glob: 3.3.2
       get-tsconfig: 4.8.1
       is-bun-module: 1.2.1
@@ -7222,7 +7225,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-module-utils@2.12.0(@typescript-eslint/parser@6.21.0(eslint@9.12.0)(typescript@5.6.2))(eslint-import-resolver-typescript@3.6.3)(eslint@9.12.0):
+  eslint-module-utils@2.12.0(@typescript-eslint/parser@6.21.0(eslint@9.12.0)(typescript@5.6.2))(eslint-import-resolver-typescript@3.6.3(@typescript-eslint/parser@6.21.0(eslint@9.12.0)(typescript@5.6.2))(eslint-plugin-import@2.30.0)(eslint@9.12.0))(eslint@9.12.0):
     dependencies:
       debug: 3.2.7
     optionalDependencies:
