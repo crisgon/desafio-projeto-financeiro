@@ -37,6 +37,7 @@ export default function RootLayout({
               },
             }}
           />
+          <header className="header">Header</header>
           {children}
         </ThemeProvider>
       </body>
