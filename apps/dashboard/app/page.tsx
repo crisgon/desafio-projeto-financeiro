@@ -1,30 +1,15 @@
 "use client";
 
+import useSWR from "swr";
 import Image from "next/image";
 import styles from "./page.module.css";
-import { useEffect } from "react";
+
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 export default function Home() {
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await fetch("/api/transacao", {
-          method: "GET",
-        });
+  const { data, isLoading, error } = useSWR("/api/transacao", fetcher);
 
-        if (!response.ok) {
-          throw new Error(`Erro: ${response.status}`);
-        }
-
-        const data = await response.json();
-        console.log(data);
-      } catch (err) {
-        console.log(err);
-      }
-    }
-
-    fetchData();
-  }, []);
+  console.log({ data, isLoading, error });
 
   return (
     <div className={styles.page}>
