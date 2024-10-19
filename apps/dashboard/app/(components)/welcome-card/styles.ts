@@ -42,6 +42,12 @@ const styles = {
       width: "fit-content",
     },
   },
+  balanceText: {
+    display: "flex",
+    gap: theme.spacing("medium"),
+    fontSize: "31px",
+    fontWeight: theme.typography.body1.fontWeight,
+  },
   divider: {
     borderBottomWidth: "2px !important",
     width: "60%",
@@ -49,6 +55,10 @@ const styles = {
     "@media (max-width: 490px)": {
       width: "100%",
     },
+  },
+  skeleton: {
+    fontSize: "31px",
+    width: "140px",
   },
 };
 
