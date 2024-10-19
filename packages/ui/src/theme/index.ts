@@ -66,6 +66,13 @@ const theme = createTheme({
     ...buttonOverrides,
     ...selectOverrides,
     ...menuItemOverrides,
+    MuiSkeleton: {
+      styleOverrides: {
+        root: {
+          backgroundColor: "rgba(255, 255, 255, 0.15)",
+        },
+      },
+    },
   },
 });
 
