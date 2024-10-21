@@ -36,9 +36,11 @@ const theme = createTheme({
     fontFamily: "'Inter', sans-serif",
     h1: {
       fontSize: "25px",
+      fontWeight: 600,
     },
     subtitle1: {
       fontSize: "20px",
+      fontWeight: 600,
     },
     body1: {
       fontSize: "16px",
@@ -64,6 +66,13 @@ const theme = createTheme({
     ...buttonOverrides,
     ...selectOverrides,
     ...menuItemOverrides,
+    MuiSkeleton: {
+      styleOverrides: {
+        root: {
+          backgroundColor: "rgba(255, 255, 255, 0.15)",
+        },
+      },
+    },
   },
 });
 
