@@ -1,73 +1,32 @@
 import React, { createContext, useState, useContext, useEffect } from "react";
 import useSWRMutation from "swr/mutation";
-
-interface CreateTransactionProps {
-  transactionType: string;
-  value: number;
-  operationType: string;
-}
-
-type DashboardContextType = {
-  loading: boolean;
-  balance: number;
-  createTransaction: ({
-    transactionType,
-    operationType,
-    value,
-  }: CreateTransactionProps) => Promise<void>;
-};
+import type {
+  CreateTransactionProps,
+  DashboardContextProps,
+} from "./dashboard-context.types";
+import {
+  fetcher,
+  createTransactionRequest,
+  updateSaldo,
+  MOBILE_SIZE,
+} from "./dashboard-context.utils";
 
 const initialState = {
+  isMobile: false,
   loading: false,
   balance: 0,
   createTransaction: () => Promise.resolve(),
 };
 
-const DashboardContext = createContext<DashboardContextType>(initialState);
-
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
-
-async function createTransactionRequest(
-  url: string,
-  {
-    arg,
-  }: {
-    arg: {
-      createdAt: string;
-      transactionType: string;
-      value: number;
-      operationType: string;
-    };
-  },
-) {
-  await fetch(url, {
-    method: "POST",
-    body: JSON.stringify(arg),
-  });
-}
-
-async function updateSaldo(
-  url: string,
-  {
-    arg,
-  }: {
-    arg: {
-      value: number;
-    };
-  },
-) {
-  await fetch(url, {
-    method: "PUT",
-    body: JSON.stringify(arg),
-  });
-}
+const DashboardContext = createContext<DashboardContextProps>(initialState);
 
 export const DashboardProvider = ({
   children,
 }: {
   children: React.ReactNode;
 }) => {
-  const [state, setState] = useState<DashboardContextType>(initialState);
+  const [state, setState] = useState<DashboardContextProps>(initialState);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= MOBILE_SIZE);
 
   const { trigger: getSaldoMutation } = useSWRMutation("/api/saldo", fetcher);
   const { trigger: createTransactionMutation } = useSWRMutation(
@@ -121,10 +80,22 @@ export const DashboardProvider = ({
   useEffect(() => {
     setState({ ...state, loading: true });
     getSaldo();
+
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= MOBILE_SIZE);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   return (
-    <DashboardContext.Provider value={{ ...state, createTransaction }}>
+    <DashboardContext.Provider
+      value={{ ...state, isMobile, createTransaction }}
+    >
       {children}
     </DashboardContext.Provider>
   );

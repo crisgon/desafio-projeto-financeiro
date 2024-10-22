@@ -6,7 +6,7 @@ import theme from "@repo/ui/theme";
 import "./globals.css";
 
 import { Inter } from "next/font/google";
-import { DashboardProvider } from "./context/DashboardContext";
+import { DashboardProvider } from "./context/dashboard-context";
 
 const inter = Inter({ subsets: ["latin"] });
 
