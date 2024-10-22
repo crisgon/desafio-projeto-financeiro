@@ -8,18 +8,17 @@ import { CurrencyInput } from "@repo/ui/currency-input";
 import RadioGroup from "@repo/ui/radio-group";
 import { useEffect, useState } from "react";
 import styles from "./styles";
-import useSWR from "swr";
 import { Button } from "@repo/ui/button";
+import { useDashboardContext } from "app/context/DashboardContext";
 
 const MOBILE_SIZE = 490;
 
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
-
 export default function NewTransactionCard() {
+  const [value, setValue] = useState<string>("0,00");
   const [operationType, setOperationType] = useState<string>("deposito");
+  const [transactionType, setTransactionType] = useState<string>("");
   const [isMobile, setIsMobile] = useState(window.innerWidth <= MOBILE_SIZE);
-
-  const { data, isLoading } = useSWR("/api/saldo", fetcher);
+  const { createTransaction } = useDashboardContext();
 
   useEffect(() => {
     const handleResize = () => {
@@ -59,7 +58,7 @@ export default function NewTransactionCard() {
             { value: "doc/ted", label: "DOC/TED" },
             { value: "emprestimo", label: "Empréstimo e Financiamento" },
           ]}
-          onChange={() => console.log("teste")}
+          onChange={(event) => setTransactionType(event?.target.value)}
           placeholder="Selecione o tipo de transação"
         />
 
@@ -70,8 +69,8 @@ export default function NewTransactionCard() {
         >
           <CurrencyInput
             label="Valor"
-            defaultValue="0,00"
-            onChange={() => console.log("teste")}
+            defaultValue={value}
+            onChange={(event) => setValue(event)}
             sx={{ zIndex: 1, width: isMobile ? "100%" : "inherit" }}
           />
 
@@ -95,7 +94,17 @@ export default function NewTransactionCard() {
         <Box width="250px" zIndex={1} mt="32px">
           <Button
             label="Concluir transação"
-            onClick={() => console.log("teste")}
+            onClick={async () => {
+              try {
+                await createTransaction({
+                  transactionType,
+                  operationType,
+                  value: Number(value),
+                });
+              } catch (e) {
+                console.log(e);
+              }
+            }}
             color="tertiary"
           />
         </Box>
