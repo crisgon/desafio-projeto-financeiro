@@ -6,9 +6,7 @@ import { Illustration } from "@repo/ui/illustration";
 import { IconButton, IconButtonProps } from "@repo/ui/iconButton";
 import { useState } from "react";
 import styles from "./styles";
-import { useDashboardContext } from "app/context/DashboardContext";
-
-const MOBILE_SIZE = 490;
+import { useDashboardContext } from "app/context/dashboard-context";
 
 const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
 
@@ -37,32 +35,12 @@ export default function WelcomeCard() {
   };
 
   return (
-    <Card
-      type="primary"
-      sx={{
-        height: "420px",
-        position: "relative",
-        [`@media (max-width: ${MOBILE_SIZE}px)`]: {
-          height: "570px",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-        },
-      }}
-      title="Olá, Joana! :)"
-    >
+    <Card type="primary" sx={styles.card} title="Olá, Joana! :)">
       <Box sx={styles.pixelsTop}>
         <Illustration name="pixelsTopLight" />
       </Box>
 
-      <Box
-        display="flex"
-        sx={{
-          [`@media (max-width: ${MOBILE_SIZE}px)`]: {
-            flexDirection: "column",
-          },
-        }}
-      >
+      <Box display="flex" sx={styles.content}>
         <Box sx={styles.today}>
           <Typography variant="caption">{capitalize(today)}</Typography>
         </Box>

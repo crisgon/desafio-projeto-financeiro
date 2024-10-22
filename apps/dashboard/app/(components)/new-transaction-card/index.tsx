@@ -6,47 +6,19 @@ import { Illustration } from "@repo/ui/illustration";
 import { Select } from "@repo/ui/select";
 import { CurrencyInput } from "@repo/ui/currency-input";
 import RadioGroup from "@repo/ui/radio-group";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import styles from "./styles";
 import { Button } from "@repo/ui/button";
-import { useDashboardContext } from "app/context/DashboardContext";
-
-const MOBILE_SIZE = 490;
+import { useDashboardContext } from "app/context/dashboard-context";
 
 export default function NewTransactionCard() {
   const [value, setValue] = useState<string>("0,00");
   const [operationType, setOperationType] = useState<string>("deposito");
   const [transactionType, setTransactionType] = useState<string>("");
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= MOBILE_SIZE);
-  const { createTransaction } = useDashboardContext();
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= MOBILE_SIZE);
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+  const { createTransaction, isMobile } = useDashboardContext();
 
   return (
-    <Card
-      type="secondary"
-      sx={{
-        height: "420px",
-        position: "relative",
-        "@media (max-width: 490px)": {
-          height: "570px",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-        },
-      }}
-      title="Nova transação"
-    >
+    <Card type="secondary" sx={styles.card} title="Nova transação">
       <Box sx={styles.pixelsTop}>
         <Illustration name="pixelsTopMedium" />
       </Box>
