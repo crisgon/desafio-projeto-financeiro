@@ -22,6 +22,7 @@ export const Menu: Story = {
     children: (
       <>
         <MenuComponent.MenuItem
+          sx={{ color: "red", border: 0 }}
           handleClick={() => console.log("clicou no item")}
           active
         >

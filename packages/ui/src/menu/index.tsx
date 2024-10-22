@@ -1,6 +1,5 @@
-import { Menu as MUIMenu, useTheme } from "@mui/material";
+import { Menu as MUIMenu, SxProps, Theme, useTheme } from "@mui/material";
 import React, { useEffect, useMemo, useState } from "react";
-import { Icons } from "../icons";
 import { MenuItem } from "../menuItem";
 import { menuOverrides } from "./menu.styles";
 import { IconButton } from "../iconButton";
@@ -10,6 +9,7 @@ export interface MenuProps {
   iconColor?: "primary" | "secondary";
   children: React.ReactElement | string;
   anchorElem?: HTMLElement | null;
+  sx?: SxProps<Theme>;
 }
 
 function Menu({
@@ -17,6 +17,7 @@ function Menu({
   children,
   anchorElem,
   iconColor = "primary",
+  sx,
 }: MenuProps): JSX.Element {
   const theme = useTheme();
   const [width, setWidth] = useState(window.innerWidth);
@@ -24,7 +25,7 @@ function Menu({
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(
     anchorElem || null,
   );
-  const [menuIsOpen, setMenuIsOpen] = useState<boolean>(width >= 720);
+  const [menuIsOpen, setMenuIsOpen] = useState<boolean>(false);
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -80,6 +81,7 @@ function Menu({
         />
       )}
       <MUIMenu
+        sx={sx}
         id="menu"
         MenuListProps={{
           "aria-labelledby": `${menuIsOpen ? "open" : "close"}-menu-button`,

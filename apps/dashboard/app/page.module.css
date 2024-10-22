@@ -2,7 +2,7 @@
   display: flex;
   gap: 24px;
   justify-content: center;
-  padding: 24px;
+  padding: 24px 0;
 }
 
 .cardsBox {

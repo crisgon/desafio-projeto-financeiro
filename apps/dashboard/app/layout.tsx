@@ -1,7 +1,8 @@
 "use client";
 
-import { ThemeProvider, CssBaseline, GlobalStyles } from "@mui/material";
+import { ThemeProvider, CssBaseline, GlobalStyles, Box } from "@mui/material";
 import theme from "@repo/ui/theme";
+import { Header } from "@repo/ui/header";
 
 import "./globals.css";
 
@@ -37,8 +38,16 @@ export default function RootLayout({
               },
             }}
           />
-          <header className="header">Header</header>
-          {children}
+          <Header isLogged />
+          <Box
+            sx={{
+              width: "100%",
+              maxWidth: "1200px",
+              margin: "0 auto",
+            }}
+          >
+            {children}
+          </Box>
         </ThemeProvider>
       </body>
     </html>
