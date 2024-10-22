@@ -2,6 +2,7 @@ import {
   Select as MUISelect,
   SelectChangeEvent,
   MenuItem,
+  useTheme,
 } from "@mui/material";
 
 interface SelectProps {
@@ -11,13 +12,19 @@ interface SelectProps {
 }
 
 export function Select({ onChange, options, placeholder }: SelectProps) {
+  const theme = useTheme();
+
   return (
     <MUISelect defaultValue="none" onChange={(e) => onChange(e)}>
       <MenuItem value="none" sx={{ display: "none" }}>
         <em>{placeholder}</em>
       </MenuItem>
       {options.map((option) => (
-        <MenuItem key={option.value} value={option.value}>
+        <MenuItem
+          key={option.value}
+          value={option.value}
+          sx={{ "&:hover": { backgroundColor: theme.palette.primary.light } }}
+        >
           {option.label}
         </MenuItem>
       ))}

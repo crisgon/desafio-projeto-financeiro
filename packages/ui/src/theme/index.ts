@@ -3,6 +3,7 @@ import { ThemeOptions } from "@mui/material";
 import { buttonOverrides } from "./overrides/button";
 import { selectOverrides } from "./overrides/select";
 import { menuItemOverrides } from "./overrides/menu-item";
+import { radioGroupOverrides } from "./overrides/radio-group";
 
 const theme = createTheme({
   palette: {
@@ -66,6 +67,7 @@ const theme = createTheme({
     ...buttonOverrides,
     ...selectOverrides,
     ...menuItemOverrides,
+    ...radioGroupOverrides,
     MuiSkeleton: {
       styleOverrides: {
         root: {
