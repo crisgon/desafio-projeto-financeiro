@@ -4,8 +4,7 @@ import styles from "./page.styles";
 import { Card } from "@repo/ui/card";
 import { Box } from "@mui/material";
 import WelcomeCard from "./(components)/welcome-card";
-
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
+import NewTransactionCard from "./(components)/new-transaction-card";
 
 export default function Home() {
   return (
@@ -15,9 +14,7 @@ export default function Home() {
       </Card>
       <Box sx={styles.cardsBox}>
         <WelcomeCard />
-        <Card type="secondary" sx={{ height: "420px" }}>
-          Nova transação
-        </Card>
+        <NewTransactionCard />
       </Box>
       <Card type="default" sx={{ width: "282px" }}>
         Extrato
