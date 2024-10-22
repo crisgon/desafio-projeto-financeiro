@@ -6,17 +6,32 @@ import { Illustration } from "@repo/ui/illustration";
 import { Select } from "@repo/ui/select";
 import { CurrencyInput } from "@repo/ui/currency-input";
 import RadioGroup from "@repo/ui/radio-group";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./styles";
 import useSWR from "swr";
 import { Button } from "@repo/ui/button";
+
+const MOBILE_SIZE = 490;
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 export default function NewTransactionCard() {
   const [operationType, setOperationType] = useState<string>("deposito");
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= MOBILE_SIZE);
 
   const { data, isLoading } = useSWR("/api/saldo", fetcher);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= MOBILE_SIZE);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   return (
     <Card
@@ -48,12 +63,16 @@ export default function NewTransactionCard() {
           placeholder="Selecione o tipo de transação"
         />
 
-        <Box display="flex" flexDirection="row" gap="60px">
+        <Box
+          display="flex"
+          flexDirection={isMobile ? "column" : "row"}
+          gap={isMobile ? "32px" : "60px"}
+        >
           <CurrencyInput
             label="Valor"
             defaultValue="0,00"
             onChange={() => console.log("teste")}
-            sx={{ zIndex: 1 }}
+            sx={{ zIndex: 1, width: isMobile ? "100%" : "inherit" }}
           />
 
           <RadioGroup

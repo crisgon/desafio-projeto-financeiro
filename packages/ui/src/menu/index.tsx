@@ -1,6 +1,5 @@
 import { Menu as MUIMenu, useTheme } from "@mui/material";
 import React, { useEffect, useMemo, useState } from "react";
-import { Icons } from "../icons";
 import { MenuItem } from "../menuItem";
 import { menuOverrides } from "./menu.styles";
 import { IconButton } from "../iconButton";
@@ -12,6 +11,8 @@ export interface MenuProps {
   anchorElem?: HTMLElement | null;
 }
 
+const MOBILE_SIZE = 720;
+
 function Menu({
   variant,
   children,
@@ -20,11 +21,11 @@ function Menu({
 }: MenuProps): JSX.Element {
   const theme = useTheme();
   const [width, setWidth] = useState(window.innerWidth);
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 720);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < MOBILE_SIZE);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(
     anchorElem || null,
   );
-  const [menuIsOpen, setMenuIsOpen] = useState<boolean>(width >= 720);
+  const [menuIsOpen, setMenuIsOpen] = useState<boolean>(width >= MOBILE_SIZE);
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -53,7 +54,7 @@ function Menu({
   useEffect(() => {
     const handleResize = () => {
       setWidth(window.innerWidth);
-      setIsMobile(window.innerWidth < 720);
+      setIsMobile(window.innerWidth < MOBILE_SIZE);
     };
 
     window.addEventListener("resize", handleResize);
@@ -95,7 +96,7 @@ function Menu({
                 ...menuOverrides.li,
                 ...liStyles,
               },
-              "@media (min-width: 720px)": {
+              [`@media (min-width: ${MOBILE_SIZE}px)`]: {
                 ul: {
                   display: "flex",
                   flexDirection: variant === "full" ? "row" : "column",
