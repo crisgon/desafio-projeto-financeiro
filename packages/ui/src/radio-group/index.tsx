@@ -5,6 +5,9 @@ import {
   FormControlLabel,
   FormControl,
   FormLabel,
+  useTheme,
+  type SxProps,
+  type Theme,
 } from "@mui/material";
 
 interface RadioGroupProps {
@@ -13,6 +16,7 @@ interface RadioGroupProps {
   value: string;
   children: React.ReactElement;
   handleChange: (event: ChangeEvent<HTMLInputElement>, value: string) => void;
+  sx?: SxProps<Theme>;
 }
 
 interface RadioButtonProps {
@@ -21,7 +25,16 @@ interface RadioButtonProps {
 }
 
 function RadioButton({ value, label }: RadioButtonProps) {
-  return <FormControlLabel value={value} control={<Radio />} label={label} />;
+  const theme = useTheme();
+
+  return (
+    <FormControlLabel
+      sx={{ color: theme.palette.common.black }}
+      value={value}
+      control={<Radio />}
+      label={label}
+    />
+  );
 }
 
 function RadioGroup({
@@ -30,9 +43,10 @@ function RadioGroup({
   value,
   children,
   handleChange,
+  sx,
 }: RadioGroupProps) {
   return (
-    <FormControl>
+    <FormControl sx={sx}>
       <FormLabel id={`radio-group-${inputName}`}>{label}</FormLabel>
       <MUIRadioGroup
         row
@@ -40,6 +54,12 @@ function RadioGroup({
         name={inputName}
         value={value}
         onChange={handleChange}
+        sx={{
+          backgroundColor: "white",
+          padding: "8px 12px",
+          borderRadius: "8px",
+          border: "1px solid rgba(0, 0, 0, 0.23)",
+        }}
       >
         {children}
       </MUIRadioGroup>
