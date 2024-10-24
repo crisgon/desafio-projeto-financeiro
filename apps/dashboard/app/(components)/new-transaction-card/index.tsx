@@ -17,6 +17,18 @@ export default function NewTransactionCard() {
   const [transactionType, setTransactionType] = useState<string>("");
   const { createTransaction, isMobile } = useDashboardContext();
 
+  const handleCreateTransaction = async () => {
+    try {
+      await createTransaction({
+        transactionType,
+        operationType,
+        value: Number(value),
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   return (
     <Card type="secondary" sx={styles.card} title="Nova transação">
       <Box sx={styles.pixelsTop}>
@@ -66,17 +78,7 @@ export default function NewTransactionCard() {
         <Box width="250px" zIndex={1} mt="32px">
           <Button
             label="Concluir transação"
-            onClick={async () => {
-              try {
-                await createTransaction({
-                  transactionType,
-                  operationType,
-                  value: Number(value),
-                });
-              } catch (e) {
-                console.log(e);
-              }
-            }}
+            onClick={handleCreateTransaction}
             color="tertiary"
           />
         </Box>
