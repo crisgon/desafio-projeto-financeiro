@@ -1,5 +1,3 @@
-export const MOBILE_SIZE = 490;
-
 export const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 export const createTransactionRequest = async (

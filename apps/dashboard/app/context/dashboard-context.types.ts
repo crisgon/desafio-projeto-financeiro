@@ -5,7 +5,6 @@ export interface CreateTransactionProps {
 }
 
 export interface DashboardContextProps {
-  isMobile: boolean;
   loading: boolean;
   balance: number;
   createTransaction: ({

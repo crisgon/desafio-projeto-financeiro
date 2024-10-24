@@ -1,5 +1,4 @@
 import theme from "@repo/ui/theme";
-import { MOBILE_SIZE } from "app/context/dashboard-context.utils";
 
 const styles = {
   pixelsTop: {
@@ -27,7 +26,7 @@ const styles = {
     width: "50%",
     marginTop: theme.spacing("large"),
     zIndex: 1,
-    "@media (max-width: 490px)": {
+    [`@media (max-width: ${theme.breakpoints.values.sm}px)`]: {
       width: "100%",
       textAlign: "center",
     },
@@ -39,7 +38,7 @@ const styles = {
     width: "50%",
     marginTop: theme.spacing("large"),
     zIndex: 1,
-    "@media (max-width: 490px)": {
+    [`@media (max-width: ${theme.breakpoints.values.sm}px)`]: {
       width: "fit-content",
     },
   },
@@ -53,7 +52,7 @@ const styles = {
     borderBottomWidth: "2px !important",
     width: "60%",
     borderColor: `${theme.palette.common.white} !important`,
-    "@media (max-width: 490px)": {
+    [`@media (max-width: ${theme.breakpoints.values.sm}px)`]: {
       width: "100%",
     },
   },
@@ -64,7 +63,7 @@ const styles = {
   card: {
     height: "420px",
     position: "relative",
-    [`@media (max-width: ${MOBILE_SIZE}px)`]: {
+    [`@media (max-width: ${theme.breakpoints.values.sm}px)`]: {
       height: "570px",
       display: "flex",
       flexDirection: "column",
@@ -72,7 +71,7 @@ const styles = {
     },
   },
   content: {
-    [`@media (max-width: ${MOBILE_SIZE}px)`]: {
+    [`@media (max-width: ${theme.breakpoints.values.sm}px)`]: {
       flexDirection: "column",
     },
   },

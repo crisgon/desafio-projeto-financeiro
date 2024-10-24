@@ -1,6 +1,6 @@
 "use client";
 
-import { Box } from "@mui/material";
+import { Box, useTheme } from "@mui/material";
 import { Card } from "@repo/ui/card";
 import { Illustration } from "@repo/ui/illustration";
 import { Select } from "@repo/ui/select";
@@ -12,10 +12,11 @@ import { Button } from "@repo/ui/button";
 import { useDashboardContext } from "app/context/dashboard-context";
 
 export default function NewTransactionCard() {
+  const theme = useTheme();
   const [value, setValue] = useState<string>("0,00");
   const [operationType, setOperationType] = useState<string>("deposito");
   const [transactionType, setTransactionType] = useState<string>("");
-  const { createTransaction, isMobile } = useDashboardContext();
+  const { createTransaction } = useDashboardContext();
 
   const handleCreateTransaction = async () => {
     try {
@@ -48,14 +49,26 @@ export default function NewTransactionCard() {
 
         <Box
           display="flex"
-          flexDirection={isMobile ? "column" : "row"}
-          gap={isMobile ? "32px" : "60px"}
+          sx={{
+            flexDirection: "row",
+            gap: "60px",
+            [theme.breakpoints.down("sm")]: {
+              flexDirection: "column",
+              gap: "32px",
+            },
+          }}
         >
           <CurrencyInput
             label="Valor"
             defaultValue={value}
             onChange={(event) => setValue(event)}
-            sx={{ zIndex: 1, width: isMobile ? "100%" : "inherit" }}
+            sx={{
+              zIndex: 1,
+              width: "inherit",
+              [theme.breakpoints.down("sm")]: {
+                width: "100%",
+              },
+            }}
           />
 
           <RadioGroup

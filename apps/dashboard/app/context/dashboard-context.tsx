@@ -8,11 +8,9 @@ import {
   fetcher,
   createTransactionRequest,
   updateSaldo,
-  MOBILE_SIZE,
 } from "./dashboard-context.utils";
 
 const initialState = {
-  isMobile: false,
   loading: false,
   balance: 0,
   createTransaction: () => Promise.resolve(),
@@ -26,7 +24,6 @@ export const DashboardProvider = ({
   children: React.ReactNode;
 }) => {
   const [state, setState] = useState<DashboardContextProps>(initialState);
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= MOBILE_SIZE);
 
   const { trigger: getSaldoMutation, isMutating: getSaldoIsMutating } =
     useSWRMutation("/api/saldo", fetcher);
@@ -42,8 +39,6 @@ export const DashboardProvider = ({
     operationType,
     value,
   }: CreateTransactionProps) => {
-    setState({ ...state, loading: true });
-
     try {
       await createTransactionMutation({
         createdAt: new Date().toISOString(),
@@ -64,38 +59,26 @@ export const DashboardProvider = ({
         value: newBalance,
       });
 
-      setState({ ...state, balance: newBalance, loading: false });
+      setState({ ...state, balance: newBalance });
     } catch (e) {
       console.error(e);
-      setState({ ...state, loading: false });
     }
   };
 
   const getSaldo = async () => {
     const result = await getSaldoMutation();
-    setState({ ...state, loading: false, balance: result.value });
+    setState({ ...state, balance: result.value });
   };
 
   useEffect(() => {
-    setState({ ...state, loading: true });
+    setState({ ...state });
     getSaldo();
-
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= MOBILE_SIZE);
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
   }, []);
 
   return (
     <DashboardContext.Provider
       value={{
         ...state,
-        isMobile,
         createTransaction,
         loading:
           getSaldoIsMutating ||

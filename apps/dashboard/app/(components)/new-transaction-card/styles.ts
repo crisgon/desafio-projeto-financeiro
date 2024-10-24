@@ -1,4 +1,4 @@
-import { MOBILE_SIZE } from "app/context/dashboard-context.utils";
+import theme from "@repo/ui/theme";
 
 const styles = {
   pixelsTop: {
@@ -16,7 +16,7 @@ const styles = {
   card: {
     height: "420px",
     position: "relative",
-    [`@media (max-width: ${MOBILE_SIZE}px)`]: {
+    [`@media (max-width: ${theme.breakpoints.values.sm}px)`]: {
       height: "570px",
       display: "flex",
       flexDirection: "column",
