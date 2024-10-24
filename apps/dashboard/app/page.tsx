@@ -3,8 +3,10 @@
 import styles from "./page.styles";
 import { Card } from "@repo/ui/card";
 import { Box } from "@mui/material";
-import WelcomeCard from "./(components)/welcome-card";
-import NewTransactionCard from "./(components)/new-transaction-card";
+import {
+  NewTransactionCard,
+  WelcomeCard,
+} from "./modules/dashboard/components";
 
 export default function Home() {
   return (
