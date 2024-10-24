@@ -28,15 +28,14 @@ export const DashboardProvider = ({
   const [state, setState] = useState<DashboardContextProps>(initialState);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= MOBILE_SIZE);
 
-  const { trigger: getSaldoMutation } = useSWRMutation("/api/saldo", fetcher);
-  const { trigger: createTransactionMutation } = useSWRMutation(
-    "/api/transacao",
-    createTransactionRequest,
-  );
-  const { trigger: updateSaldoMutation } = useSWRMutation(
-    "/api/saldo",
-    updateSaldo,
-  );
+  const { trigger: getSaldoMutation, isMutating: getSaldoIsMutating } =
+    useSWRMutation("/api/saldo", fetcher);
+  const {
+    trigger: createTransactionMutation,
+    isMutating: createTransactionIsMutating,
+  } = useSWRMutation("/api/transacao", createTransactionRequest);
+  const { trigger: updateSaldoMutation, isMutating: updateSaldoIsMutating } =
+    useSWRMutation("/api/saldo", updateSaldo);
 
   const createTransaction = async ({
     transactionType,
@@ -94,7 +93,15 @@ export const DashboardProvider = ({
 
   return (
     <DashboardContext.Provider
-      value={{ ...state, isMobile, createTransaction }}
+      value={{
+        ...state,
+        isMobile,
+        createTransaction,
+        loading:
+          getSaldoIsMutating ||
+          updateSaldoIsMutating ||
+          createTransactionIsMutating,
+      }}
     >
       {children}
     </DashboardContext.Provider>
