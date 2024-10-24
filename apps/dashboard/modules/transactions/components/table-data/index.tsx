@@ -1,6 +1,13 @@
 "use client";
 
-import { Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
+  useTheme,
+} from "@mui/material";
 
 import { Icons } from "@repo/ui/icons";
 import { Data } from "modules/transactions/types";
@@ -10,11 +17,13 @@ interface TableDataProps {
 }
 
 export function TableData({ data }: TableDataProps) {
+  const { palette } = useTheme();
+
   function generateOperationTypeIcon(operationType: string) {
     if (operationType === "deposit")
-      return <Icons name={"mdiBankTransferIn"} color="#47A138" />;
+      return <Icons name={"mdiBankTransferIn"} color={palette.success.main} />;
 
-    return <Icons name={"mdiBankTransferOut"} color="#FF0000" />;
+    return <Icons name={"mdiBankTransferOut"} color={palette.error.main} />;
   }
 
   return (
