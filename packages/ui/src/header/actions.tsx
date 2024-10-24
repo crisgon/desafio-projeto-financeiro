@@ -9,7 +9,7 @@ export function Actions() {
     <Stack
       width="fit-content"
       direction="row"
-      gap="24px"
+      gap={theme.spacing("large")}
       sx={{
         display: "flex",
         [breakpoints.down("sm")]: {
