@@ -6,9 +6,7 @@ import { Illustration } from "@repo/ui/illustration";
 import { IconButton, IconButtonProps } from "@repo/ui/iconButton";
 import { useState } from "react";
 import styles from "./styles";
-import useSWR from "swr";
-
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
+import { useDashboardContext } from "app/context/dashboard-context";
 
 const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
 
@@ -17,8 +15,7 @@ export default function WelcomeCard() {
   const [isBalanceVisible, setIsBalanceVisible] = useState<boolean>(true);
   const [balanceIcon, setBalanceIcon] =
     useState<IconButtonProps["icon"]>("mdiEye");
-
-  const { data, isLoading } = useSWR("/api/saldo", fetcher);
+  const { balance, loading } = useDashboardContext();
 
   const today = new Date().toLocaleDateString("pt-BR", {
     weekday: "long",
@@ -30,7 +27,7 @@ export default function WelcomeCard() {
   const formattedNumber = new Intl.NumberFormat("pt-BR", {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
-  }).format(data?.value / 100);
+  }).format(balance / 100);
 
   const toggleBalanceVisibility = () => {
     setBalanceIcon(isBalanceVisible ? "mdiEyeOff" : "mdiEye");
@@ -38,32 +35,12 @@ export default function WelcomeCard() {
   };
 
   return (
-    <Card
-      type="primary"
-      sx={{
-        height: "420px",
-        position: "relative",
-        "@media (max-width: 490px)": {
-          height: "570px",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-        },
-      }}
-      title="Olá, Joana! :)"
-    >
+    <Card type="primary" sx={styles.card} title="Olá, Joana! :)">
       <Box sx={styles.pixelsTop}>
         <Illustration name="pixelsTopLight" />
       </Box>
 
-      <Box
-        display="flex"
-        sx={{
-          "@media (max-width: 490px)": {
-            flexDirection: "column",
-          },
-        }}
-      >
+      <Box display="flex" sx={styles.content}>
         <Box sx={styles.today}>
           <Typography variant="caption">{capitalize(today)}</Typography>
         </Box>
@@ -83,7 +60,7 @@ export default function WelcomeCard() {
 
           <Typography component="span" sx={styles.balanceText}>
             R${" "}
-            {isLoading ? (
+            {loading ? (
               <Skeleton variant="text" sx={styles.skeleton} />
             ) : isBalanceVisible ? (
               `${formattedNumber}`

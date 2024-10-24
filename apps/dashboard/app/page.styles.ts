@@ -6,7 +6,7 @@ const styles = {
     gap: theme.spacing("large"),
     justifyContent: "center",
     padding: theme.spacing("large"),
-    "@media (max-width: 900px)": {
+    [`@media (max-width: ${theme.breakpoints.values.md}px)`]: {
       flexDirection: "column",
       "> div": {
         width: "100%",
@@ -20,9 +20,9 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     gap: theme.spacing("large"),
-    "@media (max-width: 900px)": {
+    [`@media (max-width: ${theme.breakpoints.values.md}px)`]: {
+      maxWidth: "unset",
       minWidth: "unset",
-      width: "100%",
     },
   },
 };

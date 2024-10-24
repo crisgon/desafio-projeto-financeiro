@@ -7,7 +7,7 @@ export const radioGroupOverrides = {
         color: "#DEE9EA",
         fontWeight: 600,
         fontSize: "16px",
-        marginBottom: "12px",
+        marginBottom: "14px",
         "&.Mui-focused": {
           color: "#DEE9EA",
         },
