@@ -21,6 +21,7 @@ export function Footer(): JSX.Element {
 
   return (
     <Box
+      component="footer"
       display="flex"
       flexDirection={width >= 720 ? "row" : "column"}
       gap={width >= 720 ? "24px" : "32px"}
