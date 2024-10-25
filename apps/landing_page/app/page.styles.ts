@@ -1,64 +1,45 @@
 import theme from "@repo/ui/theme";
 
 const styles = {
-  pixelsTop: {
-    position: "absolute",
-    zIndex: 0,
-    top: 0,
-    right: 0,
+  main: {
+    maxWidth: "1200px",
+    margin: "0 auto",
+    marginBottom: "72px",
   },
-  pixelsBottom: {
-    position: "absolute",
-    zIndex: 0,
-    left: 0,
-    bottom: -7,
-  },
-  saveMoney: {
-    position: "absolute",
-    zIndex: 1,
-    left: 0,
-    bottom: 18,
-  },
-  today: {
+  banner: {
     display: "flex",
+    flexDirection: "row",
+    gap: "16px",
+    alignItems: "center",
+    margin: "40px 0",
+  },
+  advantages: {
+    display: "flex",
+    alignItems: "center",
     flexDirection: "column",
-    gap: "48px",
-    width: "50%",
-    marginTop: theme.spacing("large"),
-    zIndex: 1,
-    "@media (max-width: 490px)": {
-      width: "100%",
+    gap: "40px",
+  },
+  advantagesList: {
+    display: "flex",
+    alignItems: "flex-start",
+    flexDirection: "row",
+    gap: theme.spacing("large"),
+  },
+  benefit: {
+    display: "flex",
+    alignItems: "center",
+    flexDirection: "column",
+    width: "279px",
+    gap: theme.spacing("medium"),
+
+    h6: {
+      color: theme.palette.primary.main,
+    },
+
+    p: {
+      color: theme.palette.grey[500],
       textAlign: "center",
     },
-  },
-  balance: {
-    display: "flex",
-    flexDirection: "column",
-    gap: theme.spacing("medium"),
-    width: "50%",
-    marginTop: theme.spacing("large"),
-    zIndex: 1,
-    "@media (max-width: 490px)": {
-      width: "fit-content",
-    },
-  },
-  balanceText: {
-    display: "flex",
-    gap: theme.spacing("medium"),
-    fontSize: "31px",
-    fontWeight: theme.typography.body1.fontWeight,
-  },
-  divider: {
-    borderBottomWidth: "2px !important",
-    width: "60%",
-    borderColor: `${theme.palette.common.white} !important`,
-    "@media (max-width: 490px)": {
-      width: "100%",
-    },
-  },
-  skeleton: {
-    fontSize: "31px",
-    width: "140px",
   },
 };
 
