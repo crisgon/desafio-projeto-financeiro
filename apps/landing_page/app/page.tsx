@@ -13,7 +13,7 @@ export default function Home() {
       <header className="header">Header</header>
       <main style={styles.main}>
         <Box sx={styles.banner}>
-          <Typography fontSize="28px" fontWeight="600">
+          <Typography variant="h1" fontWeight="600">
             Experimente mais liberdade no controle da sua vida financeira.
             <br />
             Crie sua conta com a gente!
