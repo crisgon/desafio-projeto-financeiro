@@ -10,13 +10,15 @@ import { useState } from "react";
 import styles from "./styles";
 import { Button } from "@repo/ui/button";
 import useSWRMutation from "swr/mutation";
-import { createTransactionRequest, updateSaldo } from "app/services";
+import { createTransactionRequest, fetcher, updateSaldo } from "app/services";
+import { useSWRConfig } from "swr";
 
 export default function NewTransactionCard() {
   const theme = useTheme();
   const [value, setValue] = useState<string>("0,00");
   const [operationType, setOperationType] = useState<string>("deposito");
   const [transactionType, setTransactionType] = useState<string>("");
+  const { mutate } = useSWRConfig();
 
   const { trigger: createTransactionMutation } = useSWRMutation(
     "/api/transacao",
@@ -41,6 +43,8 @@ export default function NewTransactionCard() {
         operationValue: Number(value),
         operationType,
       });
+
+      mutate("/api/saldo");
     } catch (e) {
       console.log(e);
     }
