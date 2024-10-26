@@ -6,7 +6,6 @@ import theme from "@repo/ui/theme";
 import "./globals.css";
 
 import { Inter } from "next/font/google";
-import { DashboardProvider } from "./context/dashboard-context";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -35,10 +34,8 @@ export default function RootLayout({
               },
             }}
           />
-          <DashboardProvider>
-            <header className="header">Header</header>
-            {children}
-          </DashboardProvider>
+          <header className="header">Header</header>
+          {children}
         </ThemeProvider>
       </body>
     </html>

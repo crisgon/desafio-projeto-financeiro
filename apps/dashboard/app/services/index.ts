@@ -25,7 +25,8 @@ export const updateSaldo = async (
     arg,
   }: {
     arg: {
-      value: number;
+      operationValue: number;
+      operationType: string;
     };
   },
 ) => {

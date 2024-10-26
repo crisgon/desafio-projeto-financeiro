@@ -9,21 +9,37 @@ import RadioGroup from "@repo/ui/radio-group";
 import { useState } from "react";
 import styles from "./styles";
 import { Button } from "@repo/ui/button";
-import { useDashboardContext } from "app/context/dashboard-context";
+import useSWRMutation from "swr/mutation";
+import { createTransactionRequest, updateSaldo } from "app/services";
 
 export default function NewTransactionCard() {
   const theme = useTheme();
   const [value, setValue] = useState<string>("0,00");
   const [operationType, setOperationType] = useState<string>("deposito");
   const [transactionType, setTransactionType] = useState<string>("");
-  const { createTransaction } = useDashboardContext();
+
+  const { trigger: createTransactionMutation } = useSWRMutation(
+    "/api/transacao",
+    createTransactionRequest,
+  );
+
+  const { trigger: updateSaldoMutation } = useSWRMutation(
+    "/api/saldo",
+    updateSaldo,
+  );
 
   const handleCreateTransaction = async () => {
     try {
-      await createTransaction({
+      await createTransactionMutation({
+        createdAt: new Date().toISOString(),
         transactionType,
         operationType,
         value: Number(value),
+      });
+
+      await updateSaldoMutation({
+        operationValue: Number(value),
+        operationType,
       });
     } catch (e) {
       console.log(e);

@@ -6,7 +6,8 @@ import { Illustration } from "@repo/ui/illustration";
 import { IconButton, IconButtonProps } from "@repo/ui/iconButton";
 import { useState } from "react";
 import styles from "./styles";
-import { useDashboardContext } from "app/context/dashboard-context";
+import useSWR from "swr";
+import { fetcher } from "app/services";
 
 const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
 
@@ -15,7 +16,7 @@ export default function WelcomeCard() {
   const [isBalanceVisible, setIsBalanceVisible] = useState<boolean>(true);
   const [balanceIcon, setBalanceIcon] =
     useState<IconButtonProps["icon"]>("mdiEye");
-  const { balance, loading } = useDashboardContext();
+  const { data, isLoading } = useSWR("/api/saldo", fetcher);
 
   const today = new Date().toLocaleDateString("pt-BR", {
     weekday: "long",
@@ -27,7 +28,7 @@ export default function WelcomeCard() {
   const formattedNumber = new Intl.NumberFormat("pt-BR", {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
-  }).format(balance / 100);
+  }).format(data?.value / 100);
 
   const toggleBalanceVisibility = () => {
     setBalanceIcon(isBalanceVisible ? "mdiEyeOff" : "mdiEye");
@@ -60,7 +61,7 @@ export default function WelcomeCard() {
 
           <Typography component="span" sx={styles.balanceText}>
             R${" "}
-            {loading ? (
+            {isLoading ? (
               <Skeleton variant="text" sx={styles.skeleton} />
             ) : isBalanceVisible ? (
               `${formattedNumber}`
