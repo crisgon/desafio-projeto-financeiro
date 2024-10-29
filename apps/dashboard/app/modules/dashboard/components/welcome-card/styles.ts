@@ -26,7 +26,7 @@ const styles = {
     width: "50%",
     marginTop: theme.spacing("large"),
     zIndex: 1,
-    "@media (max-width: 490px)": {
+    [`@media (max-width: ${theme.breakpoints.values.sm}px)`]: {
       width: "100%",
       textAlign: "center",
     },
@@ -38,7 +38,7 @@ const styles = {
     width: "50%",
     marginTop: theme.spacing("large"),
     zIndex: 1,
-    "@media (max-width: 490px)": {
+    [`@media (max-width: ${theme.breakpoints.values.sm}px)`]: {
       width: "fit-content",
     },
   },
@@ -52,13 +52,28 @@ const styles = {
     borderBottomWidth: "2px !important",
     width: "60%",
     borderColor: `${theme.palette.common.white} !important`,
-    "@media (max-width: 490px)": {
+    [`@media (max-width: ${theme.breakpoints.values.sm}px)`]: {
       width: "100%",
     },
   },
   skeleton: {
     fontSize: "31px",
     width: "140px",
+  },
+  card: {
+    height: "420px",
+    position: "relative",
+    [`@media (max-width: ${theme.breakpoints.values.sm}px)`]: {
+      height: "570px",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+    },
+  },
+  content: {
+    [`@media (max-width: ${theme.breakpoints.values.sm}px)`]: {
+      flexDirection: "column",
+    },
   },
 };
 

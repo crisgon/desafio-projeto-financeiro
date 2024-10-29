@@ -7,8 +7,7 @@ import { IconButton, IconButtonProps } from "@repo/ui/iconButton";
 import { useState } from "react";
 import styles from "./styles";
 import useSWR from "swr";
-
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
+import { fetcher } from "app/services";
 
 const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
 
@@ -17,7 +16,6 @@ export default function WelcomeCard() {
   const [isBalanceVisible, setIsBalanceVisible] = useState<boolean>(true);
   const [balanceIcon, setBalanceIcon] =
     useState<IconButtonProps["icon"]>("mdiEye");
-
   const { data, isLoading } = useSWR("/api/saldo", fetcher);
 
   const today = new Date().toLocaleDateString("pt-BR", {
@@ -38,32 +36,12 @@ export default function WelcomeCard() {
   };
 
   return (
-    <Card
-      type="primary"
-      sx={{
-        height: "420px",
-        position: "relative",
-        "@media (max-width: 490px)": {
-          height: "570px",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-        },
-      }}
-      title="Olá, Joana! :)"
-    >
+    <Card type="primary" sx={styles.card} title="Olá, Joana! :)">
       <Box sx={styles.pixelsTop}>
         <Illustration name="pixelsTopLight" />
       </Box>
 
-      <Box
-        display="flex"
-        sx={{
-          "@media (max-width: 490px)": {
-            flexDirection: "column",
-          },
-        }}
-      >
+      <Box display="flex" sx={styles.content}>
         <Box sx={styles.today}>
           <Typography variant="caption">{capitalize(today)}</Typography>
         </Box>

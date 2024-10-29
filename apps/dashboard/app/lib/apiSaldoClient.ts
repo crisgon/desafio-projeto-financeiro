@@ -10,6 +10,7 @@ export async function fetchSaldo() {
       headers: {
         "Content-Type": "application/json",
       },
+      cache: "no-store",
     });
 
     if (!response.ok) {
