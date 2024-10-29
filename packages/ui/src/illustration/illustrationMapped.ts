@@ -7,6 +7,7 @@ export const illustrationsMapped = {
   gift: Illustrations.Gift,
   graph: Illustrations.Graph,
   logo: Illustrations.Logo,
+  logoSmall: Illustrations.LogoSmall,
   logoWhite: Illustrations.LogoWhite,
   pixelsBottomDark: Illustrations.PixelsBottomDark,
   pixelsBottomLight: Illustrations.PixelsBottomLight,
