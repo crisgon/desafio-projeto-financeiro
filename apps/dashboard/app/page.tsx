@@ -8,21 +8,11 @@ import {
   WelcomeCard,
   Menu,
 } from "./modules/dashboard/components";
-import theme from "@repo/ui/theme";
 
 export default function Home() {
   return (
     <Box component="main" sx={styles.main}>
-      <Card
-        type="default"
-        sx={{
-          minWidth: "180px",
-          [`@media (max-width: ${theme.breakpoints.values.md}px)`]: {
-            backgroundColor: "transparent",
-            padding: "0px",
-          },
-        }}
-      >
+      <Card type="default" sx={styles.menuCard}>
         <Menu />
       </Card>
       <Box sx={styles.cardsBox}>

@@ -26,6 +26,16 @@ const styles = {
       minWidth: "unset",
     },
   },
+  menuCard: {
+    minWidth: "180px",
+    [`@media (max-width: ${theme.breakpoints.values.md}px)`]: {
+      backgroundColor: "transparent",
+      padding: "0px",
+    },
+    [`@media (max-width: 650px)`]: {
+      display: "none",
+    },
+  },
 };
 
 export default styles;

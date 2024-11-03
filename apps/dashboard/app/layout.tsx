@@ -2,11 +2,11 @@
 
 import { ThemeProvider, CssBaseline, GlobalStyles, Box } from "@mui/material";
 import theme from "@repo/ui/theme";
-import { Header } from "@repo/ui/header";
 
 import "./globals.css";
 
 import { Inter } from "next/font/google";
+import Header from "./modules/dashboard/components/header";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -35,7 +35,7 @@ export default function RootLayout({
               },
             }}
           />
-          <Header isLogged />
+          <Header />
           <Box
             sx={{
               width: "100%",
