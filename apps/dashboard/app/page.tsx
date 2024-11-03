@@ -7,7 +7,8 @@ import {
   NewTransactionCard,
   WelcomeCard,
   Menu,
-} from "./modules/dashboard/components";
+} from "../modules/dashboard/components";
+import { Extract } from "modules/extract";
 
 export default function Home() {
   return (
@@ -19,9 +20,7 @@ export default function Home() {
         <WelcomeCard />
         <NewTransactionCard />
       </Box>
-      <Card type="default" sx={{ width: "282px" }}>
-        Extrato
-      </Card>
+      <Extract />
     </Box>
   );
 }
