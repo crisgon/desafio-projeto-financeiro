@@ -7,7 +7,7 @@ import { IconButton } from "../iconButton";
 export interface MenuProps {
   variant: "full" | "compact";
   iconColor?: "primary" | "secondary";
-  children: React.ReactElement | string;
+  children: React.ReactNode | string;
   anchorElem?: HTMLElement | null;
   sx?: SxProps<Theme>;
 }
@@ -22,7 +22,6 @@ function Menu({
   sx,
 }: MenuProps): JSX.Element {
   const theme = useTheme();
-  const [width, setWidth] = useState(window.innerWidth);
   const [isMobile, setIsMobile] = useState(window.innerWidth < MOBILE_SIZE);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(
     anchorElem || null,
@@ -55,7 +54,6 @@ function Menu({
 
   useEffect(() => {
     const handleResize = () => {
-      setWidth(window.innerWidth);
       setIsMobile(window.innerWidth < MOBILE_SIZE);
     };
 

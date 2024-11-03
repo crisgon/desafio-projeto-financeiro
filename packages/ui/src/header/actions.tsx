@@ -2,6 +2,7 @@
 
 import { Stack, useTheme } from "@mui/material";
 import { Button } from "../button";
+import theme from "../theme";
 
 export function Actions() {
   const { breakpoints } = useTheme();

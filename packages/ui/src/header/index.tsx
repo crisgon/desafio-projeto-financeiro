@@ -5,9 +5,11 @@ import { PublicContent } from "./public-content";
 
 interface HeaderProps {
   isLogged: boolean;
+  userName?: string;
+  children?: React.ReactNode;
 }
 
-export function Header({ isLogged }: HeaderProps) {
+export function Header({ isLogged, userName, children }: HeaderProps) {
   const { palette } = useTheme();
 
   return (
@@ -22,7 +24,11 @@ export function Header({ isLogged }: HeaderProps) {
         padding: "0 24px",
       }}
     >
-      {isLogged ? <LoggedContent /> : <PublicContent />}
+      {isLogged ? (
+        <LoggedContent userName={userName}>{children}</LoggedContent>
+      ) : (
+        <PublicContent />
+      )}
     </Stack>
   );
 }
