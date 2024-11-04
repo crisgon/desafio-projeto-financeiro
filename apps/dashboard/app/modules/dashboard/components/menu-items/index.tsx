@@ -26,6 +26,13 @@ export default function MenuItems() {
         handleClick={() => console.log("")}
         disabled
       >
+        Extrato
+      </Menu.MenuItem>
+      <Menu.MenuItem
+        sx={styles.menuItem}
+        handleClick={() => console.log("")}
+        disabled
+      >
         Investimentos
       </Menu.MenuItem>
       <Menu.MenuItem
