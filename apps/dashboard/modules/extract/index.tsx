@@ -5,15 +5,25 @@ import { format } from "date-fns";
 import { Box, Stack, Typography } from "@mui/material";
 import { Button } from "@repo/ui/button";
 import { useRouter } from "next/navigation";
-
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
+import { formatCurrency } from "../../../../packages/ui/src/currency-input";
+import { fetcher } from "app/services";
 
 export function Extract() {
   const { push } = useRouter();
   const { data, isLoading, error } = useSWR("/api/extrato", fetcher);
 
-  if (isLoading) return <Card type="default" sx={{ width: "282px" }}>Carregando...</Card>;
-  if (error) return <Card type="default" sx={{ width: "282px" }}>Erro ao carregar</Card>;
+  if (isLoading)
+    return (
+      <Card type="default" sx={{ width: "282px" }}>
+        Carregando...
+      </Card>
+    );
+  if (error)
+    return (
+      <Card type="default" sx={{ width: "282px" }}>
+        Erro ao carregar
+      </Card>
+    );
 
   return (
     <Card type="default" sx={{ width: "282px" }}>
@@ -71,12 +81,8 @@ export function Extract() {
                       color: isTransfer ? "error.main" : "success.main",
                     }}
                   >
-                    {isTransfer ? "-" : ""}
-                    {"R$ "}
-                    {new Intl.NumberFormat("pt-BR", {
-                      minimumFractionDigits: 2,
-                      maximumFractionDigits: 2,
-                    }).format(transaction.value / 100)}
+                    {isTransfer ? "-R$ " : "R$ "}
+                    {formatCurrency(transaction.value)}
                   </Typography>
                 </Stack>
               );

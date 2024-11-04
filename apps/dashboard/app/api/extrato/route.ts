@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { fetchTransacoes } from "../../lib/apiTransacaoClient";
+import { sortTransactions } from "../transacao/route";
 
 type Transaction = {
   createdAt: string;
@@ -38,10 +39,7 @@ function groupTransactionsByMonth(
   });
 
   groupedByMonth.forEach((group) => {
-    group.transactions.sort(
-      (a, b) =>
-        new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime(),
-    );
+    sortTransactions(group.transactions);
   });
 
   return Array.from(groupedByMonth.values()).sort(
