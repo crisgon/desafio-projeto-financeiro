@@ -7,8 +7,8 @@ interface LoggedContentProps {
 }
 
 export function LoggedContent({ userName, children }: LoggedContentProps) {
-  const isMobile = window.innerWidth < 650;
-  const showUserName = window.innerWidth >= 450;
+  const isMobile = window?.innerWidth < 650;
+  const showUserName = window?.innerWidth >= 450;
 
   return (
     <Stack

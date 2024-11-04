@@ -3,6 +3,8 @@
 import { Box, Typography, useTheme } from "@mui/material";
 import { Footer } from "@repo/ui/footer";
 import { Illustration } from "@repo/ui/illustration";
+import { Header } from "@repo/ui/header";
+
 import styles from "./page.styles";
 
 export default function Home() {
@@ -10,7 +12,7 @@ export default function Home() {
 
   return (
     <>
-      <header className="header">Header</header>
+      <Header isLogged={false} />
       <main style={styles.main}>
         <Box sx={styles.banner}>
           <Typography variant="h1" fontWeight="600">
