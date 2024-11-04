@@ -15,8 +15,18 @@ export async function GET() {
 
 export async function PUT(req: Request) {
   try {
-    const novoSaldo = await req.json();
-    const data = await updateSaldo(novoSaldo);
+    const { operationType, operationValue } = await req.json();
+    const { value } = await fetchSaldo();
+
+    let newBalance;
+
+    if (operationType === "deposito") {
+      newBalance = value + operationValue;
+    } else {
+      newBalance = value - operationValue;
+    }
+
+    const data = await updateSaldo({ value: newBalance });
     return NextResponse.json(data);
   } catch (error) {
     return NextResponse.json(

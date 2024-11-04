@@ -6,8 +6,9 @@ const styles = {
     gap: theme.spacing("large"),
     justifyContent: "center",
     padding: theme.spacing("large"),
-    "@media (max-width: 900px)": {
+    [`@media (max-width: ${theme.breakpoints.values.md}px)`]: {
       flexDirection: "column",
+      paddingTop: "0px",
       "> div": {
         width: "100%",
       },
@@ -20,9 +21,19 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     gap: theme.spacing("large"),
-    "@media (max-width: 900px)": {
+    [`@media (max-width: ${theme.breakpoints.values.md}px)`]: {
+      maxWidth: "unset",
       minWidth: "unset",
-      width: "100%",
+    },
+  },
+  menuCard: {
+    minWidth: "180px",
+    [`@media (max-width: ${theme.breakpoints.values.md}px)`]: {
+      backgroundColor: "transparent",
+      padding: "0px",
+    },
+    [`@media (max-width: 650px)`]: {
+      display: "none",
     },
   },
 };

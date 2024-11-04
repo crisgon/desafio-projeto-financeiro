@@ -19,7 +19,7 @@ type Story = StoryObj<typeof CurrencyInput>;
 export const Default: Story = {
   args: {
     label: "Valor",
-    value: "0,00",
+    defaultValue: "0,00",
     onChange: fn(),
   },
 };

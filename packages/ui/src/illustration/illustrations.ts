@@ -4,6 +4,7 @@ export { Error404 } from "./components/Error404";
 export { Gift } from "./components/Gift";
 export { Graph } from "./components/Graph";
 export { Logo } from "./components/Logo";
+export { LogoSmall } from "./components/LogoSmall";
 export { LogoWhite } from "./components/LogoWhite";
 export { PixelsBottomDark } from "./components/PixelsBottomDark";
 export { PixelsBottomLight } from "./components/PixelsBottomLight";

@@ -1,11 +1,12 @@
 "use client";
 
-import { ThemeProvider, CssBaseline, GlobalStyles } from "@mui/material";
+import { ThemeProvider, CssBaseline, GlobalStyles, Box } from "@mui/material";
 import theme from "@repo/ui/theme";
 
 import "./globals.css";
 
 import { Inter } from "next/font/google";
+import Header from "./modules/dashboard/components/header";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -34,8 +35,17 @@ export default function RootLayout({
               },
             }}
           />
-          <header className="header">Header</header>
-          {children}
+          <Header />
+          <Box
+            sx={{
+              width: "100%",
+              maxWidth: "1200px",
+              margin: "0 auto",
+              padding: "24px",
+            }}
+          >
+            {children}
+          </Box>
         </ThemeProvider>
       </body>
     </html>
