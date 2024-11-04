@@ -1,10 +1,16 @@
 import { NextResponse } from "next/server";
 import { fetchTransacoes, createTransacao } from "../../lib/apiTransacaoClient";
 
+export function sortTransactions(val: any) {
+  return val.sort(
+    (a: any, b: any) =>
+      new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+  );
+}
 export async function GET() {
   try {
     const data = await fetchTransacoes();
-    return NextResponse.json(data);
+    return NextResponse.json(sortTransactions(data));
   } catch (error) {
     return NextResponse.json(
       { error: "Erro ao buscar transações." },

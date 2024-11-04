@@ -1,7 +1,7 @@
 import { BASE_URL } from "./constants";
 import type { Transacao } from "./types";
 
-export async function fetchTransacoes() {
+export async function fetchTransacoes(size?: number) {
   const url = `${BASE_URL}/transacao`;
 
   try {
@@ -17,7 +17,7 @@ export async function fetchTransacoes() {
     }
 
     const data = await response.json();
-    return data;
+    return size ? data.slice(0, size) : data;
   } catch (error) {
     console.error("Erro ao buscar transações:", error);
     throw error;
