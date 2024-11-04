@@ -1,6 +1,6 @@
 import theme from "@repo/ui/theme";
 
-const styles = {
+const styles: any = {
   pixelsTop: {
     position: "absolute",
     zIndex: 0,

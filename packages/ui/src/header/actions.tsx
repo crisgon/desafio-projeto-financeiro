@@ -4,12 +4,12 @@ import { Stack, useTheme } from "@mui/material";
 import { Button } from "../button";
 
 export function Actions() {
-  const { breakpoints } = useTheme();
+  const { breakpoints, spacing } = useTheme();
   return (
     <Stack
       width="fit-content"
       direction="row"
-      gap={theme.spacing("large")}
+      gap={spacing("large")}
       sx={{
         display: "flex",
         [breakpoints.down("sm")]: {
