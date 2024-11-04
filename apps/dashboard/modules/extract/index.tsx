@@ -39,14 +39,19 @@ export function Extract() {
               const isTransfer = transaction.operationType === "transferencia";
 
               return (
-                <Stack sx={{ marginBottom: "10px" }} key={transaction.id}>
+                <Stack
+                  sx={{
+                    marginBottom: "10px",
+                    borderBottom: "1px solid",
+                    borderColor: "primary.dark",
+                    paddingY: "8px",
+                  }}
+                  key={transaction.id}
+                >
                   <Stack
                     direction="row"
                     sx={{
-                      borderBottom: "1px solid",
-                      borderColor: "primary.dark",
                       marginBottom: "8px",
-                      paddingY: "8px",
                       alignItems: "center",
                       justifyContent: "space-between",
                     }}
