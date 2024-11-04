@@ -1,5 +1,5 @@
 import { BASE_URL } from "./constants";
-import type { Transacao } from "./types";
+import type { EditTransacao, Transacao } from "./types";
 
 export async function fetchTransacoes() {
   const url = `${BASE_URL}/transacao`;
@@ -48,7 +48,10 @@ export async function createTransacao(novaTransacao: Transacao) {
   }
 }
 
-export async function updateTransacao(id: string, transacaoAtualizada: any) {
+export async function updateTransacao(
+  id: string,
+  transacaoAtualizada: EditTransacao,
+) {
   const url = `${BASE_URL}/transacao/${id}`;
 
   try {
