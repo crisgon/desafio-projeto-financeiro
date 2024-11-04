@@ -23,42 +23,42 @@ export const PixelsTopLight = ({
         height="45"
         transform="matrix(-1 0 0 1 135 45)"
         fill="#D9D9D9"
-        fill-opacity="0.5"
+        fillOpacity="0.5"
       />
       <rect
         width="45"
         height="45"
         transform="matrix(-1 0 0 1 135 90)"
         fill="#D9D9D9"
-        fill-opacity="0.9"
+        fillOpacity="0.9"
       />
       <rect
         width="45"
         height="45"
         transform="matrix(-1 0 0 1 89.9998 45)"
         fill="#D9D9D9"
-        fill-opacity="0.9"
+        fillOpacity="0.9"
       />
       <rect
         width="45"
         height="45"
         transform="matrix(-1 0 0 1 45 45)"
         fill="#D9D9D9"
-        fill-opacity="0.5"
+        fillOpacity="0.5"
       />
       <rect
         width="45"
         height="45"
         transform="matrix(-1 0 0 1 45 0)"
         fill="#D9D9D9"
-        fill-opacity="0.9"
+        fillOpacity="0.9"
       />
       <rect
         width="45"
         height="45"
         transform="matrix(-1 0 0 1 180 132.465)"
         fill="#D9D9D9"
-        fill-opacity="0.9"
+        fillOpacity="0.9"
       />
     </g>
   </svg>

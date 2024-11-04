@@ -8,6 +8,7 @@ import { useState } from "react";
 import styles from "./styles";
 import useSWR from "swr";
 import { fetcher } from "app/services";
+import { formatCurrency } from "@repo/ui/currency-input";
 
 const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
 
@@ -25,10 +26,7 @@ export default function WelcomeCard() {
     year: "numeric",
   });
 
-  const formattedNumber = new Intl.NumberFormat("pt-BR", {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  }).format(data?.value / 100);
+  const formattedNumber = formatCurrency(data?.value ?? 0);
 
   const toggleBalanceVisibility = () => {
     setBalanceIcon(isBalanceVisible ? "mdiEyeOff" : "mdiEye");
