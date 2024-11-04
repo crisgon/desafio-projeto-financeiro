@@ -15,8 +15,8 @@ export const styles = {
   },
   menuItem: {
     px: "0px",
-    py: "16px",
+    py: theme.spacing("medium"),
     justifyContent: "center",
-    borderBottom: "1px solid #000",
+    borderBottom: `1px solid ${theme.palette.common.black}`,
   },
 };
