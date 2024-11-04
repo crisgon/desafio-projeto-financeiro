@@ -1,12 +1,7 @@
 import { NextResponse } from "next/server";
 import { fetchTransacoes, createTransacao } from "../../lib/apiTransacaoClient";
+import { sortTransactions } from "modules/utils/sort-transactions";
 
-export function sortTransactions(val: any) {
-  return val.sort(
-    (a: any, b: any) =>
-      new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
-  );
-}
 export async function GET() {
   try {
     const data = await fetchTransacoes();

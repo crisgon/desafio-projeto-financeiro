@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { fetchTransacoes } from "../../lib/apiTransacaoClient";
-import { sortTransactions } from "../transacao/route";
+import { sortTransactions } from "modules/utils/sort-transactions";
 
 type Transaction = {
   createdAt: string;

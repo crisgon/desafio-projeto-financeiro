@@ -1,5 +1,8 @@
+"use client";
+
 import { Stack, Typography } from "@mui/material";
 import { Icons } from "../icons";
+import { useEffect, useState } from "react";
 
 interface LoggedContentProps {
   userName?: string;
@@ -7,8 +10,13 @@ interface LoggedContentProps {
 }
 
 export function LoggedContent({ userName, children }: LoggedContentProps) {
-  const isMobile = window?.innerWidth < 650;
-  const showUserName = window?.innerWidth >= 450;
+  const [isMobile, setIsMobile] = useState(false);
+  const [showUserName, setShowUserName] = useState(false);
+
+  useEffect(() => {
+    setIsMobile(window?.innerWidth < 650);
+    setShowUserName(window?.innerWidth >= 450);
+  }, []);
 
   return (
     <Stack

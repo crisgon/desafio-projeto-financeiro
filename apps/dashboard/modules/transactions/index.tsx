@@ -1,7 +1,7 @@
 "use client";
 
 import { Card } from "@repo/ui/card";
-import { Box, Stack, Typography } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 
 import styles from "app/page.styles";
 import useSWR from "swr";
