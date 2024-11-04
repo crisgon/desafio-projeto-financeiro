@@ -6,13 +6,14 @@ import { Box } from "@mui/material";
 import {
   NewTransactionCard,
   WelcomeCard,
+  Menu,
 } from "./modules/dashboard/components";
 
 export default function Home() {
   return (
     <Box component="main" sx={styles.main}>
-      <Card type="default" sx={{ width: "180px" }}>
-        Menu
+      <Card type="default" sx={styles.menuCard}>
+        <Menu />
       </Card>
       <Box sx={styles.cardsBox}>
         <WelcomeCard />

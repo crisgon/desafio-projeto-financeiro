@@ -1,7 +1,15 @@
 import { Stack, Typography } from "@mui/material";
 import { Icons } from "../icons";
 
-export function LoggedContent() {
+interface LoggedContentProps {
+  userName?: string;
+  children?: React.ReactNode;
+}
+
+export function LoggedContent({ userName, children }: LoggedContentProps) {
+  const isMobile = window.innerWidth < 650;
+  const showUserName = window.innerWidth >= 450;
+
   return (
     <Stack
       direction="row"
@@ -9,13 +17,16 @@ export function LoggedContent() {
         width: "100%",
         maxWidth: "1200px",
         margin: "0 auto",
-        justifyContent: "flex-end",
+        justifyContent: isMobile ? "space-between" : "flex-end",
       }}
     >
+      {isMobile && children}
       <Stack width="fit-content" direction="row" alignItems="center" gap="50px">
-        <Typography variant="body2" sx={{ color: "common.white" }}>
-          Joana da Silva Oliveira
-        </Typography>
+        {showUserName && (
+          <Typography variant="body2" sx={{ color: "common.white" }}>
+            {userName}
+          </Typography>
+        )}
         <Icons color="#FF5031" name="mdiAccountCircle" size={32} />
       </Stack>
     </Stack>
