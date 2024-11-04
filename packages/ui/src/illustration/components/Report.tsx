@@ -20,42 +20,42 @@ export const Report = ({ width = 662, height = 413 }: IllustrationSVGProps) => (
         height="39.3175"
         transform="matrix(1.19249e-08 -1 -1 -1.19249e-08 131.738 121.952)"
         fill="#D9D9D9"
-        fill-opacity="0.5"
+        fillOpacity="0.5"
       />
       <rect
         width="39.3175"
         height="39.3175"
         transform="matrix(1.19249e-08 -1 -1 -1.19249e-08 92.4207 121.952)"
         fill="#D9D9D9"
-        fill-opacity="0.9"
+        fillOpacity="0.9"
       />
       <rect
         width="39.3175"
         height="39.3175"
         transform="matrix(1.19249e-08 -1 -1 -1.19249e-08 131.738 82.6347)"
         fill="#D9D9D9"
-        fill-opacity="0.9"
+        fillOpacity="0.9"
       />
       <rect
         width="39.3175"
         height="39.3175"
         transform="matrix(1.19249e-08 -1 -1 -1.19249e-08 131.738 43.3174)"
         fill="#D9D9D9"
-        fill-opacity="0.5"
+        fillOpacity="0.5"
       />
       <rect
         width="39.3175"
         height="39.3175"
         transform="matrix(1.19249e-08 -1 -1 -1.19249e-08 171.056 43.3174)"
         fill="#D9D9D9"
-        fill-opacity="0.9"
+        fillOpacity="0.9"
       />
       <rect
         width="39.3175"
         height="39.3175"
         transform="matrix(1.19249e-08 -1 -1 -1.19249e-08 55.3176 161.27)"
         fill="#D9D9D9"
-        fill-opacity="0.9"
+        fillOpacity="0.9"
       />
     </g>
     <g opacity="0.3">
@@ -70,42 +70,42 @@ export const Report = ({ width = 662, height = 413 }: IllustrationSVGProps) => (
         height="39.3175"
         transform="matrix(1.19249e-08 -1 -1 -1.19249e-08 621.738 372.952)"
         fill="#D9D9D9"
-        fill-opacity="0.5"
+        fillOpacity="0.5"
       />
       <rect
         width="39.3175"
         height="39.3175"
         transform="matrix(1.19249e-08 -1 -1 -1.19249e-08 582.421 372.952)"
         fill="#D9D9D9"
-        fill-opacity="0.9"
+        fillOpacity="0.9"
       />
       <rect
         width="39.3175"
         height="39.3175"
         transform="matrix(1.19249e-08 -1 -1 -1.19249e-08 621.738 333.635)"
         fill="#D9D9D9"
-        fill-opacity="0.9"
+        fillOpacity="0.9"
       />
       <rect
         width="39.3175"
         height="39.3175"
         transform="matrix(1.19249e-08 -1 -1 -1.19249e-08 621.738 294.318)"
         fill="#D9D9D9"
-        fill-opacity="0.5"
+        fillOpacity="0.5"
       />
       <rect
         width="39.3175"
         height="39.3175"
         transform="matrix(1.19249e-08 -1 -1 -1.19249e-08 661.055 294.318)"
         fill="#D9D9D9"
-        fill-opacity="0.9"
+        fillOpacity="0.9"
       />
       <rect
         width="39.3175"
         height="39.3175"
         transform="matrix(1.19249e-08 -1 -1 -1.19249e-08 545.317 412.27)"
         fill="#D9D9D9"
-        fill-opacity="0.9"
+        fillOpacity="0.9"
       />
     </g>
     <path

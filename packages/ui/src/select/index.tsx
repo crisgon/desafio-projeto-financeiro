@@ -6,16 +6,18 @@ import {
 } from "@mui/material";
 
 interface SelectProps {
+  value?: string;
   onChange: (e: SelectChangeEvent) => void;
   options: { value: string; label: string }[];
   placeholder: string;
 }
 
-export function Select({ onChange, options, placeholder }: SelectProps) {
+export function Select({ value, onChange, options, placeholder }: SelectProps) {
   const theme = useTheme();
 
   return (
     <MUISelect
+      value={value ?? "none"}
       defaultValue="none"
       onChange={(e) => onChange(e)}
       sx={{ maxWidth: "355px" }}

@@ -10,7 +10,7 @@ import { useState } from "react";
 import styles from "./styles";
 import { Button } from "@repo/ui/button";
 import useSWRMutation from "swr/mutation";
-import { createTransactionRequest, fetcher, updateSaldo } from "app/services";
+import { createTransactionRequest, updateSaldo } from "app/services";
 import { useSWRConfig } from "swr";
 
 export default function NewTransactionCard() {

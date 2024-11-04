@@ -7,9 +7,15 @@ export interface IconProps {
   name: IconNames;
   color?: string;
   size?: number;
+  styles?: React.CSSProperties;
 }
 
-export function Icons({ name, size = 16, color }: IconProps): JSX.Element {
+export function Icons({
+  name,
+  size = 16,
+  color,
+  styles,
+}: IconProps): JSX.Element {
   const theme = useTheme();
   const sizeToRem = size / 16;
   const iconName = iconNameParser(name);
@@ -18,6 +24,7 @@ export function Icons({ name, size = 16, color }: IconProps): JSX.Element {
     <Icon
       icon={iconName}
       style={{
+        ...styles,
         fontSize: `${sizeToRem}rem`,
       }}
       color={color || theme.palette.common.white}

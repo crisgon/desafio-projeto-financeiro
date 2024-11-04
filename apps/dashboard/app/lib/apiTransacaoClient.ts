@@ -48,10 +48,7 @@ export async function createTransacao(novaTransacao: Transacao) {
   }
 }
 
-export async function updateTransacao(
-  id: string,
-  transacaoAtualizada: Transacao,
-) {
+export async function updateTransacao(id: string, transacaoAtualizada: any) {
   const url = `${BASE_URL}/transacao/${id}`;
 
   try {

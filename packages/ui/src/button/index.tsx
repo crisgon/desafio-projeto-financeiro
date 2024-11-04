@@ -11,6 +11,7 @@ export interface ButtonProps {
   disabled?: boolean;
   sx?: MUIButtonProps["sx"];
   onClick: () => void;
+  isLoading?: boolean;
 }
 
 export function Button({
@@ -20,16 +21,19 @@ export function Button({
   disabled = false,
   onClick,
   sx,
+  isLoading,
 }: ButtonProps): JSX.Element {
   return (
     <MUIButton
       variant={variant as MUIButtonProps["variant"]}
       color={color as MUIButtonProps["color"]}
-      disabled={disabled}
+      disabled={disabled ?? isLoading}
       onClick={onClick}
       sx={sx}
     >
-      <Typography variant="body1">{label}</Typography>
+      <Typography variant="body1">
+        {isLoading ? "Carregando..." : label}
+      </Typography>
     </MUIButton>
   );
 }

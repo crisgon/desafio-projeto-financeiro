@@ -25,7 +25,7 @@ export const PixelsTopDark = ({
       height="45"
       transform="rotate(90 132.465 45)"
       fill="#D9D9D9"
-      fill-opacity="0.5"
+      fillOpacity="0.5"
     />
     <rect
       x="87.4648"
@@ -34,7 +34,7 @@ export const PixelsTopDark = ({
       height="45"
       transform="rotate(90 87.4648 45)"
       fill="#D9D9D9"
-      fill-opacity="0.9"
+      fillOpacity="0.9"
     />
     <rect
       x="132.465"
@@ -43,7 +43,7 @@ export const PixelsTopDark = ({
       height="45"
       transform="rotate(90 132.465 90)"
       fill="#D9D9D9"
-      fill-opacity="0.9"
+      fillOpacity="0.9"
     />
     <rect
       x="132.465"
@@ -52,7 +52,7 @@ export const PixelsTopDark = ({
       height="45"
       transform="rotate(90 132.465 135)"
       fill="#D9D9D9"
-      fill-opacity="0.5"
+      fillOpacity="0.5"
     />
     <rect
       x="177.465"
@@ -61,7 +61,7 @@ export const PixelsTopDark = ({
       height="45"
       transform="rotate(90 177.465 135)"
       fill="#D9D9D9"
-      fill-opacity="0.9"
+      fillOpacity="0.9"
     />
     <rect
       x="44.9998"
@@ -69,7 +69,7 @@ export const PixelsTopDark = ({
       height="45"
       transform="rotate(90 44.9998 0)"
       fill="#D9D9D9"
-      fill-opacity="0.9"
+      fillOpacity="0.9"
     />
   </svg>
 );
