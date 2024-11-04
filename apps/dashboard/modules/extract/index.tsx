@@ -12,8 +12,8 @@ export function Extract() {
   const { push } = useRouter();
   const { data, isLoading, error } = useSWR("/api/extrato", fetcher);
 
-  if (isLoading) return <Card type="default">Carregando...</Card>;
-  if (error) return <Card type="default">Erro ao carregar</Card>;
+  if (isLoading) return <Card type="default" sx={{ width: "282px" }}>Carregando...</Card>;
+  if (error) return <Card type="default" sx={{ width: "282px" }}>Erro ao carregar</Card>;
 
   return (
     <Card type="default" sx={{ width: "282px" }}>
