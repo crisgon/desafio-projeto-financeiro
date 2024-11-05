@@ -40,7 +40,7 @@ export function Transactions() {
       >
         <Menu />
       </Card>
-      <Card type="default" sx={{ width: "100%" }}>
+      <Card type="default" sx={{ width: "100%", overflow: "auto" }}>
         {isLoading ? <Loading /> : <TableData data={rows} />}
       </Card>
     </Box>
