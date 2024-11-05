@@ -1,15 +1,16 @@
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Menu from "@repo/ui/menu";
 import { styles } from "./styles";
 
 export default function MenuItems() {
   const pathname = usePathname();
+  const router = useRouter();
 
   return (
     <>
       <Menu.MenuItem
         sx={styles.menuItem}
-        handleClick={() => console.log("")}
+        handleClick={() => router.push("/")}
         active={pathname === "/"}
       >
         Início
@@ -23,8 +24,8 @@ export default function MenuItems() {
       </Menu.MenuItem>
       <Menu.MenuItem
         sx={styles.menuItem}
-        handleClick={() => console.log("")}
-        disabled
+        handleClick={() => router.push("/transactions")}
+        active={pathname === "/transactions"}
       >
         Extrato
       </Menu.MenuItem>
