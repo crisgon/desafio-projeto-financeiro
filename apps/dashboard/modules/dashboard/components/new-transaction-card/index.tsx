@@ -3,21 +3,30 @@
 import { Box, useTheme } from "@mui/material";
 import { Card } from "@repo/ui/card";
 import { Illustration } from "@repo/ui/illustration";
-import { Select } from "@repo/ui/select";
-import { CurrencyInput } from "@repo/ui/currency-input";
-import RadioGroup from "@repo/ui/radio-group";
+
 import { useState } from "react";
 import styles from "./styles";
-import { Button } from "@repo/ui/button";
 import useSWRMutation from "swr/mutation";
 import { createTransactionRequest, updateSaldo } from "app/services";
 import { useSWRConfig } from "swr";
+import { TransactionForm } from "modules/components/transaction-form";
+import { Toast } from "@repo/ui/toast";
+
+interface ToastProps {
+  type: string;
+  content: string;
+  isOpen: boolean;
+}
 
 export default function NewTransactionCard() {
-  const theme = useTheme();
-  const [value, setValue] = useState<string>("0,00");
-  const [operationType, setOperationType] = useState<string>("deposito");
+  const [value, setValue] = useState<string>("0");
+  const [operationType, setOperationType] = useState<string>("");
   const [transactionType, setTransactionType] = useState<string>("");
+  const [toastProps, setToastProps] = useState<ToastProps>({
+    type: "",
+    content: "",
+    isOpen: false,
+  });
   const { mutate } = useSWRConfig();
 
   const {
@@ -44,86 +53,57 @@ export default function NewTransactionCard() {
         operationType,
       });
 
+      setToastProps({
+        type: "success",
+        content: "Transação criada com sucesso!",
+        isOpen: true,
+      });
+      setValue("0");
+      setTransactionType("");
+      setOperationType("");
+
       mutate("/api/saldo");
     } catch (e) {
       console.log(e);
+      setToastProps({
+        type: "error",
+        content: "Erro ao criar transação.",
+        isOpen: true,
+      });
     }
   };
 
   return (
-    <Card type="secondary" sx={styles.card} title="Nova transação">
-      <Box sx={styles.pixelsTop}>
-        <Illustration name="pixelsTopMedium" />
-      </Box>
+    <>
+      <Toast
+        {...toastProps}
+        handleClose={() => {
+          setToastProps((p) => ({ ...p, isOpen: false }));
+        }}
+        type="info"
+      />
+      <Card type="secondary" sx={styles.card} title="Nova transação">
+        <Box sx={styles.pixelsTop}>
+          <Illustration name="pixelsTopMedium" />
+        </Box>
 
-      <Box display="flex" flexDirection="column" gap="32px" mt="32px">
-        <Select
-          options={[
-            { value: "cambio", label: "Câmbio de Moeda" },
-            { value: "doc/ted", label: "DOC/TED" },
-            { value: "emprestimo", label: "Empréstimo e Financiamento" },
-          ]}
-          value={transactionType}
-          onChange={(event) => setTransactionType(event?.target.value)}
-          placeholder="Selecione o tipo de transação"
+        <TransactionForm
+          transactionType={transactionType}
+          setTransactionType={setTransactionType}
+          value={value}
+          setValue={setValue}
+          operationType={operationType}
+          setOperationType={setOperationType}
+          isMutating={
+            createTransactionIsMutating || updateTransactionIsMutating
+          }
+          handleEditTransaction={handleCreateTransaction}
         />
 
-        <Box
-          display="flex"
-          sx={{
-            flexDirection: "row",
-            gap: "60px",
-            [theme.breakpoints.down("sm")]: {
-              flexDirection: "column",
-              gap: "32px",
-            },
-          }}
-        >
-          <CurrencyInput
-            label="Valor"
-            defaultValue={value}
-            onChange={(event) => setValue(event)}
-            sx={{
-              zIndex: 1,
-              width: "inherit",
-              [theme.breakpoints.down("sm")]: {
-                width: "100%",
-              },
-            }}
-          />
-
-          <RadioGroup
-            label="Tipo de operação"
-            inputName="tipo-de-operacao"
-            value={operationType}
-            handleChange={(event) => setOperationType(event?.target?.value)}
-            sx={{ zIndex: 1 }}
-          >
-            <>
-              <RadioGroup.RadioButton label="Depósito" value="deposito" />
-              <RadioGroup.RadioButton
-                label="Transferência"
-                value="transferencia"
-              />
-            </>
-          </RadioGroup>
+        <Box sx={styles.pixelsBottom}>
+          <Illustration name="pixelsBottomMedium" />
         </Box>
-
-        <Box width="250px" zIndex={1} mt="32px">
-          <Button
-            label="Concluir transação"
-            onClick={handleCreateTransaction}
-            color="tertiary"
-            isLoading={
-              createTransactionIsMutating || updateTransactionIsMutating
-            }
-          />
-        </Box>
-      </Box>
-
-      <Box sx={styles.pixelsBottom}>
-        <Illustration name="pixelsBottomMedium" />
-      </Box>
-    </Card>
+      </Card>{" "}
+    </>
   );
 }
