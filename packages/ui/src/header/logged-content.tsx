@@ -14,7 +14,7 @@ export function LoggedContent({ userName, children }: LoggedContentProps) {
   const [showUserName, setShowUserName] = useState(false);
 
   useEffect(() => {
-    setIsMobile(window?.innerWidth < 650);
+    setIsMobile(window?.innerWidth < 700);
     setShowUserName(window?.innerWidth >= 450);
   }, []);
 
@@ -26,6 +26,7 @@ export function LoggedContent({ userName, children }: LoggedContentProps) {
         maxWidth: "1200px",
         margin: "0 auto",
         justifyContent: isMobile ? "space-between" : "flex-end",
+        padding: "0 24px",
       }}
     >
       {isMobile && children}

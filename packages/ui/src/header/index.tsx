@@ -20,9 +20,6 @@ export function Header({ isLogged, userName, children }: HeaderProps) {
       height="94px"
       alignItems="center"
       bgcolor={isLogged ? palette.action.active : palette.common.black}
-      sx={{
-        padding: "0 24px",
-      }}
     >
       {isLogged ? (
         <LoggedContent userName={userName}>{children}</LoggedContent>

@@ -21,6 +21,7 @@ export function PublicContent() {
         spacing={{ md: "72px", xs: "10px" }}
         sx={{
           width: "fit-content",
+          padding: "0 24px",
 
           [breakpoints.only("xs")]: {
             width: "100%",
