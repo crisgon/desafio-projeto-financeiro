@@ -6,7 +6,7 @@ import {
   type SxProps,
   type Theme,
 } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface CurrencyInputProps {
   label?: string;
@@ -37,6 +37,10 @@ export function CurrencyInput({
     setValue(formattedValue);
     onChange(inputValue);
   };
+
+  useEffect(() => {
+    setValue(defaultValue);
+  }, [defaultValue]);
 
   return (
     <Stack spacing="16px" width="250px" sx={sx}>

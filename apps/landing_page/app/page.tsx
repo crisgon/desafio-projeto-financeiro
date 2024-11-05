@@ -1,19 +1,15 @@
-"use client";
-
-import { Box, Typography, useTheme } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { Footer } from "@repo/ui/footer";
 import { Illustration } from "@repo/ui/illustration";
 import { Header } from "@repo/ui/header";
 
-import styles from "./page.styles";
+import styles from "./styles";
 
 export default function Home() {
-  const theme = useTheme();
-
   return (
     <>
       <Header isLogged={false} />
-      <main style={styles.main}>
+      <Box component="main" style={styles.main}>
         <Box sx={styles.banner}>
           <Typography variant="h1" fontWeight="600">
             Experimente mais liberdade no controle da sua vida financeira.
@@ -62,7 +58,7 @@ export default function Home() {
             </Box>
           </Box>
         </Box>
-      </main>
+      </Box>
       <Footer />
     </>
   );
