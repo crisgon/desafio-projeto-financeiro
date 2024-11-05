@@ -28,15 +28,21 @@ export function Transactions() {
   const rows = data ? data.map((d) => createData(d)) : [];
 
   return (
-    <Stack>
-      <Box component="main" sx={styles.main}>
-        <Card type="default" sx={{ width: "180px" }}>
-          <Menu />
-        </Card>
-        <Card type="default" sx={{ width: "100%", maxWidth: "690px" }}>
-          {isLoading ? <Loading /> : <TableData data={rows} />}
-        </Card>
-      </Box>
-    </Stack>
+    <Box component="main" sx={styles.main}>
+      <Card
+        type="default"
+        sx={{
+          width: "180px",
+          [`@media (max-width: 700px)`]: {
+            display: "none",
+          },
+        }}
+      >
+        <Menu />
+      </Card>
+      <Card type="default" sx={{ width: "100%" }}>
+        {isLoading ? <Loading /> : <TableData data={rows} />}
+      </Card>
+    </Box>
   );
 }

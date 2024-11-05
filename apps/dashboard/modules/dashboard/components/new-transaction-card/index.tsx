@@ -20,15 +20,15 @@ export default function NewTransactionCard() {
   const [transactionType, setTransactionType] = useState<string>("");
   const { mutate } = useSWRConfig();
 
-  const { trigger: createTransactionMutation } = useSWRMutation(
-    "/api/transacao",
-    createTransactionRequest,
-  );
+  const {
+    trigger: createTransactionMutation,
+    isMutating: createTransactionIsMutating,
+  } = useSWRMutation("/api/transacao", createTransactionRequest);
 
-  const { trigger: updateSaldoMutation } = useSWRMutation(
-    "/api/saldo",
-    updateSaldo,
-  );
+  const {
+    trigger: updateSaldoMutation,
+    isMutating: updateTransactionIsMutating,
+  } = useSWRMutation("/api/saldo", updateSaldo);
 
   const handleCreateTransaction = async () => {
     try {
@@ -63,6 +63,7 @@ export default function NewTransactionCard() {
             { value: "doc/ted", label: "DOC/TED" },
             { value: "emprestimo", label: "Empréstimo e Financiamento" },
           ]}
+          value={transactionType}
           onChange={(event) => setTransactionType(event?.target.value)}
           placeholder="Selecione o tipo de transação"
         />
@@ -113,6 +114,9 @@ export default function NewTransactionCard() {
             label="Concluir transação"
             onClick={handleCreateTransaction}
             color="tertiary"
+            isLoading={
+              createTransactionIsMutating || updateTransactionIsMutating
+            }
           />
         </Box>
       </Box>
