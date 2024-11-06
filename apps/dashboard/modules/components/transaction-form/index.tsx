@@ -5,7 +5,7 @@ import { Box, useTheme } from "@mui/material";
 import { Button } from "@repo/ui/button";
 
 interface TransactionFormProps {
-  transactionType: string;
+  transactionType?: string | undefined;
   setTransactionType: (value: string) => void;
   value: string;
   setValue: (value: string) => void;
