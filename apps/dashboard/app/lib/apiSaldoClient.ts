@@ -1,8 +1,7 @@
-import { BASE_URL } from "./constants";
 import type { Saldo } from "./types";
 
 export async function fetchSaldo() {
-  const url = `${BASE_URL}/saldo/1`;
+  const url = `${process.env.BASE_URL}/saldo/1`;
 
   try {
     const response = await fetch(url, {
@@ -26,7 +25,7 @@ export async function fetchSaldo() {
 }
 
 export async function updateSaldo(novoSaldo: Saldo) {
-  const url = `${BASE_URL}/saldo/1`;
+  const url = `${process.env.BASE_URL}/saldo/1`;
 
   try {
     const response = await fetch(url, {
