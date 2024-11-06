@@ -1,3 +1,4 @@
+"use client";
 import { Box, Typography } from "@mui/material";
 import { Footer } from "@repo/ui/footer";
 import { Illustration } from "@repo/ui/illustration";
@@ -9,7 +10,7 @@ export default function Home() {
   return (
     <>
       <Header isLogged={false} />
-      <Box component="main" style={styles.main}>
+      <Box component="main" sx={styles.main}>
         <Box sx={styles.banner}>
           <Typography variant="h1" fontWeight="600">
             Experimente mais liberdade no controle da sua vida financeira.

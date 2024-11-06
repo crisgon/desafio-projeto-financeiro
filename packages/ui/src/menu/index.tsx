@@ -1,3 +1,5 @@
+"use client";
+
 import { Menu as MUIMenu, SxProps, Theme, useTheme } from "@mui/material";
 import React, { useEffect, useMemo, useState } from "react";
 import { MenuItem } from "../menuItem";
@@ -22,7 +24,7 @@ function Menu({
   sx,
 }: MenuProps): JSX.Element {
   const theme = useTheme();
-  const [isMobile, setIsMobile] = useState(window.innerWidth < MOBILE_SIZE);
+  const [isMobile, setIsMobile] = useState(false);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(
     anchorElem || null,
   );

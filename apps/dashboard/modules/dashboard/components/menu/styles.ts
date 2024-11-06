@@ -1,6 +1,7 @@
+import { SxProps, Theme } from "@mui/material";
 import theme from "@repo/ui/theme";
 
-export const styles = {
+export const styles: Record<string, SxProps<Theme>> = {
   menu: {
     display: "flex",
     flexDirection: "column",
