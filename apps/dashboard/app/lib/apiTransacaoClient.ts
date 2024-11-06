@@ -1,8 +1,7 @@
-import { BASE_URL } from "./constants";
 import type { EditTransacao, Transacao } from "./types";
 
 export async function fetchTransacoes(size?: number) {
-  const url = `${BASE_URL}/transacao`;
+  const url = `${process.env.BASE_URL}/transacao`;
 
   try {
     const response = await fetch(url, {
@@ -25,7 +24,7 @@ export async function fetchTransacoes(size?: number) {
 }
 
 export async function createTransacao(novaTransacao: Transacao) {
-  const url = `${BASE_URL}/transacao`;
+  const url = `${process.env.BASE_URL}/transacao`;
 
   try {
     const response = await fetch(url, {
@@ -52,7 +51,7 @@ export async function updateTransacao(
   id: string,
   transacaoAtualizada: EditTransacao,
 ) {
-  const url = `${BASE_URL}/transacao/${id}`;
+  const url = `${process.env.BASE_URL}/transacao/${id}`;
 
   try {
     const response = await fetch(url, {
@@ -76,7 +75,7 @@ export async function updateTransacao(
 }
 
 export async function deleteTransacao(id: string) {
-  const url = `${BASE_URL}/transacao/${id}`;
+  const url = `${process.env.BASE_URL}/transacao/${id}`;
 
   try {
     const response = await fetch(url, {
