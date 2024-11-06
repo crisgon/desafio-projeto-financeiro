@@ -21,7 +21,7 @@ interface ToastProps {
 export default function NewTransactionCard() {
   const [value, setValue] = useState<string>("0");
   const [operationType, setOperationType] = useState<string>("");
-  const [transactionType, setTransactionType] = useState<string>("");
+  const [transactionType, setTransactionType] = useState<string | undefined>();
   const [toastProps, setToastProps] = useState<ToastProps>({
     type: "",
     content: "",
@@ -43,7 +43,7 @@ export default function NewTransactionCard() {
     try {
       await createTransactionMutation({
         createdAt: new Date().toISOString(),
-        transactionType,
+        transactionType: transactionType || "doc/ted",
         operationType,
         value: Number(value),
       });
@@ -59,7 +59,7 @@ export default function NewTransactionCard() {
         isOpen: true,
       });
       setValue("0");
-      setTransactionType("");
+      setTransactionType(undefined);
       setOperationType("");
 
       mutate("/api/saldo");

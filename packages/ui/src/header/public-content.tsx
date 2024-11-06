@@ -13,6 +13,7 @@ export function PublicContent() {
       direction="row"
       justifyContent="space-between"
       alignItems="center"
+      padding="0px 24px"
     >
       <Stack
         direction="row"
