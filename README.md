@@ -1,81 +1,115 @@
-# Turborepo starter
+# Tech Challenge - Fase 1
 
-This is an official starter Turborepo.
+## Projeto Financeiro
 
-## Using this example
+Projeto desenvolvido pelo Grupo 35:
 
-Run the following command:
+- Cristiano Santos Gonçalves - RM 358858
+
+- Isabella Soares de Lima - RM 358599
+
+## Tecnologias utilizadas
+
+- [Next.js](https://nextjs.org)
+- [Turborepo](https://turbo.build)
+- [Material UI](https://mui.com/material-ui/)
+- [Storybook](https://storybook.js.org)
+- [Vitest](https://vitest.dev)
+- [Husky](https://typicode.github.io/husky/)
+- [PNPM](https://pnpm.io/pt/)
+- [MockAPI](https://mockapi.io/)
+- [Vercel](https://vercel.com/home)
+
+## Como executar o projeto
+
+### Executar todos os projetos ao mesmo tempo
+
+Instale as dependências na raiz do projeto com o comando:
 
 ```sh
-npx create-turbo@latest
+pnpm i
 ```
 
-## What's inside?
+Execute o seguinte comando na raiz do projeto para executar todos os projetos ao mesmo tempo:
 
-This Turborepo includes the following packages/apps:
-
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-pnpm build
+```sh
+pnpm run dev
 ```
 
-### Develop
+Todos os projetos serão executados em portas diferentes.
 
-To develop all apps and packages, run the following command:
+### Executar os projetos de forma individual
 
-```
-cd my-turborepo
-pnpm dev
-```
+Instale as dependências na raiz do projeto com o comando:
 
-### Remote Caching
-
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
-
-```
-cd my-turborepo
-npx turbo login
+```sh
+pnpm i
 ```
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+Para executar o projeto `dashboard` execute o seguinte comando na raiz do projeto:
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-npx turbo link
+```sh
+pnpm run dev --filter=dashboard
 ```
 
-## Useful Links
+Para executar o projeto `landing_page` execute o seguinte comando na raiz do projeto:
 
-Learn more about the power of Turborepo:
+```sh
+pnpm run dev --filter=landing_page
+```
 
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+Para executar o projeto `ui`, do Design System, execute o seguinte comando na raiz do projeto:
+
+```sh
+pnpm run --filter="./packages/ui"
+```
+
+### Links para acessar os apps
+
+[Dashboard](https://fiap-tech-challenge-dashboard.vercel.app/)
+
+[LandingPage](https://desafio-projeto-financeiro-landing-page.vercel.app/)
+
+[Storybook](https://desafio-projeto-financeiro-ui.vercel.app/?path=/docs/components-illustration--docs)
+
+### Decisões de projeto
+
+#### Dashboard
+
+![Dashboard](image.png)
+
+Optamos por criar uma tela de Extrato, onde o usuário pode visualizar todo o histórico das suas transações, assim como os detalhes de cada uma. Por conta disso, adicionamos no menu da página de Dashboard um link para a página de Extrato. No fim da listagem de transações, na seção de Extrato, também existe um botão "Ver mais" que direciona o usuário para a página completa do Extrato.
+
+Os cards das transações também foram alterados. Acreditamos que faz mais sentido que as operações que podem ser realizadas sobre as transações (visualização, edição e deleção) estejam disponíveis somente na página de Extrato, dando mais significado para essa página, além de reduzir o volume de informações visuais na Dashboard.
+
+Adicionamos na seção de "Nova transação" um componente onde o usuário escolhe se a operação é um Depósito ou uma Transferência, facilitando o processo de criação da transação, no qual decidimos se o valor deve ser somado ou subtraído do saldo total.
+
+#### Página de Extrato
+
+![Página de Extrato](image-1.png)
+
+Conforme mencionado anteriormente, optamos por criar uma nova página Extrato onde o usuário consegue visualizar todo o histórico de transações. Nela também é possível visualizar os detalhes de uma transação, editá-la ou excluí-la do histórico.
+
+##### Modal de visualização de detalhes e edição
+
+![Modal de visualização de detalhes e edição](image-2.png)
+
+##### Modal de deleção
+
+![Modal de deleção](image-3.png)
+
+#### Ajuste no menu mobile
+
+![Menu mobile](image-4.png)
+
+Notamos que, no layout mobile, o link ativo tinha a cor laranja, diferente da cor verde utilizada como padrão em todos os outros layouts desse componente. Para manter consistência visual, decidimos manter o item ativo no meu mobile com a cor verde também.
+
+#### Landing Page
+
+![Landing Page](image-5.png)
+
+Na Landing Page não realizamos alterações.
+
+#### Storybook
+
+![Storybook](image-6.png)
