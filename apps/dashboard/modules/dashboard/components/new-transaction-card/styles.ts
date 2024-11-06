@@ -1,6 +1,7 @@
+import { SxProps, Theme } from "@mui/material";
 import theme from "@repo/ui/theme";
 
-const styles = {
+const styles: Record<string, SxProps<Theme>> = {
   pixelsTop: {
     position: "absolute",
     zIndex: 0,
