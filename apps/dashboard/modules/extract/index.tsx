@@ -30,7 +30,7 @@ export function Extract() {
       <Typography variant="h5" sx={{ marginBottom: "16px" }}>
         Extrato
       </Typography>
-      {data.map((group: any, i: number) => (
+      {data?.map((group: any, i: number) => (
         <Box
           key={group.monthNumber + group.year + i}
           sx={{
