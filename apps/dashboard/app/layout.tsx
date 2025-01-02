@@ -2,6 +2,7 @@
 
 import { ThemeProvider, CssBaseline, GlobalStyles, Box } from "@mui/material";
 import theme from "@repo/ui/theme";
+import { RecoilRoot } from "recoil";
 
 import "./globals.css";
 
@@ -35,16 +36,18 @@ export default function RootLayout({
               },
             }}
           />
-          <Header />
-          <Box
-            sx={{
-              width: "100%",
-              maxWidth: "1200px",
-              margin: "0 auto",
-            }}
-          >
-            {children}
-          </Box>
+          <RecoilRoot>
+            <Header />
+            <Box
+              sx={{
+                width: "100%",
+                maxWidth: "1200px",
+                margin: "0 auto",
+              }}
+            >
+              {children}
+            </Box>
+          </RecoilRoot>
         </ThemeProvider>
       </body>
     </html>
