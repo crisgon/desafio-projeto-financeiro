@@ -45,7 +45,9 @@ export function CurrencyInput({
   return (
     <Stack spacing="16px" width="250px" sx={sx}>
       {label && (
-        <FormLabel sx={{ color: theme.palette.grey[300] }}>{label}</FormLabel>
+        <FormLabel sx={{ color: theme.palette.primary.dark }}>
+          {label}
+        </FormLabel>
       )}
       <TextField
         value={value}
