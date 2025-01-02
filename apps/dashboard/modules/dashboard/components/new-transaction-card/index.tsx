@@ -20,7 +20,7 @@ interface ToastProps {
 
 export default function NewTransactionCard() {
   const [value, setValue] = useState<string>("0");
-  const [operationType, setOperationType] = useState<string>("");
+  const [operationType, setOperationType] = useState<string | undefined>();
   const [transactionType, setTransactionType] = useState<string | undefined>();
   const [toastProps, setToastProps] = useState<ToastProps>({
     type: "",
@@ -44,13 +44,13 @@ export default function NewTransactionCard() {
       await createTransactionMutation({
         createdAt: new Date().toISOString(),
         transactionType: transactionType || "doc/ted",
-        operationType,
+        operationType: operationType || "",
         value: Number(value),
       });
 
       await updateSaldoMutation({
         operationValue: Number(value),
-        operationType,
+        operationType: operationType || "",
       });
 
       setToastProps({

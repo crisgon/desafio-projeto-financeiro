@@ -21,8 +21,8 @@ interface EditModalProps {
 
 export function EditModal({ open, handleClose, transaction }: EditModalProps) {
   const theme = useTheme();
-  const [value, setValue] = useState<string>();
-  const [operationType, setOperationType] = useState<string>("");
+  const [value, setValue] = useState<string>("");
+  const [operationType, setOperationType] = useState<string | undefined>();
   const [transactionType, setTransactionType] = useState<string | undefined>();
   const [toastProps, setToastProps] = useState<ToastProps>({
     type: "",
@@ -48,7 +48,7 @@ export function EditModal({ open, handleClose, transaction }: EditModalProps) {
       await updateTransactionMutation({
         id: transaction?.id,
         value: Number(value),
-        operationType,
+        operationType: operationType || "",
         transactionType,
       });
 
