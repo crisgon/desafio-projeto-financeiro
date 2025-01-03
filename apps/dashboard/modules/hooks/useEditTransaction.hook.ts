@@ -10,14 +10,13 @@ export const useEditTransaction = () => {
     updateTransaction,
   );
 
-  const [toastIsOpen, setToastIsOpen] = useState<boolean>(false);
-
-  const [toastProps, setToastProps] = useState<ToastProps>({
-    type: "info",
-    content: "",
-    isOpen: toastIsOpen,
-    handleClose: () => setToastIsOpen(false),
-  });
+  const [toastProps, setToastProps] = useState<Omit<ToastProps, "handleClose">>(
+    {
+      type: "info",
+      content: "",
+      isOpen: true,
+    },
+  );
 
   const editTransaction = async (
     transactionId: string,
@@ -35,23 +34,21 @@ export const useEditTransaction = () => {
       });
 
       setToastProps({
-        ...toastProps,
+        isOpen: true,
         type: "success",
         content: "Transação editada com sucesso!",
-        isOpen: true,
       });
 
       handleClose();
     } catch (error) {
       console.error(error);
       setToastProps({
-        ...toastProps,
+        isOpen: true,
         type: "error",
         content: "Erro ao editar transação.",
-        isOpen: true,
       });
     }
   };
 
-  return { editTransaction, isLoading: isMutating, toastProps };
+  return { editTransaction, isLoading: isMutating, toastProps, setToastProps };
 };

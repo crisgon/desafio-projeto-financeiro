@@ -21,14 +21,13 @@ export const useAddTransaction = () => {
     isMutating: updateTransactionIsMutating,
   } = useSWRMutation("/api/saldo", updateSaldo);
 
-  const [toastIsOpen, setToastIsOpen] = useState<boolean>(false);
-
-  const [toastProps, setToastProps] = useState<ToastProps>({
-    type: "info",
-    content: "",
-    isOpen: toastIsOpen,
-    handleClose: () => setToastIsOpen(false),
-  });
+  const [toastProps, setToastProps] = useState<Omit<ToastProps, "handleClose">>(
+    {
+      type: "info",
+      content: "",
+      isOpen: true,
+    },
+  );
 
   const createTransaction = async ({
     transactionType = "doc/ted",
@@ -51,7 +50,6 @@ export const useAddTransaction = () => {
       });
 
       setToastProps({
-        ...toastProps,
         type: "success",
         content: "Transação criada com sucesso!",
         isOpen: true,
@@ -59,7 +57,6 @@ export const useAddTransaction = () => {
     } catch (e) {
       console.error(e);
       setToastProps({
-        ...toastProps,
         type: "error",
         content: "Erro ao criar transação.",
         isOpen: true,

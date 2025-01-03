@@ -20,7 +20,8 @@ export function EditModal({ open, handleClose, transaction }: EditModalProps) {
   const [operationType, setOperationType] = useState<OperationTypes>();
   const [transactionType, setTransactionType] = useState<TransactionTypes>();
 
-  const { toastProps, isLoading, editTransaction } = useEditTransaction();
+  const { toastProps, isLoading, editTransaction, setToastProps } =
+    useEditTransaction();
 
   useEffect(() => {
     setValue((transaction?.value ?? "").toString());
@@ -42,7 +43,10 @@ export function EditModal({ open, handleClose, transaction }: EditModalProps) {
 
   return (
     <>
-      <Toast {...toastProps} />
+      <Toast
+        {...toastProps}
+        handleClose={() => setToastProps({ ...toastProps, isOpen: false })}
+      />
       <Modal
         open={open}
         content={

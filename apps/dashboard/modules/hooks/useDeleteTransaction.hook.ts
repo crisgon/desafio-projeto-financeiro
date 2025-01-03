@@ -9,14 +9,13 @@ export const useDeleteTransaction = () => {
     deleteTransactionService,
   );
 
-  const [toastIsOpen, setToastIsOpen] = useState<boolean>(false);
-
-  const [toastProps, setToastProps] = useState<ToastProps>({
-    type: "info",
-    content: "",
-    isOpen: toastIsOpen,
-    handleClose: () => setToastIsOpen(false),
-  });
+  const [toastProps, setToastProps] = useState<Omit<ToastProps, "handleClose">>(
+    {
+      type: "info",
+      content: "",
+      isOpen: true,
+    },
+  );
 
   const deleteTransaction = async (id: string, handleClose: VoidFunction) => {
     try {
@@ -25,7 +24,6 @@ export const useDeleteTransaction = () => {
       });
 
       setToastProps({
-        ...toastProps,
         type: "success",
         content: "Transação apagada com sucesso!",
         isOpen: true,
@@ -33,7 +31,6 @@ export const useDeleteTransaction = () => {
     } catch (error) {
       console.error(error);
       setToastProps({
-        ...toastProps,
         type: "error",
         content: "Erro ao apagar transação.",
         isOpen: true,
@@ -47,5 +44,6 @@ export const useDeleteTransaction = () => {
     deleteTransaction,
     isLoading: isMutating,
     toastProps,
+    setToastProps,
   };
 };

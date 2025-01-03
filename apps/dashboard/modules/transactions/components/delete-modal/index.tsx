@@ -11,7 +11,8 @@ interface DeleteModalProps {
 }
 
 export function DeleteModal({ id, open, handleClose }: DeleteModalProps) {
-  const { deleteTransaction, isLoading, toastProps } = useDeleteTransaction();
+  const { deleteTransaction, isLoading, toastProps, setToastProps } =
+    useDeleteTransaction();
 
   async function handleDeleteTransaction() {
     deleteTransaction(id, handleClose);
@@ -19,7 +20,10 @@ export function DeleteModal({ id, open, handleClose }: DeleteModalProps) {
 
   return (
     <>
-      <Toast {...toastProps} />
+      <Toast
+        {...toastProps}
+        handleClose={() => setToastProps({ ...toastProps, isOpen: false })}
+      />
       <Modal
         open={open}
         content={

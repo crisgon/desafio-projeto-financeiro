@@ -36,9 +36,8 @@ export default function NewTransactionCard() {
       <Toast
         {...toastProps}
         handleClose={() => {
-          setToastProps((p) => ({ ...p, isOpen: false }));
+          setToastProps({ ...toastProps, isOpen: false });
         }}
-        type="info"
       />
       <Card type="secondary" sx={styles.card} title="Nova transação">
         <Box sx={styles.pixelsTop}>
