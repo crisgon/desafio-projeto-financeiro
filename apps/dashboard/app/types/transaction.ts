@@ -1,8 +1,11 @@
+export type TransactionTypes = "cambio" | "emprestimo" | "doc/ted";
+export type OperationTypes = "deposito" | "transferencia" | "saque";
+
 export type Transaction = {
   createdAt: string;
-  transactionType: "cambio" | "emprestimo" | "doc/ted";
+  transactionType: TransactionTypes;
   value: number;
-  operationType: "deposito" | "transferencia" | "saque";
+  operationType: OperationTypes;
   id: string;
 };
 

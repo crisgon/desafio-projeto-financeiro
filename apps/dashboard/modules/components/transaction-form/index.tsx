@@ -6,16 +6,17 @@ import { Button } from "@repo/ui/button";
 import { useRecoilValue } from "recoil";
 import { operationTypesState } from "app/recoil/atoms/operationTypesAtom";
 import { transactionTypesState } from "app/recoil/atoms/transactionTypesAtom";
+import type { OperationTypes, TransactionTypes } from "app/types/transaction";
 
 interface TransactionFormProps {
   transactionType?: string;
-  setTransactionType: (value: string) => void;
+  setTransactionType: (value: TransactionTypes) => void;
   value: string;
   setValue: (value: string) => void;
   operationType?: string;
-  setOperationType: (value: string) => void;
+  setOperationType: (value: OperationTypes) => void;
   isMutating: boolean;
-  handleEditTransaction: () => void;
+  onSubmit: () => void;
 }
 
 export function TransactionForm({
@@ -26,7 +27,7 @@ export function TransactionForm({
   operationType,
   setOperationType,
   isMutating,
-  handleEditTransaction,
+  onSubmit,
 }: TransactionFormProps) {
   const theme = useTheme();
 
@@ -53,7 +54,9 @@ export function TransactionForm({
         label="Tipo de transação"
         value={transactionType}
         options={transactionTypeOptions}
-        onChange={(event) => setTransactionType(event?.target.value)}
+        onChange={(event) =>
+          setTransactionType(event?.target.value as TransactionTypes)
+        }
         placeholder="Selecione o tipo de transação"
       />
 
@@ -61,7 +64,9 @@ export function TransactionForm({
         label="Tipo de operação"
         value={operationType}
         options={operationTypeOptions}
-        onChange={(event) => setOperationType(event?.target.value)}
+        onChange={(event) =>
+          setOperationType(event?.target.value as OperationTypes)
+        }
         placeholder="Selecione o tipo de operação"
       />
 
@@ -95,7 +100,7 @@ export function TransactionForm({
       <Box width="250px" zIndex={1} mt="32px">
         <Button
           label="Concluir transação"
-          onClick={handleEditTransaction}
+          onClick={onSubmit}
           color="tertiary"
           isLoading={isMutating}
         />

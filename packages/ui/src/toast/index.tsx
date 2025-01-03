@@ -1,6 +1,6 @@
 import { Alert, Snackbar, SnackbarOrigin } from "@mui/material";
 
-interface ToastProps {
+export interface ToastProps {
   isOpen: boolean;
   content: string | JSX.Element;
   type: "info" | "success" | "error" | "warning";
@@ -20,7 +20,7 @@ export function Toast({
       open={isOpen}
       autoHideDuration={6000}
       onClose={handleClose}
-      anchorOrigin={anchorOrigin ?? { vertical: "top", horizontal: "center" }}
+      anchorOrigin={anchorOrigin ?? { vertical: "top", horizontal: "right" }}
     >
       <Alert
         onClose={handleClose}
