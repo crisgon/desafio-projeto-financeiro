@@ -1,14 +1,15 @@
 "use client";
 
 import { Card } from "@repo/ui/card";
-import { Box, Stack } from "@mui/material";
+import { Box } from "@mui/material";
 
 import styles from "modules/dashboard/styles";
-import useSWR from "swr";
 import { Menu } from "modules/dashboard/components";
 import { TableData } from "./components/table-data";
-import { Data } from "./types";
 import { Loading } from "./components/loading";
+import type { Transaction } from "app/types/transaction";
+import { useRecoilValue } from "recoil";
+import { transactionsState } from "app/recoil/atoms/transactionsAtom";
 
 function createData({
   id,
@@ -16,31 +17,21 @@ function createData({
   transactionType,
   value,
   createdAt,
-}: Data) {
+}: Transaction) {
   return { id, operationType, transactionType, value, createdAt };
 }
 
 export function Transactions() {
-  const fetcher = (url: string) => fetch(url).then((res) => res.json());
+  const { data, isLoading } = useRecoilValue(transactionsState);
 
-  const { data, isLoading } = useSWR<Data[]>("/api/transacao", fetcher);
-
-  const rows = data ? data.map((d) => createData(d)) : [];
+  const rows = data ? data.map((d: Transaction) => createData(d)) : [];
 
   return (
     <Box component="main" sx={styles.main}>
-      <Card
-        type="default"
-        sx={{
-          width: "180px",
-          [`@media (max-width: 700px)`]: {
-            display: "none",
-          },
-        }}
-      >
+      <Card type="default" sx={styles.menuCard}>
         <Menu />
       </Card>
-      <Card type="default" sx={{ width: "100%", overflow: "auto" }}>
+      <Card type="default" sx={{ flex: 1, overflow: "auto" }}>
         {isLoading ? <Loading /> : <TableData data={rows} />}
       </Card>
     </Box>
