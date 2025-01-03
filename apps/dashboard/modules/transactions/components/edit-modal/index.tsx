@@ -2,10 +2,10 @@ import { Modal } from "@repo/ui/modal";
 import { useTheme } from "@mui/material";
 import { Toast } from "@repo/ui/toast";
 import { useEffect, useState } from "react";
-import { Data } from "modules/transactions/types";
 import useSWRMutation from "swr/mutation";
 import { updateTransaction } from "modules/transactions/services";
 import { TransactionForm } from "modules/components/transaction-form";
+import type { Transaction } from "app/types/transaction";
 
 interface ToastProps {
   type: string;
@@ -16,7 +16,7 @@ interface ToastProps {
 interface EditModalProps {
   open: boolean;
   handleClose: () => void;
-  transaction: Data | null;
+  transaction: Transaction | null;
 }
 
 export function EditModal({ open, handleClose, transaction }: EditModalProps) {
