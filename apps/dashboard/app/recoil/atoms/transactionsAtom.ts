@@ -4,7 +4,7 @@ export const transactionsState = atom({
   key: "transactionsState",
   default: {
     data: [],
-    isLoading: false,
+    isLoading: true,
     error: false,
   },
 });

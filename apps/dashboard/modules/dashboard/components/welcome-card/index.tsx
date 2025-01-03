@@ -6,9 +6,9 @@ import { Illustration } from "@repo/ui/illustration";
 import { IconButton, IconButtonProps } from "@repo/ui/iconButton";
 import { useState } from "react";
 import styles from "./styles";
-import useSWR from "swr";
-import { fetcher } from "app/services";
 import { formatCurrency } from "@repo/ui/currency-input";
+import { useRecoilValue } from "recoil";
+import { balanceState } from "app/recoil/atoms/balanceAtom";
 
 const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
 
@@ -17,7 +17,7 @@ export default function WelcomeCard() {
   const [isBalanceVisible, setIsBalanceVisible] = useState<boolean>(true);
   const [balanceIcon, setBalanceIcon] =
     useState<IconButtonProps["icon"]>("mdiEye");
-  const { data, isLoading } = useSWR("/api/saldo", fetcher);
+  const { data, isLoading } = useRecoilValue(balanceState);
 
   const today = new Date().toLocaleDateString("pt-BR", {
     weekday: "long",
