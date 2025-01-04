@@ -26,6 +26,7 @@ export default function MenuItems() {
         sx={styles.menuItem}
         handleClick={() => router.push("/investments")}
         active={pathname === "/investments"}
+        disabled
       >
         Investimentos
       </Menu.MenuItem>
@@ -36,6 +37,7 @@ export default function MenuItems() {
         }}
         handleClick={() => router.push("/services")}
         active={pathname === "/services"}
+        disabled
       >
         Outros serviços
       </Menu.MenuItem>
