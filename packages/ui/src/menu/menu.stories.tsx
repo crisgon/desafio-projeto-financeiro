@@ -30,7 +30,7 @@ export const Menu: Story = {
         <MenuComponent.MenuItem
           handleClick={() => console.log("clicou no item")}
         >
-          Transferências
+          Transações
         </MenuComponent.MenuItem>
         <MenuComponent.MenuItem
           handleClick={() => console.log("clicou no item")}
