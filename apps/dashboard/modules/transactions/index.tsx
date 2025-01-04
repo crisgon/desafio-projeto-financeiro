@@ -1,10 +1,6 @@
 "use client";
 
 import { Card } from "@repo/ui/card";
-import { Box } from "@mui/material";
-
-import styles from "modules/dashboard/styles";
-import { Menu } from "modules/dashboard/components";
 import { TableData } from "./components/table-data";
 import { Loading } from "./components/loading";
 import type { Transaction } from "app/types/transaction";
@@ -27,13 +23,8 @@ export function Transactions() {
   const rows = data ? data.map((d: Transaction) => createData(d)) : [];
 
   return (
-    <Box component="main" sx={styles.main}>
-      <Card type="default" sx={styles.menuCard}>
-        <Menu />
-      </Card>
-      <Card type="default" sx={{ flex: 1, overflow: "auto" }}>
-        {isLoading ? <Loading /> : <TableData data={rows} />}
-      </Card>
-    </Box>
+    <Card type="default" sx={{ flex: 1, overflow: "auto" }}>
+      {isLoading ? <Loading /> : <TableData data={rows} />}
+    </Card>
   );
 }
