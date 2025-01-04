@@ -14,7 +14,7 @@ export const useEditTransaction = () => {
     {
       type: "info",
       content: "",
-      isOpen: true,
+      isOpen: false,
     },
   );
 

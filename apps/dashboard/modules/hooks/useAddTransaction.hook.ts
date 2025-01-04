@@ -25,7 +25,7 @@ export const useAddTransaction = () => {
     {
       type: "info",
       content: "",
-      isOpen: true,
+      isOpen: false,
     },
   );
 

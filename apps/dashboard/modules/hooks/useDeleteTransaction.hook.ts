@@ -13,7 +13,7 @@ export const useDeleteTransaction = () => {
     {
       type: "info",
       content: "",
-      isOpen: true,
+      isOpen: false,
     },
   );
 
