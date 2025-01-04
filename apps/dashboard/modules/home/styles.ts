@@ -6,7 +6,6 @@ const styles: Record<string, SxProps<Theme>> = {
     display: "flex",
     gap: theme.spacing("large"),
     justifyContent: "center",
-    padding: theme.spacing("large"),
     [`@media (max-width: ${theme.breakpoints.values.md}px)`]: {
       flexDirection: "column",
       "> div": {
@@ -24,16 +23,6 @@ const styles: Record<string, SxProps<Theme>> = {
     [`@media (max-width: ${theme.breakpoints.values.md}px)`]: {
       maxWidth: "unset",
       minWidth: "unset",
-    },
-  },
-  menuCard: {
-    minWidth: "180px",
-    [`@media (max-width: ${theme.breakpoints.values.md}px)`]: {
-      backgroundColor: "transparent",
-      padding: "0px",
-    },
-    [`@media (max-width: 700px)`]: {
-      display: "none",
     },
   },
 };

@@ -5,6 +5,7 @@ export const styles: Record<string, SxProps<Theme>> = {
   menu: {
     display: "flex",
     flexDirection: "column",
+    minHeight: "calc(100vh - 190px)",
     [`@media (max-width: ${theme.breakpoints.values.md}px)`]: {
       flexDirection: "row",
       justifyContent: "space-around",
@@ -13,11 +14,5 @@ export const styles: Record<string, SxProps<Theme>> = {
         border: "none",
       },
     },
-  },
-  menuItem: {
-    px: "0px",
-    py: theme.spacing("medium"),
-    justifyContent: "center",
-    borderBottom: `1px solid ${theme.palette.common.black}`,
   },
 };
