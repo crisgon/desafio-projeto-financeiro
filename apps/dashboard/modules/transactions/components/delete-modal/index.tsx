@@ -2,15 +2,7 @@ import { Box, Stack, Typography } from "@mui/material";
 import { Button } from "@repo/ui/button";
 import { Modal } from "@repo/ui/modal";
 import { Toast } from "@repo/ui/toast";
-import { deleteTransaction } from "modules/transactions/services";
-import { useState } from "react";
-import useSWRMutation from "swr/mutation";
-
-interface ToastProps {
-  type: string;
-  content: string;
-  isOpen: boolean;
-}
+import { useDeleteTransaction } from "modules/hooks/useDeleteTransaction.hook";
 
 interface DeleteModalProps {
   id: string;
@@ -19,46 +11,18 @@ interface DeleteModalProps {
 }
 
 export function DeleteModal({ id, open, handleClose }: DeleteModalProps) {
-  const [toastProps, setToastProps] = useState<ToastProps>({
-    type: "",
-    content: "",
-    isOpen: false,
-  });
-  const { trigger: deleteTransactionMutation, isMutating } = useSWRMutation(
-    "/api/transacao",
-    deleteTransaction,
-  );
+  const { deleteTransaction, isLoading, toastProps, setToastProps } =
+    useDeleteTransaction();
 
-  async function handleEditTransaction() {
-    try {
-      await deleteTransactionMutation({
-        id,
-      });
-
-      setToastProps({
-        type: "success",
-        content: "Transação apagada com sucesso!",
-        isOpen: true,
-      });
-      handleClose();
-    } catch (error) {
-      console.log(error);
-      setToastProps({
-        type: "error",
-        content: "Erro ao apagar transação.",
-        isOpen: true,
-      });
-    }
+  async function handleDeleteTransaction() {
+    deleteTransaction(id, handleClose);
   }
 
   return (
     <>
       <Toast
         {...toastProps}
-        handleClose={() => {
-          setToastProps((p) => ({ ...p, isOpen: false }));
-        }}
-        type="info"
+        handleClose={() => setToastProps({ ...toastProps, isOpen: false })}
       />
       <Modal
         open={open}
@@ -77,9 +41,9 @@ export function DeleteModal({ id, open, handleClose }: DeleteModalProps) {
               />
               <Button
                 label="Apagar transação"
-                onClick={handleEditTransaction}
+                onClick={handleDeleteTransaction}
                 color="tertiary"
-                isLoading={isMutating}
+                isLoading={isLoading}
               />
             </Stack>
           </Box>
@@ -87,7 +51,7 @@ export function DeleteModal({ id, open, handleClose }: DeleteModalProps) {
         title="Apagar"
         handleClose={handleClose}
         handleConfirm={() => {}}
-      />{" "}
+      />
     </>
   );
 }

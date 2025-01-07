@@ -31,6 +31,7 @@ export function Modal({
   const theme = useTheme();
   return (
     <Dialog
+      fullWidth
       open={open}
       onClose={handleClose}
       PaperProps={{

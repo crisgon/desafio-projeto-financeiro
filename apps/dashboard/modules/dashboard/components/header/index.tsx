@@ -1,9 +1,10 @@
 import { Header as UIHeader } from "@repo/ui/header";
 import Menu from "@repo/ui/menu";
 import MenuItems from "../menu-items";
+import { useHeader } from "./useHeader.hook";
 
 export default function Header() {
-  const userName = "Joana da Silva Oliveira";
+  const { userName } = useHeader();
 
   return (
     <UIHeader isLogged userName={userName}>

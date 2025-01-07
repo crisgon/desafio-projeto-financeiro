@@ -11,25 +11,24 @@ import {
 
 import { Icons } from "@repo/ui/icons";
 
-import { Data } from "modules/transactions/types";
 import { EditModal } from "../edit-modal";
 import { useState } from "react";
 import { Button } from "@repo/ui/button";
 import { formatDate } from "modules/utils/formats";
 import { formatCurrency } from "@repo/ui/currency-input";
 import { DeleteModal } from "../delete-modal";
+import type { Transaction } from "app/types/transaction";
 
 interface TableDataProps {
-  data: Data[];
+  data: Transaction[];
 }
 
 export function TableData({ data }: TableDataProps) {
   const { palette } = useTheme();
   const [openEditModa, setOpenEditModal] = useState(false);
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
-  const [currentTransaction, setCurrentTransaction] = useState<Data | null>(
-    null,
-  );
+  const [currentTransaction, setCurrentTransaction] =
+    useState<Transaction | null>(null);
 
   function generateOperationTypeIcon(operationType: string) {
     if (operationType === "deposit")
@@ -38,12 +37,12 @@ export function TableData({ data }: TableDataProps) {
     return <Icons name={"mdiBankTransferOut"} color={palette.error.main} />;
   }
 
-  function handleEditTransaction(transaction: Data) {
+  function handleEditTransaction(transaction: Transaction) {
     setOpenEditModal(true);
     setCurrentTransaction(transaction);
   }
 
-  function handleDeleteTransaction(transaction: Data) {
+  function handleDeleteTransaction(transaction: Transaction) {
     setOpenDeleteModal(true);
     setCurrentTransaction(transaction);
   }

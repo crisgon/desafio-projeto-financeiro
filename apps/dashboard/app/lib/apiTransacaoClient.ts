@@ -1,6 +1,6 @@
 import type { EditTransacao, Transacao } from "./types";
 
-export async function fetchTransacoes(size?: number) {
+export async function fetchTransacoes() {
   const url = `${process.env.BASE_URL}/transacao`;
 
   try {
@@ -16,7 +16,7 @@ export async function fetchTransacoes(size?: number) {
     }
 
     const data = await response.json();
-    return size ? data.slice(0, size) : data;
+    return data.reverse();
   } catch (error) {
     console.error("Erro ao buscar transações:", error);
     throw error;

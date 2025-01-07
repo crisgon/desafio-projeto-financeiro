@@ -15,10 +15,8 @@ const styles: Record<string, SxProps<Theme>> = {
     bottom: -7,
   },
   card: {
-    height: "420px",
     position: "relative",
     [`@media (max-width: ${theme.breakpoints.values.sm}px)`]: {
-      height: "570px",
       display: "flex",
       flexDirection: "column",
       alignItems: "center",

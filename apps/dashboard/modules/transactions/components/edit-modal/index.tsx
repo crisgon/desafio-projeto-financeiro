@@ -1,81 +1,51 @@
 import { Modal } from "@repo/ui/modal";
-import { useTheme } from "@mui/material";
 import { Toast } from "@repo/ui/toast";
 import { useEffect, useState } from "react";
-import { Data } from "modules/transactions/types";
-import useSWRMutation from "swr/mutation";
-import { updateTransaction } from "modules/transactions/services";
 import { TransactionForm } from "modules/components/transaction-form";
-
-interface ToastProps {
-  type: string;
-  content: string;
-  isOpen: boolean;
-}
+import type {
+  OperationTypes,
+  Transaction,
+  TransactionTypes,
+} from "app/types/transaction";
+import { useEditTransaction } from "modules/hooks/useEditTransaction.hook";
 
 interface EditModalProps {
   open: boolean;
   handleClose: () => void;
-  transaction: Data | null;
+  transaction: Transaction | null;
 }
 
 export function EditModal({ open, handleClose, transaction }: EditModalProps) {
-  const theme = useTheme();
-  const [value, setValue] = useState<string>();
-  const [operationType, setOperationType] = useState<string>("");
-  const [transactionType, setTransactionType] = useState<string | undefined>();
-  const [toastProps, setToastProps] = useState<ToastProps>({
-    type: "",
-    content: "",
-    isOpen: false,
-  });
+  const [value, setValue] = useState<string>("");
+  const [operationType, setOperationType] = useState<OperationTypes>();
+  const [transactionType, setTransactionType] = useState<TransactionTypes>();
 
-  const { trigger: updateTransactionMutation, isMutating } = useSWRMutation(
-    "/api/transacao",
-    updateTransaction,
-  );
+  const { toastProps, isLoading, editTransaction, setToastProps } =
+    useEditTransaction();
 
   useEffect(() => {
     setValue((transaction?.value ?? "").toString());
-    setOperationType(transaction?.operationType ?? "");
+    setOperationType(transaction?.operationType ?? undefined);
     setTransactionType(transaction?.transactionType || undefined);
   }, [transaction]);
 
-  async function handleEditTransaction() {
+  function handleEditTransaction() {
     if (!transactionType || !transaction?.id) return;
 
-    try {
-      await updateTransactionMutation({
-        id: transaction?.id,
-        value: Number(value),
-        operationType,
-        transactionType,
-      });
-
-      setToastProps({
-        type: "success",
-        content: "Transação editada com sucesso!",
-        isOpen: true,
-      });
-      handleClose();
-    } catch (error) {
-      console.log(error);
-      setToastProps({
-        type: "error",
-        content: "Erro ao editar transação.",
-        isOpen: true,
-      });
-    }
+    editTransaction(
+      transaction.id,
+      value,
+      transactionType,
+      handleClose,
+      operationType,
+    );
   }
 
   return (
     <>
       <Toast
         {...toastProps}
-        handleClose={() => {
-          setToastProps((p) => ({ ...p, isOpen: false }));
-        }}
-        type="info"
+        handleClose={() => setToastProps({ ...toastProps, isOpen: false })}
       />
       <Modal
         open={open}
@@ -87,8 +57,8 @@ export function EditModal({ open, handleClose, transaction }: EditModalProps) {
             setValue={setValue}
             operationType={operationType}
             setOperationType={setOperationType}
-            isMutating={isMutating}
-            handleEditTransaction={handleEditTransaction}
+            isMutating={isLoading}
+            onSubmit={handleEditTransaction}
           />
         }
         title="Editar"

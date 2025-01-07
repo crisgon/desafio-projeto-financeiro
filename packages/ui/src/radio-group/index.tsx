@@ -17,6 +17,7 @@ interface RadioGroupProps {
   children: React.ReactElement;
   handleChange: (event: ChangeEvent<HTMLInputElement>, value: string) => void;
   sx?: SxProps<Theme>;
+  radioGroupSx?: SxProps<Theme>;
 }
 
 interface RadioButtonProps {
@@ -44,6 +45,7 @@ function RadioGroup({
   children,
   handleChange,
   sx,
+  radioGroupSx,
 }: RadioGroupProps) {
   return (
     <FormControl sx={sx}>
@@ -59,6 +61,7 @@ function RadioGroup({
           padding: "8px 12px",
           borderRadius: "8px",
           border: "1px solid rgba(0, 0, 0, 0.23)",
+          ...radioGroupSx,
         }}
       >
         {children}

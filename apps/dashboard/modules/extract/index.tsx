@@ -1,26 +1,35 @@
 import { ptBR } from "date-fns/locale";
 import { Card } from "@repo/ui/card";
-import useSWR from "swr";
 import { format } from "date-fns";
 import { Box, Stack, Typography } from "@mui/material";
 import { Button } from "@repo/ui/button";
 import { useRouter } from "next/navigation";
 import { formatCurrency } from "../../../../packages/ui/src/currency-input";
-import { fetcher } from "app/services";
+import { transactionsState } from "app/recoil/atoms/transactionsAtom";
+import { useRecoilValue } from "recoil";
+import { extractState } from "app/recoil/atoms/extractAtom";
 
 export function Extract() {
   const { push } = useRouter();
-  const { data, isLoading, error } = useSWR("/api/extrato", fetcher);
+  const { isLoading, error } = useRecoilValue(transactionsState);
+  const extract = useRecoilValue(extractState);
 
   if (isLoading)
     return (
       <Card type="default" sx={{ width: "282px" }}>
+        <Typography variant="h5" sx={{ marginBottom: "16px" }}>
+          Extrato
+        </Typography>
         Carregando...
       </Card>
     );
+
   if (error)
     return (
       <Card type="default" sx={{ width: "282px" }}>
+        <Typography variant="h5" sx={{ marginBottom: "16px" }}>
+          Extrato
+        </Typography>
         Erro ao carregar
       </Card>
     );
@@ -30,7 +39,7 @@ export function Extract() {
       <Typography variant="h5" sx={{ marginBottom: "16px" }}>
         Extrato
       </Typography>
-      {data.map((group: any, i: number) => (
+      {extract.map((group: any, i: number) => (
         <Box
           key={group.monthNumber + group.year + i}
           sx={{

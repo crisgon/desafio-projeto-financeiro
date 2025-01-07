@@ -25,7 +25,7 @@ export function Card({ sx, title, children, type }: CardProps): JSX.Element {
     },
     secondary: {
       backgroundColor: theme.palette.grey[400],
-      color: theme.palette.grey[300],
+      color: theme.palette.primary.dark,
     },
   };
   return (
@@ -38,7 +38,11 @@ export function Card({ sx, title, children, type }: CardProps): JSX.Element {
         ...sx,
       }}
     >
-      {title && <Typography variant="h1">{title}</Typography>}
+      {title && (
+        <Typography variant="h1" sx={{ zIndex: 1 }}>
+          {title}
+        </Typography>
+      )}
       {children}
     </MUICard>
   );

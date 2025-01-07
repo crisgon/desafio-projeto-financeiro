@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { fetchTransacoes, createTransacao } from "../../lib/apiTransacaoClient";
-import { sortTransactions } from "modules/utils/sort-transactions";
+import { sortTransactions } from "modules/utils/sortTransactions";
 
 export async function GET() {
   try {
