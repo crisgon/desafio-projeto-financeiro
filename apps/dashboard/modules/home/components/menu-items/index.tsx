@@ -17,21 +17,15 @@ export default function MenuItems() {
       </Menu.MenuItem>
       <Menu.MenuItem
         sx={styles.menuItem}
-        handleClick={() => console.log("")}
-        disabled
-      >
-        Transferências
-      </Menu.MenuItem>
-      <Menu.MenuItem
-        sx={styles.menuItem}
         handleClick={() => router.push("/transactions")}
         active={pathname === "/transactions"}
       >
-        Extrato
+        Transações
       </Menu.MenuItem>
       <Menu.MenuItem
         sx={styles.menuItem}
-        handleClick={() => console.log("")}
+        handleClick={() => router.push("/investments")}
+        active={pathname === "/investments"}
         disabled
       >
         Investimentos
@@ -41,7 +35,8 @@ export default function MenuItems() {
           ...styles.menuItem,
           border: "none",
         }}
-        handleClick={() => console.log("")}
+        handleClick={() => router.push("/services")}
+        active={pathname === "/services"}
         disabled
       >
         Outros serviços

@@ -7,7 +7,10 @@ import { RecoilRoot } from "recoil";
 import "./globals.css";
 
 import { Inter } from "next/font/google";
-import Header from "modules/dashboard/components/header";
+import Header from "modules/home/components/header";
+import { Card } from "@repo/ui/card";
+import { Menu } from "modules/home/components";
+import styles from "./styles";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -45,7 +48,12 @@ export default function RootLayout({
                 margin: "0 auto",
               }}
             >
-              {children}
+              <Box component="main" sx={styles.main}>
+                <Card type="default" sx={styles.menu}>
+                  <Menu />
+                </Card>
+                <Box flex={1}>{children}</Box>
+              </Box>
             </Box>
           </RecoilRoot>
         </ThemeProvider>

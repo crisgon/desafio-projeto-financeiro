@@ -28,7 +28,7 @@ describe("Menu", () => {
               Início
             </Menu.MenuItem>
             <Menu.MenuItem handleClick={() => console.log("clicou no item")}>
-              Transferências
+              Transações
             </Menu.MenuItem>
             <Menu.MenuItem
               handleClick={() => console.log("clicou no item")}
@@ -63,7 +63,7 @@ describe("Menu", () => {
               Início
             </Menu.MenuItem>
             <Menu.MenuItem handleClick={() => console.log("clicou no item")}>
-              Transferências
+              Transações
             </Menu.MenuItem>
             <Menu.MenuItem
               handleClick={() => console.log("clicou no item")}
@@ -101,7 +101,7 @@ describe("Menu", () => {
               Início
             </Menu.MenuItem>
             <Menu.MenuItem handleClick={() => console.log("clicou no item")}>
-              Transferências
+              Transações
             </Menu.MenuItem>
             <Menu.MenuItem
               handleClick={() => console.log("clicou no item")}
