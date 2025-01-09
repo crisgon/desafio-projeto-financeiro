@@ -39,6 +39,11 @@ export function Extract() {
       <Typography variant="h5" sx={{ marginBottom: "16px" }}>
         Extrato
       </Typography>
+
+      {(!extract || extract.length === 0) && (
+        <span>Não foram encontradas transações para essa conta</span>
+      )}
+
       {extract.map((group: any, i: number) => (
         <Box
           key={group.monthNumber + group.year + i}
@@ -100,12 +105,14 @@ export function Extract() {
         </Box>
       ))}
 
-      <Button
-        label="Ver mais"
-        variant="outlined"
-        color="tertiary"
-        onClick={() => push("/transactions")}
-      />
+      {extract && extract.length > 0 && (
+        <Button
+          label="Ver mais"
+          variant="outlined"
+          color="tertiary"
+          onClick={() => push("/transactions")}
+        />
+      )}
     </Card>
   );
 }

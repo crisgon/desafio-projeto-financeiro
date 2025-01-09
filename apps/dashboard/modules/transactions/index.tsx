@@ -23,8 +23,25 @@ export function Transactions() {
   const rows = data ? data.map((d: Transaction) => createData(d)) : [];
 
   return (
-    <Card type="default" sx={{ flex: 1, overflow: "auto" }}>
-      {isLoading ? <Loading /> : <TableData data={rows} />}
+    <Card
+      type="default"
+      sx={{
+        flex: 1,
+        overflow: "auto",
+        minHeight: "calc(100vh - 144px)",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        textAlign: "center",
+      }}
+    >
+      {isLoading ? (
+        <Loading />
+      ) : rows.length > 0 ? (
+        <TableData data={rows} />
+      ) : (
+        <span>Não foram encontradas transações para essa conta</span>
+      )}
     </Card>
   );
 }
