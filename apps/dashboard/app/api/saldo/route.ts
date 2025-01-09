@@ -20,7 +20,7 @@ export async function PUT(req: Request) {
 
     let newBalance;
 
-    if (operationType === "deposito") {
+    if (operationType === "Credit") {
       newBalance = value + operationValue;
     } else {
       newBalance = value - operationValue;

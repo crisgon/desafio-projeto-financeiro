@@ -1,20 +1,24 @@
 import type { ToastProps } from "@repo/ui/toast";
-import { createTransactionRequest, updateSaldo } from "app/services";
-import type { OperationTypes, TransactionTypes } from "app/types/transaction";
+import { updateSaldo } from "app/services";
+import { createTransactionRequest } from "app/services/transaction";
+import type { TransactionTypes } from "app/types/transaction";
 import { useState } from "react";
+import { useCookies } from "react-cookie";
 import useSWRMutation from "swr/mutation";
 
 interface CreateTransactionPayload {
+  accountId: string;
   transactionType?: TransactionTypes;
-  operationType?: OperationTypes;
   value: string | number;
 }
 
 export const useAddTransaction = () => {
+  const [cookies] = useCookies(["userToken"]);
+
   const {
     trigger: createTransactionMutation,
     isMutating: createTransactionIsMutating,
-  } = useSWRMutation("/api/transacao", createTransactionRequest);
+  } = useSWRMutation("/account/transaction", createTransactionRequest);
 
   const {
     trigger: updateSaldoMutation,
@@ -30,23 +34,25 @@ export const useAddTransaction = () => {
   );
 
   const createTransaction = async ({
-    transactionType = "doc/ted",
-    operationType = "deposito",
+    accountId,
+    transactionType = "Credit",
     value,
   }: CreateTransactionPayload) => {
     try {
-      const newTransaction = {
-        createdAt: new Date().toISOString(),
-        transactionType,
-        operationType,
-        value: Number(value),
-      };
-
-      await createTransactionMutation(newTransaction);
+      createTransactionMutation({
+        data: {
+          accountId,
+          value: Number(value),
+          type: transactionType,
+        },
+        headers: {
+          Authorization: `Bearer ${cookies.userToken}`,
+        },
+      });
 
       await updateSaldoMutation({
         operationValue: Number(value),
-        operationType: operationType,
+        operationType: transactionType,
       });
 
       setToastProps({

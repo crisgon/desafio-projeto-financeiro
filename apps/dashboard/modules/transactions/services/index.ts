@@ -7,9 +7,8 @@ export const updateTransaction = async (
   }: {
     arg: {
       id: string;
-      transactionType: string;
+      type: string;
       value: number;
-      operationType: string;
     };
   },
 ) => {

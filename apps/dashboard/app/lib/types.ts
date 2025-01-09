@@ -1,15 +1,16 @@
+import type { TransactionTypes } from "app/types/transaction";
+
 export interface Saldo {
   value: number;
 }
 
 export interface Transacao {
-  type: "deposito" | "transferencia";
+  type: TransactionTypes;
   value: number;
 }
 
 export interface EditTransacao {
   id: string;
   value: number;
-  operationType: string;
-  transactionType: string;
+  type: TransactionTypes;
 }

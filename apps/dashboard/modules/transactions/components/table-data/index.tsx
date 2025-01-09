@@ -31,7 +31,7 @@ export function TableData({ data }: TableDataProps) {
     useState<Transaction | null>(null);
 
   function generateOperationTypeIcon(operationType: string) {
-    if (operationType === "deposit")
+    if (operationType === "Debit")
       return <Icons name={"mdiBankTransferIn"} color={palette.success.main} />;
 
     return <Icons name={"mdiBankTransferOut"} color={palette.error.main} />;
@@ -86,24 +86,22 @@ export function TableData({ data }: TableDataProps) {
                 "&:last-child td, &:last-child th": { border: 0 },
               }}
             >
-              <TableCell>
-                {generateOperationTypeIcon(row.operationType)}
-              </TableCell>
+              <TableCell>{generateOperationTypeIcon(row.type)}</TableCell>
               <TableCell>{row.id}</TableCell>
 
-              <TableCell>{row.transactionType}</TableCell>
+              <TableCell>{row.type}</TableCell>
               <TableCell>{formatCurrency(String(row.value ?? 0))}</TableCell>
 
-              <TableCell>{formatDate(row.createdAt, "full")}</TableCell>
+              <TableCell>{formatDate(row.date, "full")}</TableCell>
               <TableCell>
                 <Button
                   onClick={() =>
                     handleEditTransaction({
                       id: row.id,
-                      operationType: row.operationType,
-                      transactionType: row.transactionType,
+                      type: row.type,
                       value: row.value,
-                      createdAt: row.createdAt,
+                      date: row.date,
+                      accountId: row.accountId,
                     })
                   }
                   label="Detalhes"
@@ -115,10 +113,10 @@ export function TableData({ data }: TableDataProps) {
                 onClick={() => {
                   handleDeleteTransaction({
                     id: row.id,
-                    operationType: row.operationType,
-                    transactionType: row.transactionType,
+                    type: row.type,
                     value: row.value,
-                    createdAt: row.createdAt,
+                    date: row.date,
+                    accountId: row.accountId,
                   });
                 }}
               >

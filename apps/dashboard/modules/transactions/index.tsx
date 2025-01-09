@@ -7,14 +7,8 @@ import type { Transaction } from "app/types/transaction";
 import { useRecoilValue } from "recoil";
 import { transactionsState } from "app/recoil/atoms/transactionsAtom";
 
-function createData({
-  id,
-  operationType,
-  transactionType,
-  value,
-  createdAt,
-}: Transaction) {
-  return { id, operationType, transactionType, value, createdAt };
+function createData({ id, accountId, type, value, date }: Transaction) {
+  return { id, accountId, type, value, date };
 }
 
 export function Transactions() {

@@ -60,7 +60,7 @@ export function Extract() {
           </Typography>
           <>
             {group.transactions.map((transaction: any) => {
-              const isTransfer = transaction.operationType === "transferencia";
+              const isTransfer = transaction.operationType === "Debit";
 
               return (
                 <Stack

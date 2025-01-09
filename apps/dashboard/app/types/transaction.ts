@@ -1,11 +1,9 @@
-export type TransactionTypes = "cambio" | "emprestimo" | "doc/ted";
-export type OperationTypes = "deposito" | "transferencia" | "saque";
-export type TransactionType = "Debit" | "Credit";
+export type TransactionTypes = "Debit" | "Credit";
 
 export type Transaction = {
   id: string;
   accountId: string;
-  type: TransactionType;
+  type: TransactionTypes;
   value: number;
   date: Date;
 };

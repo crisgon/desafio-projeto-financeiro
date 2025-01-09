@@ -5,9 +5,11 @@ import { useRecoilValue } from "recoil";
 import { userState } from "app/recoil/atoms/userAtom";
 import type { User } from "app/types/user";
 import { useLogin } from "modules/hooks/useLogin.hook";
+import { useAccount } from "modules/hooks/useAccount.hook";
 
 export default function Header() {
   useLogin();
+  useAccount();
 
   const user = useRecoilValue<User>(userState);
 
