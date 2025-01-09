@@ -30,7 +30,7 @@ export function LoggedContent({ userName, children }: LoggedContentProps) {
       }}
     >
       {isMobile && children}
-      <Stack width="fit-content" direction="row" alignItems="center" gap="50px">
+      <Stack width="fit-content" direction="row" alignItems="center" gap="16px">
         {showUserName && (
           <Typography variant="body2" sx={{ color: "common.white" }}>
             {userName}

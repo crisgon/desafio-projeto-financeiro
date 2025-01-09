@@ -1,13 +1,18 @@
 import { Header as UIHeader } from "@repo/ui/header";
 import Menu from "@repo/ui/menu";
 import MenuItems from "../menu-items";
-import { useHeader } from "./useHeader.hook";
+import { useRecoilValue } from "recoil";
+import { userState } from "app/recoil/atoms/userAtom";
+import type { User } from "app/types/user";
+import { useLogin } from "modules/hooks/useLogin.hook";
 
 export default function Header() {
-  const { userName } = useHeader();
+  useLogin();
+
+  const user = useRecoilValue<User>(userState);
 
   return (
-    <UIHeader isLogged userName={userName}>
+    <UIHeader isLogged userName={user.username || ""}>
       <Menu variant="compact" iconColor="secondary">
         <MenuItems />
       </Menu>
