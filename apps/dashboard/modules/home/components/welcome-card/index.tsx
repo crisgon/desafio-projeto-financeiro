@@ -17,7 +17,7 @@ export default function WelcomeCard() {
   const [isBalanceVisible, setIsBalanceVisible] = useState<boolean>(true);
   const [balanceIcon, setBalanceIcon] =
     useState<IconButtonProps["icon"]>("mdiEye");
-  const { data, isLoading } = useRecoilValue(balanceState);
+  const balance = useRecoilValue(balanceState);
 
   const today = new Date().toLocaleDateString("pt-BR", {
     weekday: "long",
@@ -26,7 +26,7 @@ export default function WelcomeCard() {
     year: "numeric",
   });
 
-  const formattedNumber = formatCurrency(data?.value ?? 0);
+  const formattedNumber = formatCurrency(balance ?? 0);
 
   const toggleBalanceVisibility = () => {
     setBalanceIcon(isBalanceVisible ? "mdiEyeOff" : "mdiEye");
@@ -58,14 +58,7 @@ export default function WelcomeCard() {
           <Typography variant="body1">Conta corrente</Typography>
 
           <Typography component="span" sx={styles.balanceText}>
-            R${" "}
-            {isLoading ? (
-              <Skeleton variant="text" sx={styles.skeleton} />
-            ) : isBalanceVisible ? (
-              `${formattedNumber}`
-            ) : (
-              "******"
-            )}
+            R$ {isBalanceVisible ? `${formattedNumber}` : "******"}
           </Typography>
         </Box>
       </Box>

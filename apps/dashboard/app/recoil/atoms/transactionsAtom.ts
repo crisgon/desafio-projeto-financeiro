@@ -3,9 +3,5 @@ import { atom } from "recoil";
 
 export const transactionsState = atom({
   key: "transactionsState",
-  default: {
-    data: [] as Transaction[],
-    isLoading: true,
-    error: false,
-  },
+  default: [] as Transaction[],
 });

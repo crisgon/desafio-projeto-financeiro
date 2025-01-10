@@ -1,12 +1,17 @@
-export type TransactionTypes = "cambio" | "emprestimo" | "doc/ted";
-export type OperationTypes = "deposito" | "transferencia" | "saque";
+export type TransactionTypes = "Debit" | "Credit";
 
 export type Transaction = {
-  createdAt: string;
-  transactionType: TransactionTypes;
-  value: number;
-  operationType: OperationTypes;
   id: string;
+  accountId: string;
+  type: TransactionTypes;
+  value: number;
+  date: Date;
+};
+
+export type TransactionState = {
+  data: Transaction[];
+  isLoading: boolean;
+  error: boolean;
 };
 
 export type GroupedTransaction = {
