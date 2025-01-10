@@ -1,8 +1,7 @@
 import { ptBR } from "date-fns/locale";
-import { Card } from "@repo/ui/card";
+import { Card, Button } from "fiap-financeiro-ds";
 import { format } from "date-fns";
 import { Box, Stack, Typography } from "@mui/material";
-import { Button } from "@repo/ui/button";
 import { useRouter } from "next/navigation";
 import { formatCurrency } from "../../../../packages/ui/src/currency-input";
 import { transactionsState } from "app/recoil/atoms/transactionsAtom";

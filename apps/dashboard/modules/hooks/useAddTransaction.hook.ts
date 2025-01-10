@@ -1,6 +1,6 @@
-import type { ToastProps } from "@repo/ui/toast";
 import { createTransactionRequest, updateSaldo } from "app/services";
 import type { OperationTypes, TransactionTypes } from "app/types/transaction";
+import { ToastProps } from "fiap-financeiro-ds/dist/toast";
 import { useState } from "react";
 import useSWRMutation from "swr/mutation";
 

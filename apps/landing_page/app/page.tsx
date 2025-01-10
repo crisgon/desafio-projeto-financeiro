@@ -1,8 +1,7 @@
 "use client";
 import { Box, Typography } from "@mui/material";
-import { Footer } from "@repo/ui/footer";
-import { Illustration } from "@repo/ui/illustration";
-import { Header } from "@repo/ui/header";
+import { Illustration } from "fiap-financeiro-ds";
+import { Header, Footer } from "fiap-financeiro-ds";
 
 import styles from "./styles";
 

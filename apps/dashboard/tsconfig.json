@@ -8,9 +8,7 @@
     ],
     "types": ["vitest", "@testing-library/jest-dom"],
     "baseUrl": ".",
-    "paths": {
-      "@repo/ui/*": ["../../packages/ui/src/*"]
-    }
+
   },
   "include": [
     "next-env.d.ts",

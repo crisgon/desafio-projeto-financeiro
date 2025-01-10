@@ -1,5 +1,4 @@
-import { Modal } from "@repo/ui/modal";
-import { Toast } from "@repo/ui/toast";
+import { Modal, Toast } from "fiap-financeiro-ds";
 import { useEffect, useState } from "react";
 import { TransactionForm } from "modules/components/transaction-form";
 import type {

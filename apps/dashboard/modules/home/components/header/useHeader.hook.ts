@@ -26,9 +26,9 @@ export const useHeader = () => {
       data,
     });
 
-    if (!isLoading && data) {
-      setExtract(groupTransactionsByMonth(data.slice(0, 8)));
-    }
+    // if (!isLoading && data) {
+    //   setExtract(groupTransactionsByMonth(data.slice(0, 8)));
+    // }
   }, [isLoading, error, data]);
 
   useEffect(() => {

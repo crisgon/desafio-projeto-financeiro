@@ -1,14 +1,14 @@
 "use client";
 
 import { ThemeProvider, CssBaseline, GlobalStyles, Box } from "@mui/material";
-import theme from "@repo/ui/theme";
+import { theme } from "fiap-financeiro-ds";
 import { RecoilRoot } from "recoil";
 
 import "./globals.css";
 
 import { Inter } from "next/font/google";
 import Header from "modules/home/components/header";
-import { Card } from "@repo/ui/card";
+import { Card } from "fiap-financeiro-ds";
 import { Menu } from "modules/home/components";
 import styles from "./styles";
 

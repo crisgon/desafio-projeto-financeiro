@@ -1,6 +1,6 @@
 "use client";
 
-import { Card } from "@repo/ui/card";
+import { Card } from "fiap-financeiro-ds";
 import { TableData } from "./components/table-data";
 import { Loading } from "./components/loading";
 import type { Transaction } from "app/types/transaction";

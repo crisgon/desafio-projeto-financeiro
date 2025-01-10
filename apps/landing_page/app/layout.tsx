@@ -1,7 +1,7 @@
 "use client";
 
 import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
-import theme from "@repo/ui/theme";
+import { theme } from "fiap-financeiro-ds";
 import "./globals.css";
 
 import { Inter } from "next/font/google";

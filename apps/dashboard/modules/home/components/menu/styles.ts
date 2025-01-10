@@ -1,5 +1,5 @@
 import { SxProps, Theme } from "@mui/material";
-import theme from "@repo/ui/theme";
+import { theme } from "fiap-financeiro-ds";
 
 export const styles: Record<string, SxProps<Theme>> = {
   menu: {
