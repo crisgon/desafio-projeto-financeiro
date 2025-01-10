@@ -18,10 +18,16 @@ import { formatDate } from "modules/utils/formats";
 import { formatCurrency } from "@repo/ui/currency-input";
 import { DeleteModal } from "../delete-modal";
 import type { Transaction } from "app/types/transaction";
+import { IconButton } from "@repo/ui/iconButton";
 
 interface TableDataProps {
   data: Transaction[];
 }
+
+const operationTypeMapper = {
+  Debit: "Débito",
+  Credit: "Crédito",
+};
 
 export function TableData({ data }: TableDataProps) {
   const { palette } = useTheme();
@@ -31,10 +37,18 @@ export function TableData({ data }: TableDataProps) {
     useState<Transaction | null>(null);
 
   function generateOperationTypeIcon(operationType: string) {
-    if (operationType === "Debit")
-      return <Icons name={"mdiBankTransferIn"} color={palette.success.main} />;
+    if (operationType === "Credit")
+      return (
+        <Icons
+          name={"mdiBankTransferIn"}
+          size={24}
+          color={palette.success.main}
+        />
+      );
 
-    return <Icons name={"mdiBankTransferOut"} color={palette.error.main} />;
+    return (
+      <Icons name={"mdiBankTransferOut"} size={24} color={palette.error.main} />
+    );
   }
 
   function handleEditTransaction(transaction: Transaction) {
@@ -89,12 +103,13 @@ export function TableData({ data }: TableDataProps) {
               <TableCell>{generateOperationTypeIcon(row.type)}</TableCell>
               <TableCell>{row.id}</TableCell>
 
-              <TableCell>{row.type}</TableCell>
+              <TableCell>{operationTypeMapper[row.type]}</TableCell>
               <TableCell>{formatCurrency(String(row.value ?? 0))}</TableCell>
 
               <TableCell>{formatDate(row.date, "full")}</TableCell>
               <TableCell>
                 <Button
+                  disabled
                   onClick={() =>
                     handleEditTransaction({
                       id: row.id,
@@ -109,22 +124,22 @@ export function TableData({ data }: TableDataProps) {
                   color="tertiary"
                 />
               </TableCell>
-              <TableCell
-                onClick={() => {
-                  handleDeleteTransaction({
-                    id: row.id,
-                    type: row.type,
-                    value: row.value,
-                    date: row.date,
-                    accountId: row.accountId,
-                  });
-                }}
-              >
-                <Icons
-                  color={palette.error.main}
-                  name="mdiTrashCan"
-                  size={32}
-                  styles={{ cursor: "pointer" }}
+              <TableCell>
+                <IconButton
+                  icon="mdiTrashCan"
+                  variant="dark"
+                  iconSize={24}
+                  iconColor={palette.error.main}
+                  disabled
+                  onClick={() => {
+                    handleDeleteTransaction({
+                      id: row.id,
+                      type: row.type,
+                      value: row.value,
+                      date: row.date,
+                      accountId: row.accountId,
+                    });
+                  }}
                 />
               </TableCell>
             </TableRow>

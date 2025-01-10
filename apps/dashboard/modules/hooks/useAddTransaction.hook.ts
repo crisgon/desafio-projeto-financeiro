@@ -1,10 +1,10 @@
 import type { ToastProps } from "@repo/ui/toast";
-import { updateSaldo } from "app/services";
 import { createTransactionRequest } from "app/services/transaction";
 import type { TransactionTypes } from "app/types/transaction";
 import { useState } from "react";
 import { useCookies } from "react-cookie";
 import useSWRMutation from "swr/mutation";
+import { useAccount } from "./useAccount.hook";
 
 interface CreateTransactionPayload {
   accountId: string;
@@ -14,16 +14,12 @@ interface CreateTransactionPayload {
 
 export const useAddTransaction = () => {
   const [cookies] = useCookies(["userToken"]);
+  const { getAccount } = useAccount();
 
   const {
     trigger: createTransactionMutation,
     isMutating: createTransactionIsMutating,
   } = useSWRMutation("/account/transaction", createTransactionRequest);
-
-  const {
-    trigger: updateSaldoMutation,
-    isMutating: updateTransactionIsMutating,
-  } = useSWRMutation("/api/saldo", updateSaldo);
 
   const [toastProps, setToastProps] = useState<Omit<ToastProps, "handleClose">>(
     {
@@ -39,7 +35,7 @@ export const useAddTransaction = () => {
     value,
   }: CreateTransactionPayload) => {
     try {
-      createTransactionMutation({
+      await createTransactionMutation({
         data: {
           accountId,
           value: Number(value),
@@ -50,10 +46,7 @@ export const useAddTransaction = () => {
         },
       });
 
-      await updateSaldoMutation({
-        operationValue: Number(value),
-        operationType: transactionType,
-      });
+      getAccount();
 
       setToastProps({
         type: "success",
@@ -72,7 +65,7 @@ export const useAddTransaction = () => {
 
   return {
     createTransaction,
-    isLoading: createTransactionIsMutating || updateTransactionIsMutating,
+    isLoading: createTransactionIsMutating,
     toastProps,
     setToastProps,
   };

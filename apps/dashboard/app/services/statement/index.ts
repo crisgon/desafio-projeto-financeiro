@@ -1,6 +1,6 @@
 import http from "app/http";
 
-export const getAccountRequest = async ({
+export const getStatementRequest = async ({
   url,
   headers,
 }: {
