@@ -1,1 +1,0 @@
-import"./index-BP8_t0zE.js";import{G as n}from"./DefaultPropsProvider-Dy2CNy1G.js";import{j as r}from"./jsx-runtime-CexXSJP5.js";function i(t){return t==null||Object.keys(t).length===0}function u(t){const{styles:s,defaultTheme:l={}}=t,e=typeof s=="function"?o=>s(i(o)?l:o):s;return r.jsx(n,{styles:e})}export{u as G};

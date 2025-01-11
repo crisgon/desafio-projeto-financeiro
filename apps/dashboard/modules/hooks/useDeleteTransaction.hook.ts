@@ -1,7 +1,7 @@
 import { useState } from "react";
 import useSWRMutation from "swr/mutation";
 import { deleteTransaction as deleteTransactionService } from "modules/transactions/services";
-import type { ToastProps } from "@repo/ui/toast";
+import { ToastProps } from "fiap-financeiro-ds/dist/toast";
 
 export const useDeleteTransaction = () => {
   const { trigger: deleteTransactionMutation, isMutating } = useSWRMutation(

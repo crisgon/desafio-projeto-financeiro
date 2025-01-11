@@ -1,4 +1,4 @@
-import type { ToastProps } from "@repo/ui/toast";
+import { ToastProps } from "fiap-financeiro-ds/dist/toast";
 import { createTransactionRequest } from "app/services/transaction";
 import type { TransactionTypes } from "app/types/transaction";
 import { useState } from "react";

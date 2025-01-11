@@ -1,5 +1,5 @@
 import { usePathname, useRouter } from "next/navigation";
-import Menu from "@repo/ui/menu";
+import { Menu } from "fiap-financeiro-ds";
 import { styles } from "./styles";
 
 export default function MenuItems() {

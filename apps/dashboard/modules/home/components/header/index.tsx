@@ -1,5 +1,4 @@
-import { Header as UIHeader } from "@repo/ui/header";
-import Menu from "@repo/ui/menu";
+import { Header as UIHeader, Menu } from "fiap-financeiro-ds";
 import MenuItems from "../menu-items";
 import { useRecoilValue } from "recoil";
 import { userState } from "app/recoil/atoms/userAtom";

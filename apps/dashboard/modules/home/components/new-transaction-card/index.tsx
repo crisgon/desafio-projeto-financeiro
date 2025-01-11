@@ -1,13 +1,11 @@
 "use client";
 
 import { Box } from "@mui/material";
-import { Card } from "@repo/ui/card";
-import { Illustration } from "@repo/ui/illustration";
+import { Card, Illustration, Toast } from "fiap-financeiro-ds";
 
 import { useEffect, useState } from "react";
 import styles from "./styles";
 import { TransactionForm } from "modules/components/transaction-form";
-import { Toast } from "@repo/ui/toast";
 import { useAddTransaction } from "modules/hooks/useAddTransaction.hook";
 import { TransactionTypes } from "app/types/transaction";
 import { useRecoilValue } from "recoil";

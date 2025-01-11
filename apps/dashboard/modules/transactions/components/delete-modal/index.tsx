@@ -1,7 +1,5 @@
 import { Box, Stack, Typography } from "@mui/material";
-import { Button } from "@repo/ui/button";
-import { Modal } from "@repo/ui/modal";
-import { Toast } from "@repo/ui/toast";
+import { Button, Modal, Toast } from "fiap-financeiro-ds";
 import { useDeleteTransaction } from "modules/hooks/useDeleteTransaction.hook";
 
 interface DeleteModalProps {

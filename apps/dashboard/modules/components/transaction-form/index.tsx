@@ -1,10 +1,9 @@
-import { Select } from "@repo/ui/select";
-import { CurrencyInput, formatCurrency } from "@repo/ui/currency-input";
+import { RadioGroup, Select, CurrencyInput, Button } from "fiap-financeiro-ds";
 import { Box, useTheme } from "@mui/material";
-import { Button } from "@repo/ui/button";
 import { useRecoilValue } from "recoil";
 import { transactionTypesState } from "app/recoil/atoms/transactionTypesAtom";
 import type { TransactionTypes } from "app/types/transaction";
+import { formatCurrency } from "fiap-financeiro-ds/dist/currency-input";
 
 interface TransactionFormProps {
   transactionType?: string;

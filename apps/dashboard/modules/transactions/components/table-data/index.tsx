@@ -9,16 +9,14 @@ import {
   useTheme,
 } from "@mui/material";
 
-import { Icons } from "@repo/ui/icons";
+import { Icons, Button, IconButton } from "fiap-financeiro-ds";
 
 import { EditModal } from "../edit-modal";
 import { useState } from "react";
-import { Button } from "@repo/ui/button";
 import { formatDate } from "modules/utils/formats";
-import { formatCurrency } from "@repo/ui/currency-input";
 import { DeleteModal } from "../delete-modal";
 import type { Transaction } from "app/types/transaction";
-import { IconButton } from "@repo/ui/iconButton";
+import { formatCurrency } from "fiap-financeiro-ds/dist/currency-input";
 
 interface TableDataProps {
   data: Transaction[];

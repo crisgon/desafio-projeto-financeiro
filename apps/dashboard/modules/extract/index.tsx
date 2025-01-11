@@ -1,10 +1,8 @@
 import { ptBR } from "date-fns/locale";
-import { Card } from "@repo/ui/card";
+import { Card, Button } from "fiap-financeiro-ds";
 import { format } from "date-fns";
 import { Box, Stack, Typography } from "@mui/material";
-import { Button } from "@repo/ui/button";
 import { useRouter } from "next/navigation";
-import { formatCurrency } from "../../../../packages/ui/src/currency-input";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { statementState } from "app/recoil/atoms/statementAtom";
 import { useEffect } from "react";
@@ -17,6 +15,7 @@ import type { Transaction } from "app/types/transaction";
 import { transactionTypesState } from "app/recoil/atoms/transactionTypesAtom";
 import { transactionsState } from "app/recoil/atoms/transactionsAtom";
 import { balanceState } from "app/recoil/atoms/balanceAtom";
+import { formatCurrency } from "fiap-financeiro-ds/dist/currency-input";
 
 const operationTypeMapper = {
   Debit: "Débito",
