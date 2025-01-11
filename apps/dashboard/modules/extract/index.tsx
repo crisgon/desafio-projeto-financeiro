@@ -3,17 +3,66 @@ import { Card, Button } from "fiap-financeiro-ds";
 import { format } from "date-fns";
 import { Box, Stack, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
-import { formatCurrency } from "../../../../packages/ui/src/currency-input";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { statementState } from "app/recoil/atoms/statementAtom";
+import { useEffect } from "react";
+import { getStatementRequest } from "app/services/statement";
+import { useCookies } from "react-cookie";
+import { accountState } from "app/recoil/atoms/accountAtom";
+import useSWRMutation from "swr/mutation";
+import { groupTransactionsByMonth } from "modules/utils/groupTransactionsByMonth";
+import type { Transaction } from "app/types/transaction";
+import { transactionTypesState } from "app/recoil/atoms/transactionTypesAtom";
 import { transactionsState } from "app/recoil/atoms/transactionsAtom";
-import { useRecoilValue } from "recoil";
-import { extractState } from "app/recoil/atoms/extractAtom";
+import { balanceState } from "app/recoil/atoms/balanceAtom";
+import { formatCurrency } from "fiap-financeiro-ds/dist/currency-input";
+
+const operationTypeMapper = {
+  Debit: "Débito",
+  Credit: "Crédito",
+};
 
 export function Extract() {
   const { push } = useRouter();
-  const { isLoading, error } = useRecoilValue(transactionsState);
-  const extract = useRecoilValue(extractState);
+  const [cookies] = useCookies(["userToken"]);
+  const account = useRecoilValue(accountState);
+  const statement = useRecoilValue(statementState);
+  const transactionTypes = useRecoilValue(transactionTypesState);
+  const setStatement = useSetRecoilState(statementState);
+  const setTransactions = useSetRecoilState(transactionsState);
+  const setBalance = useSetRecoilState(balanceState);
 
-  if (isLoading)
+  const { data, isMutating, error, trigger } = useSWRMutation(
+    {
+      url: `/account/${account?.id}/statement`,
+      headers: {
+        Authorization: `Bearer ${cookies.userToken}`,
+      },
+    },
+    getStatementRequest,
+  );
+
+  useEffect(() => {
+    if (account?.id) {
+      trigger();
+    }
+  }, [account]);
+
+  useEffect(() => {
+    if (data) {
+      const transactionsList = data.data.result.transactions;
+
+      setTransactions(transactionsList);
+      setStatement(groupTransactionsByMonth(transactionsList.slice(0, 8)));
+      setBalance(
+        transactionsList.reduce((acc: number, current: Transaction) => {
+          return (acc += current.value);
+        }, 0),
+      );
+    }
+  }, [data]);
+
+  if (isMutating)
     return (
       <Card type="default" sx={{ width: "282px" }}>
         <Typography variant="h5" sx={{ marginBottom: "16px" }}>
@@ -38,7 +87,12 @@ export function Extract() {
       <Typography variant="h5" sx={{ marginBottom: "16px" }}>
         Extrato
       </Typography>
-      {extract.map((group: any, i: number) => (
+
+      {(!statement || statement.length === 0) && (
+        <span>Não foram encontradas transações para essa conta</span>
+      )}
+
+      {statement.map((group: any, i: number) => (
         <Box
           key={group.monthNumber + group.year + i}
           sx={{
@@ -53,8 +107,8 @@ export function Extract() {
             {ptBR.localize.month(group.monthNumber)}
           </Typography>
           <>
-            {group.transactions.map((transaction: any) => {
-              const isTransfer = transaction.operationType === "transferencia";
+            {group.transactions.map((transaction: Transaction) => {
+              const isTransfer = transaction.type === "Debit";
 
               return (
                 <Stack
@@ -75,10 +129,10 @@ export function Extract() {
                     }}
                   >
                     <Typography fontSize={13} textTransform="capitalize">
-                      {transaction.operationType}
+                      {operationTypeMapper[transaction.type]}
                     </Typography>
                     <Typography fontSize={13}>
-                      {format(new Date(transaction.createdAt), "dd/MM/yyyy")}
+                      {format(new Date(transaction.date), "dd/MM/yyyy")}
                     </Typography>
                   </Stack>
 
@@ -89,8 +143,7 @@ export function Extract() {
                       color: isTransfer ? "error.main" : "success.main",
                     }}
                   >
-                    {isTransfer ? "-R$ " : "R$ "}
-                    {formatCurrency(transaction.value)}
+                    R$ {formatCurrency(transaction.value.toString())}
                   </Typography>
                 </Stack>
               );
@@ -99,12 +152,14 @@ export function Extract() {
         </Box>
       ))}
 
-      <Button
-        label="Ver mais"
-        variant="outlined"
-        color="tertiary"
-        onClick={() => push("/transactions")}
-      />
+      {statement && statement.length > 0 && (
+        <Button
+          label="Ver mais"
+          variant="outlined"
+          color="tertiary"
+          onClick={() => push("/transactions")}
+        />
+      )}
     </Card>
   );
 }

@@ -9,7 +9,7 @@ import {
   useTheme,
 } from "@mui/material";
 
-import { Icons, Button } from "fiap-financeiro-ds";
+import { Icons, Button, IconButton } from "fiap-financeiro-ds";
 
 import { EditModal } from "../edit-modal";
 import { useState } from "react";
@@ -22,6 +22,11 @@ interface TableDataProps {
   data: Transaction[];
 }
 
+const operationTypeMapper = {
+  Debit: "Débito",
+  Credit: "Crédito",
+};
+
 export function TableData({ data }: TableDataProps) {
   const { palette } = useTheme();
   const [openEditModa, setOpenEditModal] = useState(false);
@@ -30,10 +35,18 @@ export function TableData({ data }: TableDataProps) {
     useState<Transaction | null>(null);
 
   function generateOperationTypeIcon(operationType: string) {
-    if (operationType === "deposit")
-      return <Icons name={"mdiBankTransferIn"} color={palette.success.main} />;
+    if (operationType === "Credit")
+      return (
+        <Icons
+          name={"mdiBankTransferIn"}
+          size={24}
+          color={palette.success.main}
+        />
+      );
 
-    return <Icons name={"mdiBankTransferOut"} color={palette.error.main} />;
+    return (
+      <Icons name={"mdiBankTransferOut"} size={24} color={palette.error.main} />
+    );
   }
 
   function handleEditTransaction(transaction: Transaction) {
@@ -85,24 +98,23 @@ export function TableData({ data }: TableDataProps) {
                 "&:last-child td, &:last-child th": { border: 0 },
               }}
             >
-              <TableCell>
-                {generateOperationTypeIcon(row.operationType)}
-              </TableCell>
+              <TableCell>{generateOperationTypeIcon(row.type)}</TableCell>
               <TableCell>{row.id}</TableCell>
 
-              <TableCell>{row.transactionType}</TableCell>
+              <TableCell>{operationTypeMapper[row.type]}</TableCell>
               <TableCell>{formatCurrency(String(row.value ?? 0))}</TableCell>
 
-              <TableCell>{formatDate(row.createdAt, "full")}</TableCell>
+              <TableCell>{formatDate(row.date, "full")}</TableCell>
               <TableCell>
                 <Button
+                  disabled
                   onClick={() =>
                     handleEditTransaction({
                       id: row.id,
-                      operationType: row.operationType,
-                      transactionType: row.transactionType,
+                      type: row.type,
                       value: row.value,
-                      createdAt: row.createdAt,
+                      date: row.date,
+                      accountId: row.accountId,
                     })
                   }
                   label="Detalhes"
@@ -110,22 +122,22 @@ export function TableData({ data }: TableDataProps) {
                   color="tertiary"
                 />
               </TableCell>
-              <TableCell
-                onClick={() => {
-                  handleDeleteTransaction({
-                    id: row.id,
-                    operationType: row.operationType,
-                    transactionType: row.transactionType,
-                    value: row.value,
-                    createdAt: row.createdAt,
-                  });
-                }}
-              >
-                <Icons
-                  color={palette.error.main}
-                  name="mdiTrashCan"
-                  size={32}
-                  styles={{ cursor: "pointer" }}
+              <TableCell>
+                <IconButton
+                  icon="mdiTrashCan"
+                  variant="dark"
+                  iconSize={24}
+                  iconColor={palette.error.main}
+                  disabled
+                  onClick={() => {
+                    handleDeleteTransaction({
+                      id: row.id,
+                      type: row.type,
+                      value: row.value,
+                      date: row.date,
+                      accountId: row.accountId,
+                    });
+                  }}
                 />
               </TableCell>
             </TableRow>

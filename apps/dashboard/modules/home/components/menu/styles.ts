@@ -9,6 +9,7 @@ export const styles: Record<string, SxProps<Theme>> = {
     [`@media (max-width: ${theme.breakpoints.values.md}px)`]: {
       flexDirection: "row",
       justifyContent: "space-around",
+      minHeight: "fit-content",
       "> li": {
         flex: 1,
         border: "none",

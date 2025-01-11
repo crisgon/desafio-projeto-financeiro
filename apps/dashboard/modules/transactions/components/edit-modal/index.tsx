@@ -1,11 +1,7 @@
 import { Modal, Toast } from "fiap-financeiro-ds";
 import { useEffect, useState } from "react";
 import { TransactionForm } from "modules/components/transaction-form";
-import type {
-  OperationTypes,
-  Transaction,
-  TransactionTypes,
-} from "app/types/transaction";
+import type { Transaction, TransactionTypes } from "app/types/transaction";
 import { useEditTransaction } from "modules/hooks/useEditTransaction.hook";
 
 interface EditModalProps {
@@ -16,7 +12,6 @@ interface EditModalProps {
 
 export function EditModal({ open, handleClose, transaction }: EditModalProps) {
   const [value, setValue] = useState<string>("");
-  const [operationType, setOperationType] = useState<OperationTypes>();
   const [transactionType, setTransactionType] = useState<TransactionTypes>();
 
   const { toastProps, isLoading, editTransaction, setToastProps } =
@@ -24,20 +19,13 @@ export function EditModal({ open, handleClose, transaction }: EditModalProps) {
 
   useEffect(() => {
     setValue((transaction?.value ?? "").toString());
-    setOperationType(transaction?.operationType ?? undefined);
-    setTransactionType(transaction?.transactionType || undefined);
+    setTransactionType(transaction?.type || undefined);
   }, [transaction]);
 
   function handleEditTransaction() {
     if (!transactionType || !transaction?.id) return;
 
-    editTransaction(
-      transaction.id,
-      value,
-      transactionType,
-      handleClose,
-      operationType,
-    );
+    editTransaction(transaction.id, value, transactionType, handleClose);
   }
 
   return (
@@ -54,8 +42,6 @@ export function EditModal({ open, handleClose, transaction }: EditModalProps) {
             setTransactionType={setTransactionType}
             value={value}
             setValue={setValue}
-            operationType={operationType}
-            setOperationType={setOperationType}
             isMutating={isLoading}
             onSubmit={handleEditTransaction}
           />

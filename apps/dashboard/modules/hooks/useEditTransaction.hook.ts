@@ -1,5 +1,5 @@
-import type { OperationTypes, TransactionTypes } from "app/types/transaction";
 import { ToastProps } from "fiap-financeiro-ds/dist/toast";
+import type { TransactionTypes } from "app/types/transaction";
 import { updateTransaction } from "modules/transactions/services";
 import { useState } from "react";
 import useSWRMutation from "swr/mutation";
@@ -23,14 +23,12 @@ export const useEditTransaction = () => {
     value: number | string,
     transactionType: TransactionTypes,
     handleClose: VoidFunction,
-    operationType?: OperationTypes,
   ) => {
     try {
       await updateTransactionMutation({
         id: transactionId,
         value: Number(value),
-        operationType: operationType || "",
-        transactionType,
+        type: transactionType,
       });
 
       setToastProps({

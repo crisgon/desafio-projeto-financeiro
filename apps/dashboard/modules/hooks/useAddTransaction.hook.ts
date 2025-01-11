@@ -1,25 +1,25 @@
-import { createTransactionRequest, updateSaldo } from "app/services";
-import type { OperationTypes, TransactionTypes } from "app/types/transaction";
 import { ToastProps } from "fiap-financeiro-ds/dist/toast";
+import { createTransactionRequest } from "app/services/transaction";
+import type { TransactionTypes } from "app/types/transaction";
 import { useState } from "react";
+import { useCookies } from "react-cookie";
 import useSWRMutation from "swr/mutation";
+import { useAccount } from "./useAccount.hook";
 
 interface CreateTransactionPayload {
+  accountId: string;
   transactionType?: TransactionTypes;
-  operationType?: OperationTypes;
   value: string | number;
 }
 
 export const useAddTransaction = () => {
+  const [cookies] = useCookies(["userToken"]);
+  const { getAccount } = useAccount();
+
   const {
     trigger: createTransactionMutation,
     isMutating: createTransactionIsMutating,
-  } = useSWRMutation("/api/transacao", createTransactionRequest);
-
-  const {
-    trigger: updateSaldoMutation,
-    isMutating: updateTransactionIsMutating,
-  } = useSWRMutation("/api/saldo", updateSaldo);
+  } = useSWRMutation("/account/transaction", createTransactionRequest);
 
   const [toastProps, setToastProps] = useState<Omit<ToastProps, "handleClose">>(
     {
@@ -30,24 +30,23 @@ export const useAddTransaction = () => {
   );
 
   const createTransaction = async ({
-    transactionType = "doc/ted",
-    operationType = "deposito",
+    accountId,
+    transactionType = "Credit",
     value,
   }: CreateTransactionPayload) => {
     try {
-      const newTransaction = {
-        createdAt: new Date().toISOString(),
-        transactionType,
-        operationType,
-        value: Number(value),
-      };
-
-      await createTransactionMutation(newTransaction);
-
-      await updateSaldoMutation({
-        operationValue: Number(value),
-        operationType: operationType,
+      await createTransactionMutation({
+        data: {
+          accountId,
+          value: Number(value),
+          type: transactionType,
+        },
+        headers: {
+          Authorization: `Bearer ${cookies.userToken}`,
+        },
       });
+
+      getAccount();
 
       setToastProps({
         type: "success",
@@ -66,7 +65,7 @@ export const useAddTransaction = () => {
 
   return {
     createTransaction,
-    isLoading: createTransactionIsMutating || updateTransactionIsMutating,
+    isLoading: createTransactionIsMutating,
     toastProps,
     setToastProps,
   };

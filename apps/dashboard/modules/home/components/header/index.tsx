@@ -1,12 +1,24 @@
 import { Header as UIHeader, Menu } from "fiap-financeiro-ds";
 import MenuItems from "../menu-items";
-import { useHeader } from "./useHeader.hook";
+import { useRecoilValue } from "recoil";
+import { userState } from "app/recoil/atoms/userAtom";
+import type { User } from "app/types/user";
+import { useLogin } from "modules/hooks/useLogin.hook";
+import { useAccount } from "modules/hooks/useAccount.hook";
+import { useEffect } from "react";
 
 export default function Header() {
-  const { userName } = useHeader();
+  useLogin();
+  const { getAccount } = useAccount();
+
+  const user = useRecoilValue<User>(userState);
+
+  useEffect(() => {
+    getAccount();
+  }, []);
 
   return (
-    <UIHeader isLogged userName={userName}>
+    <UIHeader isLogged userName={user.username || ""}>
       <Menu variant="compact" iconColor="secondary">
         <MenuItems />
       </Menu>

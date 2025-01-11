@@ -7,25 +7,27 @@ import { useEffect, useState } from "react";
 import styles from "./styles";
 import { TransactionForm } from "modules/components/transaction-form";
 import { useAddTransaction } from "modules/hooks/useAddTransaction.hook";
-import { OperationTypes, TransactionTypes } from "app/types/transaction";
+import { TransactionTypes } from "app/types/transaction";
+import { useRecoilValue } from "recoil";
+import { accountState } from "app/recoil/atoms/accountAtom";
 
 export default function NewTransactionCard() {
   const [value, setValue] = useState<string>("0");
-  const [operationType, setOperationType] = useState<OperationTypes>();
   const [transactionType, setTransactionType] = useState<TransactionTypes>();
+
+  const account = useRecoilValue(accountState);
 
   const { createTransaction, isLoading, toastProps, setToastProps } =
     useAddTransaction();
 
   const handleCreateTransaction = () => {
-    createTransaction({ transactionType, operationType, value });
+    createTransaction({ accountId: account.id, transactionType, value });
   };
 
   useEffect(() => {
     if (toastProps.type === "success") {
       setValue("0");
       setTransactionType(undefined);
-      setOperationType(undefined);
     }
   }, [toastProps]);
 
@@ -47,8 +49,6 @@ export default function NewTransactionCard() {
           setTransactionType={setTransactionType}
           value={value}
           setValue={setValue}
-          operationType={operationType}
-          setOperationType={setOperationType}
           isMutating={isLoading}
           onSubmit={handleCreateTransaction}
         />
